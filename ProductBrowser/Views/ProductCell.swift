@@ -20,7 +20,7 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: 6A46B76B-AA0D-4095-97F7-BAF0B89D8649
+//	ID: 1AF05B1E-939F-485F-BCC7-8EF10D11F9F1
 //
 //	Pkg: ProductBrowser
 //
@@ -31,36 +31,6 @@
 
 import UIKit
 
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class ProductCell: UITableViewCell {
 
-	var window: UIWindow?
-	
-	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-		
-		window = UIWindow(frame: UIScreen.main.bounds)
-		window?.makeKeyAndVisible()
-		window?.rootViewController = UINavigationController(rootViewController: ProductController())
-		window?.tintColor = UIColor.systemPink
-		
-		applyAppearace()
-		
-		return true
-	}
-}
-
-extension AppDelegate {
-	
-	private func applyAppearace() {
-		let navigationBarAppearace = UINavigationBar.appearance()
-		
-		navigationBarAppearace.prefersLargeTitles = true
-		navigationBarAppearace.barTintColor = UIColor.systemPink
-		
-		navigationBarAppearace.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black,
-													  NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24, weight: .medium)]
-		
-		navigationBarAppearace.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black,
-														   NSAttributedString.Key.font: UIFont.systemFont(ofSize: 48, weight: .medium)]
-	}
 }
