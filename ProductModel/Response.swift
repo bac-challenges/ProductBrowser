@@ -32,12 +32,20 @@
 import Foundation
 
 public struct Response {
-	
 	let products: [Product]
 	let meta: Meta
 }
 
 // MARK: - Codable
 extension Response: Codable {
+	enum TopLevelCodingKeys: String, CodingKey {
+		case products = "objects"
+		case meta = "meta"
+	}
 	
+	public init(from decoder: Decoder) throws {
+		let container = try decoder.container(keyedBy: TopLevelCodingKeys.self)
+		products = try container.decode([Product].self, forKey: .products)
+		meta = try container.decode(Meta.self, forKey: .meta)
+	}
 }

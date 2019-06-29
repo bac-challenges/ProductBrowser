@@ -31,7 +31,7 @@
 
 import Foundation
 
-public struct Meta {
+public struct Meta: Codable {
 	let limit: Int
 	let lastOffsetId: String
 	let end: Bool
