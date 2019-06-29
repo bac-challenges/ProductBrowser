@@ -20,23 +20,45 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: 1F59FD5C-8743-4E8F-9A91-26FC1305B536
+//	ID: 6DE33BBA-882C-49A9-8EF6-5A72594EF8CD
 //
-//	Pkg: ProductBrowserModel
+//	Pkg: GenericService
 //
 //	Swift: 5.0 
 //
 //	MacOS: 10.15
 //
 
-#import <UIKit/UIKit.h>
+import Foundation
 
-//! Project version number for ProductBrowserModel.
-FOUNDATION_EXPORT double ProductBrowserModelVersionNumber;
-
-//! Project version string for ProductBrowserModel.
-FOUNDATION_EXPORT const unsigned char ProductBrowserModelVersionString[];
-
-// In this header, you should import all the public headers of your framework using statements like #import <ProductBrowserModel/PublicHeader.h>
-
-
+public final class RequestService {
+	
+	public init() {}
+	
+	public func loadData(urlString: String, session: URLSession = URLSession(configuration: .default), completion: @escaping (Result<Data, ErrorResult>) -> Void) -> URLSessionTask? {
+		
+		guard let url = URL(string: urlString) else {
+			completion(.failure(.network(string: "Wrong url format")))
+			return nil
+		}
+		
+		var request = RequestFactory.request(method: .GET, url: url)
+		
+		if let reachability = Reachability(), !reachability.isReachable {
+			request.cachePolicy = .returnCacheDataDontLoad
+		}
+		
+		let task = session.dataTask(with: request) { (data, response, error) in
+			if let error = error {
+				completion(.failure(.network(string: "An error occured during request :" + error.localizedDescription)))
+				return
+			}
+			
+			if let data = data {
+				completion(.success(data))
+			}
+		}
+		task.resume()
+		return task
+	}
+}

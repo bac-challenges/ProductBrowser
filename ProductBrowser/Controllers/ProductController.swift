@@ -37,6 +37,12 @@ class ProductController: UITableViewController {
 		super.viewDidLoad()
 		setupView()
 	}
+	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		
+		
+	}
 }
 
 // MARK: - Setup UI

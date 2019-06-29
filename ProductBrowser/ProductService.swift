@@ -20,38 +20,42 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: 1F59FD5C-8743-4E8F-9A91-26FC1305B536
+//	ID: 57AEBC4C-1F62-45DC-AA48-7A9E27B60E5A
 //
-//	Pkg: ProductBrowserModelTests
+//	Pkg: ProductBrowser
 //
 //	Swift: 5.0 
 //
 //	MacOS: 10.15
 //
 
-import XCTest
-@testable import ProductBrowserModel
+import Foundation
+import ProductModel
+import GenericService
 
-class ProductBrowserModelTests: XCTestCase {
 
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
+protocol ProductServiceProtocol: class {
+	func fetchForecast(_ completion: @escaping ((Result<Response, ErrorResult>) -> Void))
+}
 
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
+final class ProductService: RequestHandler, ProductServiceProtocol {
+	
+	static let shared = ProductService()
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
+	let endpoint = ""//"\(apiBase)/\(apiPath)?q=\(apiLocation)&appid=\(apiKey)&units%20=\(apiUnits)"
+	var task: URLSessionTask?
+	
+	func fetchForecast(_ completion: @escaping ((Result<Response, ErrorResult>) -> Void)) {
+		self.cancelFetchForecast()
+		
+		task = RequestService().loadData(urlString: endpoint, completion: self.networkResult(completion: completion))
+	}
+	
+	func cancelFetchForecast() {
+		
+		if let task = task {
+			task.cancel()
+		}
+		task = nil
+	}
 }

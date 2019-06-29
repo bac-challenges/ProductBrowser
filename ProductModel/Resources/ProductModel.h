@@ -20,9 +20,9 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: E752EA33-0ECD-438B-BC6D-CF413B1ABD03
+//	ID: 2C6D1EE0-1AB5-4EE0-BE8F-E51AE65B5D35
 //
-//	Pkg: ProductBrowserService
+//	Pkg: ProductModel
 //
 //	Swift: 5.0 
 //
@@ -31,12 +31,10 @@
 
 #import <UIKit/UIKit.h>
 
-//! Project version number for ProductBrowserService.
-FOUNDATION_EXPORT double ProductBrowserServiceVersionNumber;
+//! Project version number for ProductModel.
+FOUNDATION_EXPORT double ProductModelVersionNumber;
 
-//! Project version string for ProductBrowserService.
-FOUNDATION_EXPORT const unsigned char ProductBrowserServiceVersionString[];
+//! Project version string for ProductModel.
+FOUNDATION_EXPORT const unsigned char ProductModelVersionString[];
 
-// In this header, you should import all the public headers of your framework using statements like #import <ProductBrowserService/PublicHeader.h>
-
-
+// In this header, you should import all the public headers of your framework using statements like #import <ProductModel/PublicHeader.h>
