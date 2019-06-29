@@ -31,36 +31,51 @@
 
 import UIKit
 
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class ProductController: UITableViewController {
 
-	var window: UIWindow?
-	
-	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-		
-		window = UIWindow(frame: UIScreen.main.bounds)
-		window?.makeKeyAndVisible()
-		window?.rootViewController = UINavigationController(rootViewController: ProductController())
-		window?.tintColor = UIColor.systemPink
-		
-		applyAppearace()
-		
-		return true
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		setupView()
 	}
 }
 
-extension AppDelegate {
+// MARK: - Setup UI
+extension ProductController {
 	
-	private func applyAppearace() {
-		let navigationBarAppearace = UINavigationBar.appearance()
+	private func setupView() {
+		title = "Products"
+		tableView.register(ProductCell.self, forCellReuseIdentifier: "ProductCell")
+	}
+}
+
+// MARK: - UITableViewDelegate
+extension ProductController {
+	
+}
+
+// MARK: - UITableViewDataSource
+extension ProductController {
+	
+	override func numberOfSections(in tableView: UITableView) -> Int {
+		return 1
+	}
+	
+	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		return 5
+	}
+	
+	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		
-		navigationBarAppearace.prefersLargeTitles = true
-		navigationBarAppearace.barTintColor = UIColor.systemPink
+		let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell", for: indexPath)
 		
-		navigationBarAppearace.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black,
-													  NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24, weight: .medium)]
-		
-		navigationBarAppearace.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black,
-														   NSAttributedString.Key.font: UIFont.systemFont(ofSize: 48, weight: .medium)]
+		if let cell = cell as? ProductCell {
+			cell.textLabel?.text = "Product #\(indexPath.row)"
+		}
+
+		return cell
+	}
+	
+	override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+		return ""
 	}
 }

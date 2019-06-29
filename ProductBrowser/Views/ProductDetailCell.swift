@@ -20,7 +20,7 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: 6A46B76B-AA0D-4095-97F7-BAF0B89D8649
+//	ID: A1F89BF0-ACBE-4B27-B55B-C5CD78615A7A
 //
 //	Pkg: ProductBrowser
 //
@@ -31,10 +31,6 @@
 
 import UIKit
 
-class ProductController: UIViewController {
+class ProductDetailCell: UITableViewCell {
 
-	override func viewDidLoad() {
-		super.viewDidLoad()
-	}
 }
-

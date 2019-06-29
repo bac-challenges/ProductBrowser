@@ -23,6 +23,9 @@
 		60F13E6922C7AB510095CDDD /* ProductBrowserService.h in Headers */ = {isa = PBXBuildFile; fileRef = 60F13E5922C7AB500095CDDD /* ProductBrowserService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		60F13E6C22C7AB510095CDDD /* ProductBrowserService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F13E5722C7AB500095CDDD /* ProductBrowserService.framework */; };
 		60F13E6D22C7AB510095CDDD /* ProductBrowserService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 60F13E5722C7AB500095CDDD /* ProductBrowserService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		60F13E7722C7D8720095CDDD /* ProductDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F13E7622C7D8720095CDDD /* ProductDetailController.swift */; };
+		60F13E7A22C7D8D60095CDDD /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F13E7922C7D8D60095CDDD /* ProductCell.swift */; };
+		60F13E7D22C7DC5E0095CDDD /* ProductDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F13E7C22C7DC5E0095CDDD /* ProductDetailCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,6 +127,9 @@
 		60F13E5F22C7AB510095CDDD /* ProductBrowserServiceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProductBrowserServiceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		60F13E6622C7AB510095CDDD /* ProductBrowserServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductBrowserServiceTests.swift; sourceTree = "<group>"; };
 		60F13E6822C7AB510095CDDD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		60F13E7622C7D8720095CDDD /* ProductDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailController.swift; sourceTree = "<group>"; };
+		60F13E7922C7D8D60095CDDD /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
+		60F13E7C22C7DC5E0095CDDD /* ProductDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,7 +221,8 @@
 			isa = PBXGroup;
 			children = (
 				60F13DCC22C7A6B10095CDDD /* AppDelegate.swift */,
-				60F13E2D22C7AA760095CDDD /* ProductController.swift */,
+				60F13E7822C7D8990095CDDD /* Controllers */,
+				60F13E7B22C7D8DC0095CDDD /* Views */,
 				60F13DFC22C7A6D00095CDDD /* Resources */,
 			);
 			path = ProductBrowser;
@@ -242,9 +249,9 @@
 		60F13DFC22C7A6D00095CDDD /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				60F13DDA22C7A6B50095CDDD /* Info.plist */,
 				60F13DD522C7A6B50095CDDD /* Assets.xcassets */,
 				60F13DD722C7A6B50095CDDD /* LaunchScreen.storyboard */,
-				60F13DDA22C7A6B50095CDDD /* Info.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -283,6 +290,24 @@
 				60F13E6822C7AB510095CDDD /* Info.plist */,
 			);
 			path = ProductBrowserServiceTests;
+			sourceTree = "<group>";
+		};
+		60F13E7822C7D8990095CDDD /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				60F13E2D22C7AA760095CDDD /* ProductController.swift */,
+				60F13E7622C7D8720095CDDD /* ProductDetailController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		60F13E7B22C7D8DC0095CDDD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				60F13E7922C7D8D60095CDDD /* ProductCell.swift */,
+				60F13E7C22C7DC5E0095CDDD /* ProductDetailCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -557,7 +582,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60F13E7D22C7DC5E0095CDDD /* ProductDetailCell.swift in Sources */,
 				60F13E2E22C7AA760095CDDD /* ProductController.swift in Sources */,
+				60F13E7A22C7D8D60095CDDD /* ProductCell.swift in Sources */,
+				60F13E7722C7D8720095CDDD /* ProductDetailController.swift in Sources */,
 				60F13DCD22C7A6B10095CDDD /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
