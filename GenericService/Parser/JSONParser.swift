@@ -38,6 +38,7 @@ final class JSONParser {
 		do {
 			let decoder = JSONDecoder()
 			decoder.dateDecodingStrategy = .secondsSince1970
+			decoder.keyDecodingStrategy = .convertFromSnakeCase
 			
 			let model = try decoder.decode(T.self, from: data)
 			completion(.success([model]))
