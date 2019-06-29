@@ -37,6 +37,9 @@
 		60F13F5622C80A6D0095CDDD /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F13EBF22C7EF510095CDDD /* RequestHandler.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		60F13F5722C80A6D0095CDDD /* RequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F13EC022C7EF510095CDDD /* RequestFactory.swift */; };
 		60F13F5822C80A6D0095CDDD /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F13EC222C7EF510095CDDD /* Reachability.swift */; };
+		60F13F5E22C82F920095CDDD /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F13F5D22C82F920095CDDD /* UserData.swift */; };
+		60F13F6022C830710095CDDD /* Picture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F13F5F22C830710095CDDD /* Picture.swift */; };
+		60F13F6222C830AD0095CDDD /* Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F13F6122C830AD0095CDDD /* Format.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -152,6 +155,9 @@
 		60F13F4022C7FBF30095CDDD /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		60F13F4222C7FCA50095CDDD /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		60F13F4422C7FF6F0095CDDD /* Meta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meta.swift; sourceTree = "<group>"; };
+		60F13F5D22C82F920095CDDD /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		60F13F5F22C830710095CDDD /* Picture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Picture.swift; sourceTree = "<group>"; };
+		60F13F6122C830AD0095CDDD /* Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Format.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -367,6 +373,9 @@
 			children = (
 				60F13F4022C7FBF30095CDDD /* Response.swift */,
 				60F13F4222C7FCA50095CDDD /* Product.swift */,
+				60F13F5F22C830710095CDDD /* Picture.swift */,
+				60F13F6122C830AD0095CDDD /* Format.swift */,
+				60F13F5D22C82F920095CDDD /* UserData.swift */,
 				60F13F4422C7FF6F0095CDDD /* Meta.swift */,
 				60F13F3B22C7F8A70095CDDD /* Resources */,
 			);
@@ -748,7 +757,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				60F13F4122C7FBF30095CDDD /* Response.swift in Sources */,
+				60F13F6022C830710095CDDD /* Picture.swift in Sources */,
+				60F13F6222C830AD0095CDDD /* Format.swift in Sources */,
 				60F13F4322C7FCA50095CDDD /* Product.swift in Sources */,
+				60F13F5E22C82F920095CDDD /* UserData.swift in Sources */,
 				60F13F4522C7FF6F0095CDDD /* Meta.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
