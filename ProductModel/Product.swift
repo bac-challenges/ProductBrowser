@@ -31,11 +31,29 @@
 
 import Foundation
 
-public struct Product {
-
-}
-
-// MARK: - Codable
-extension Product: Codable {
-	
+public struct Product: Codable {
+	let priceCurrency: String
+	let variantSet: Int
+	let picturesData: [Picture]
+	let quantity: String
+	let createdDate: Date
+	let description: String
+	let brandId: String
+	let activeStatus: String
+	let country: String
+	let slug: String
+	let pubDate: Date
+	let nationalShippingCost: Float
+	let userId: Int
+	let id: Int
+	let handDelivery: Bool
+	let internationalShippingCost: Float
+	let status: String
+	let purchaseViaPaypal: Bool
+	let categories: [Int]
+	let address: String
+	let videos: String
+	let userData: UserData
+	let variants: String
+	let priceAmount: String
 }
