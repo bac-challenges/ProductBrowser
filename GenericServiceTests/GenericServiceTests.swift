@@ -20,42 +20,38 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: 5762E7D9-4DBA-4E37-9338-EE330D717DFD
+//	ID: B53BE935-590B-4124-BF73-FA031E5425E0
 //
-//	Pkg: ProductBrowserService
+//	Pkg: GenericServiceTests
 //
 //	Swift: 5.0 
 //
 //	MacOS: 10.15
 //
 
-import Foundation
+import XCTest
+@testable import GenericService
 
-final class JSONParser {
-	
-	static func parse<T: Codable>(data: Data, completion : (Result<[T], ErrorResult>) -> Void) {
-		
-		do {
-			let decoder = JSONDecoder()
-			decoder.dateDecodingStrategy = .secondsSince1970
-			
-			let model = try decoder.decode(T.self, from: data)
-			completion(.success([model]))
-		} catch {
-			completion(.failure(.parser(string: "Error while decoding json data")))
-		}
-	}
-	
-	static func parse<T: Codable>(data: Data, completion : (Result<T, ErrorResult>) -> Void) {
-		
-		do {
-			let decoder = JSONDecoder()
-			decoder.dateDecodingStrategy = .secondsSince1970
-			
-			let model = try decoder.decode(T.self, from: data)
-			completion(.success(model))
-		} catch {
-			completion(.failure(.parser(string: "Error while decoding json data")))
-		}
-	}
+class GenericServiceTests: XCTestCase {
+
+    override func setUp() {
+        // Put setup code here. This method is called before the invocation of each test method in the class.
+    }
+
+    override func tearDown() {
+        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    }
+
+    func testExample() {
+        // This is an example of a functional test case.
+        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    }
+
+    func testPerformanceExample() {
+        // This is an example of a performance test case.
+        self.measure {
+            // Put the code you want to measure the time of here.
+        }
+    }
+
 }

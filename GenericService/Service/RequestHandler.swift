@@ -22,7 +22,7 @@
 //
 //	ID: F1752C69-506D-411A-9E70-AB563914137E
 //
-//	Pkg: ProductBrowserService
+//	Pkg: GenericService
 //
 //	Swift: 5.0 
 //

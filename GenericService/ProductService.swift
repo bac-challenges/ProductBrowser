@@ -20,9 +20,9 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: 6DE33BBA-882C-49A9-8EF6-5A72594EF8CD
+//	ID: 57AEBC4C-1F62-45DC-AA48-7A9E27B60E5A
 //
-//	Pkg: ProductBrowserService
+//	Pkg: ProductService
 //
 //	Swift: 5.0 
 //
@@ -31,32 +31,30 @@
 
 import Foundation
 
-final class RequestService {
+/*
+protocol ProductServiceProtocol: class {
+	func fetchForecast(_ completion: @escaping ((Result<City, ErrorResult>) -> Void))
+}
+
+final class ProductService: RequestHandler, ProductServiceProtocol {
 	
-	func loadData(urlString: String, session: URLSession = URLSession(configuration: .default), completion: @escaping (Result<Data, ErrorResult>) -> Void) -> URLSessionTask? {
+	static let shared = ProductService()
+	
+	let endpoint = "\(apiBase)/\(apiPath)?q=\(apiLocation)&appid=\(apiKey)&units%20=\(apiUnits)"
+	var task: URLSessionTask?
+	
+	func fetchForecast(_ completion: @escaping ((Result<City, ErrorResult>) -> Void)) {
+		self.cancelFetchForecast()
 		
-		guard let url = URL(string: urlString) else {
-			completion(.failure(.network(string: "Wrong url format")))
-			return nil
+		task = RequestService().loadData(urlString: endpoint, completion: self.networkResult(completion: completion))
+	}
+	
+	func cancelFetchForecast() {
+		
+		if let task = task {
+			task.cancel()
 		}
-		
-		var request = RequestFactory.request(method: .GET, url: url)
-		
-		if let reachability = Reachability(), !reachability.isReachable {
-			request.cachePolicy = .returnCacheDataDontLoad
-		}
-		
-		let task = session.dataTask(with: request) { (data, response, error) in
-			if let error = error {
-				completion(.failure(.network(string: "An error occured during request :" + error.localizedDescription)))
-				return
-			}
-			
-			if let data = data {
-				completion(.success(data))
-			}
-		}
-		task.resume()
-		return task
+		task = nil
 	}
 }
+*/

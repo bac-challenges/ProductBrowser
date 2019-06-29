@@ -20,23 +20,30 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: E752EA33-0ECD-438B-BC6D-CF413B1ABD03
+//	ID: 559C5F09-19B5-414F-AA55-866F66BD919B
 //
-//	Pkg: ProductBrowserService
+//	Pkg: GenericService
 //
 //	Swift: 5.0 
 //
 //	MacOS: 10.15
 //
 
-#import <UIKit/UIKit.h>
+import Foundation
 
-//! Project version number for ProductBrowserService.
-FOUNDATION_EXPORT double ProductBrowserServiceVersionNumber;
-
-//! Project version string for ProductBrowserService.
-FOUNDATION_EXPORT const unsigned char ProductBrowserServiceVersionString[];
-
-// In this header, you should import all the public headers of your framework using statements like #import <ProductBrowserService/PublicHeader.h>
-
-
+final class RequestFactory {
+	
+	enum Method: String {
+		case GET
+		case POST
+		case PUT
+		case DELETE
+		case PATCH
+	}
+	
+	static func request(method: Method, url: URL) -> URLRequest {
+		var request = URLRequest(url: url)
+		request.httpMethod = method.rawValue
+		return request
+	}
+}

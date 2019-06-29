@@ -20,9 +20,9 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: CF12A9A1-D37F-4813-BB59-AB7EAA55A7F0
+//	ID: 7579D998-2419-41C1-B835-3D7741BA91EE
 //
-//	Pkg: ProductBrowserService
+//	Pkg: GenericService
 //
 //	Swift: 5.0 
 //
@@ -31,8 +31,7 @@
 
 import Foundation
 
-enum ErrorResult: Error {
-	case network(string: String)
-	case parser(string: String)
-	case custom(string: String)
+enum Result<T, E: Error> {
+	case success(T)
+	case failure(E)
 }

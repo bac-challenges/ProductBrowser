@@ -20,18 +20,23 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: 7579D998-2419-41C1-B835-3D7741BA91EE
+//	ID: B53BE935-590B-4124-BF73-FA031E5425E0
 //
-//	Pkg: ProductBrowserService
+//	Pkg: GenericService
 //
 //	Swift: 5.0 
 //
 //	MacOS: 10.15
 //
 
-import Foundation
+#import <UIKit/UIKit.h>
 
-enum Result<T, E: Error> {
-	case success(T)
-	case failure(E)
-}
+//! Project version number for GenericService.
+FOUNDATION_EXPORT double GenericServiceVersionNumber;
+
+//! Project version string for GenericService.
+FOUNDATION_EXPORT const unsigned char GenericServiceVersionString[];
+
+// In this header, you should import all the public headers of your framework using statements like #import <GenericService/PublicHeader.h>
+
+

@@ -20,38 +20,43 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: 1F59FD5C-8743-4E8F-9A91-26FC1305B536
+//	ID: 6DE33BBA-882C-49A9-8EF6-5A72594EF8CD
 //
-//	Pkg: ProductBrowserModelTests
+//	Pkg: GenericService
 //
 //	Swift: 5.0 
 //
 //	MacOS: 10.15
 //
 
-import XCTest
-@testable import ProductBrowserModel
+import Foundation
 
-class ProductBrowserModelTests: XCTestCase {
-
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
+final class RequestService {
+	
+	func loadData(urlString: String, session: URLSession = URLSession(configuration: .default), completion: @escaping (Result<Data, ErrorResult>) -> Void) -> URLSessionTask? {
+		
+		guard let url = URL(string: urlString) else {
+			completion(.failure(.network(string: "Wrong url format")))
+			return nil
+		}
+		
+		var request = RequestFactory.request(method: .GET, url: url)
+		
+		if let reachability = Reachability(), !reachability.isReachable {
+			request.cachePolicy = .returnCacheDataDontLoad
+		}
+		
+		let task = session.dataTask(with: request) { (data, response, error) in
+			if let error = error {
+				completion(.failure(.network(string: "An error occured during request :" + error.localizedDescription)))
+				return
+			}
+			
+			if let data = data {
+				completion(.success(data))
+			}
+		}
+		task.resume()
+		return task
+	}
 }

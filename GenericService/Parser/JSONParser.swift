@@ -20,9 +20,9 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: 559C5F09-19B5-414F-AA55-866F66BD919B
+//	ID: 5762E7D9-4DBA-4E37-9338-EE330D717DFD
 //
-//	Pkg: ProductBrowserService
+//	Pkg: GenericService
 //
 //	Swift: 5.0 
 //
@@ -31,19 +31,31 @@
 
 import Foundation
 
-final class RequestFactory {
+final class JSONParser {
 	
-	enum Method: String {
-		case GET
-		case POST
-		case PUT
-		case DELETE
-		case PATCH
+	static func parse<T: Codable>(data: Data, completion : (Result<[T], ErrorResult>) -> Void) {
+		
+		do {
+			let decoder = JSONDecoder()
+			decoder.dateDecodingStrategy = .secondsSince1970
+			
+			let model = try decoder.decode(T.self, from: data)
+			completion(.success([model]))
+		} catch {
+			completion(.failure(.parser(string: "Error while decoding json data")))
+		}
 	}
 	
-	static func request(method: Method, url: URL) -> URLRequest {
-		var request = URLRequest(url: url)
-		request.httpMethod = method.rawValue
-		return request
+	static func parse<T: Codable>(data: Data, completion : (Result<T, ErrorResult>) -> Void) {
+		
+		do {
+			let decoder = JSONDecoder()
+			decoder.dateDecodingStrategy = .secondsSince1970
+			
+			let model = try decoder.decode(T.self, from: data)
+			completion(.success(model))
+		} catch {
+			completion(.failure(.parser(string: "Error while decoding json data")))
+		}
 	}
 }
