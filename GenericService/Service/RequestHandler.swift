@@ -31,11 +31,13 @@
 
 import Foundation
 
-class RequestHandler {
+open class RequestHandler {
 	
 	let reachability = Reachability()!
 	
-	func networkResult<T: Codable>(completion: @escaping ((Result<[T], ErrorResult>) -> Void)) -> ((Result<Data, ErrorResult>) -> Void) {
+	public init(){}
+	
+	public func networkResult<T: Codable>(completion: @escaping ((Result<[T], ErrorResult>) -> Void)) -> ((Result<Data, ErrorResult>) -> Void) {
 		
 		return { dataResult in
 			
@@ -53,7 +55,7 @@ class RequestHandler {
 		}
 	}
 	
-	func networkResult<T: Codable>(completion: @escaping ((Result<T, ErrorResult>) -> Void)) -> ((Result<Data, ErrorResult>) -> Void) {
+	public func networkResult<T: Codable>(completion: @escaping ((Result<T, ErrorResult>) -> Void)) -> ((Result<Data, ErrorResult>) -> Void) {
 		
 		return { dataResult in
 			

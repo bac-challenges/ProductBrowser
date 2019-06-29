@@ -20,7 +20,7 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: 2C6D1EE0-1AB5-4EE0-BE8F-E51AE65B5D35
+//	ID: 96FC1DE7-B23B-4BA3-825C-B446068E4CA8
 //
 //	Pkg: ProductModel
 //
@@ -29,12 +29,15 @@
 //	MacOS: 10.15
 //
 
-#import <UIKit/UIKit.h>
+import Foundation
 
-//! Project version number for ProductModel.
-FOUNDATION_EXPORT double ProductModelVersionNumber;
+public struct Response {
+	
+	let products: [Product]
+	let meta: Meta
+}
 
-//! Project version string for ProductModel.
-FOUNDATION_EXPORT const unsigned char ProductModelVersionString[];
-
-// In this header, you should import all the public headers of your framework using statements like #import <ProductModel/PublicHeader.h>
+// MARK: - Codable
+extension Response: Codable {
+	
+}

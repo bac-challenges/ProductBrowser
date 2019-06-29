@@ -22,7 +22,7 @@
 //
 //	ID: 57AEBC4C-1F62-45DC-AA48-7A9E27B60E5A
 //
-//	Pkg: ProductService
+//	Pkg: ProductBrowser
 //
 //	Swift: 5.0 
 //
@@ -30,20 +30,22 @@
 //
 
 import Foundation
+import ProductModel
+import GenericService
 
-/*
+
 protocol ProductServiceProtocol: class {
-	func fetchForecast(_ completion: @escaping ((Result<City, ErrorResult>) -> Void))
+	func fetchForecast(_ completion: @escaping ((Result<Response, ErrorResult>) -> Void))
 }
 
 final class ProductService: RequestHandler, ProductServiceProtocol {
 	
 	static let shared = ProductService()
-	
-	let endpoint = "\(apiBase)/\(apiPath)?q=\(apiLocation)&appid=\(apiKey)&units%20=\(apiUnits)"
+
+	let endpoint = ""//"\(apiBase)/\(apiPath)?q=\(apiLocation)&appid=\(apiKey)&units%20=\(apiUnits)"
 	var task: URLSessionTask?
 	
-	func fetchForecast(_ completion: @escaping ((Result<City, ErrorResult>) -> Void)) {
+	func fetchForecast(_ completion: @escaping ((Result<Response, ErrorResult>) -> Void)) {
 		self.cancelFetchForecast()
 		
 		task = RequestService().loadData(urlString: endpoint, completion: self.networkResult(completion: completion))
@@ -57,4 +59,3 @@ final class ProductService: RequestHandler, ProductServiceProtocol {
 		task = nil
 	}
 }
-*/

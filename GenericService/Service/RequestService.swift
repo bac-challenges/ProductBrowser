@@ -31,9 +31,11 @@
 
 import Foundation
 
-final class RequestService {
+public final class RequestService {
 	
-	func loadData(urlString: String, session: URLSession = URLSession(configuration: .default), completion: @escaping (Result<Data, ErrorResult>) -> Void) -> URLSessionTask? {
+	public init() {}
+	
+	public func loadData(urlString: String, session: URLSession = URLSession(configuration: .default), completion: @escaping (Result<Data, ErrorResult>) -> Void) -> URLSessionTask? {
 		
 		guard let url = URL(string: urlString) else {
 			completion(.failure(.network(string: "Wrong url format")))

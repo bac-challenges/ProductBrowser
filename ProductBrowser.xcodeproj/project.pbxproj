@@ -21,12 +21,22 @@
 		60F13F0C22C7F6B50095CDDD /* GenericService.h in Headers */ = {isa = PBXBuildFile; fileRef = 60F13EFC22C7F6B40095CDDD /* GenericService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		60F13F0F22C7F6B50095CDDD /* GenericService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F13EFA22C7F6B40095CDDD /* GenericService.framework */; };
 		60F13F1022C7F6B50095CDDD /* GenericService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 60F13EFA22C7F6B40095CDDD /* GenericService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		60F13F1722C7F7260095CDDD /* ProductService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F13ECF22C7F3030095CDDD /* ProductService.swift */; };
 		60F13F2722C7F8760095CDDD /* ProductModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F13F1E22C7F8760095CDDD /* ProductModel.framework */; };
 		60F13F2E22C7F8760095CDDD /* ProductModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F13F2D22C7F8760095CDDD /* ProductModelTests.swift */; };
 		60F13F3022C7F8760095CDDD /* ProductModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 60F13F2022C7F8760095CDDD /* ProductModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		60F13F3322C7F8760095CDDD /* ProductModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F13F1E22C7F8760095CDDD /* ProductModel.framework */; };
 		60F13F3422C7F8760095CDDD /* ProductModel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 60F13F1E22C7F8760095CDDD /* ProductModel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		60F13F4122C7FBF30095CDDD /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F13F4022C7FBF30095CDDD /* Response.swift */; };
+		60F13F4322C7FCA50095CDDD /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F13F4222C7FCA50095CDDD /* Product.swift */; };
+		60F13F4522C7FF6F0095CDDD /* Meta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F13F4422C7FF6F0095CDDD /* Meta.swift */; };
+		60F13F4822C801CE0095CDDD /* ProductService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F13ECF22C7F3030095CDDD /* ProductService.swift */; };
+		60F13F5222C80A6D0095CDDD /* JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F13EC422C7EF520095CDDD /* JSONParser.swift */; };
+		60F13F5322C80A6D0095CDDD /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F13EC622C7EF530095CDDD /* Result.swift */; };
+		60F13F5422C80A6D0095CDDD /* ErrorResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F13EC722C7EF530095CDDD /* ErrorResult.swift */; };
+		60F13F5522C80A6D0095CDDD /* RequestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F13EBE22C7EF510095CDDD /* RequestService.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		60F13F5622C80A6D0095CDDD /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F13EBF22C7EF510095CDDD /* RequestHandler.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		60F13F5722C80A6D0095CDDD /* RequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F13EC022C7EF510095CDDD /* RequestFactory.swift */; };
+		60F13F5822C80A6D0095CDDD /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F13EC222C7EF510095CDDD /* Reachability.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,6 +149,9 @@
 		60F13F2622C7F8760095CDDD /* ProductModelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProductModelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		60F13F2D22C7F8760095CDDD /* ProductModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModelTests.swift; sourceTree = "<group>"; };
 		60F13F2F22C7F8760095CDDD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		60F13F4022C7FBF30095CDDD /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		60F13F4222C7FCA50095CDDD /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		60F13F4422C7FF6F0095CDDD /* Meta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meta.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -230,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				60F13DCC22C7A6B10095CDDD /* AppDelegate.swift */,
+				60F13ECF22C7F3030095CDDD /* ProductService.swift */,
 				60F13E7822C7D8990095CDDD /* Controllers */,
 				60F13E7B22C7D8DC0095CDDD /* Views */,
 				60F13DFC22C7A6D00095CDDD /* Resources */,
@@ -321,7 +335,6 @@
 		60F13EFB22C7F6B40095CDDD /* GenericService */ = {
 			isa = PBXGroup;
 			children = (
-				60F13ECF22C7F3030095CDDD /* ProductService.swift */,
 				60F13EC322C7EF520095CDDD /* Parser */,
 				60F13EC522C7EF530095CDDD /* Result */,
 				60F13EBD22C7EF510095CDDD /* Service */,
@@ -352,6 +365,9 @@
 		60F13F1F22C7F8760095CDDD /* ProductModel */ = {
 			isa = PBXGroup;
 			children = (
+				60F13F4022C7FBF30095CDDD /* Response.swift */,
+				60F13F4222C7FCA50095CDDD /* Product.swift */,
+				60F13F4422C7FF6F0095CDDD /* Meta.swift */,
 				60F13F3B22C7F8A70095CDDD /* Resources */,
 			);
 			path = ProductModel;
@@ -589,6 +605,7 @@
 					};
 					60F13F1D22C7F8760095CDDD = {
 						CreatedOnToolsVersion = 11.0;
+						LastSwiftMigration = 1100;
 					};
 					60F13F2522C7F8760095CDDD = {
 						CreatedOnToolsVersion = 11.0;
@@ -612,10 +629,10 @@
 				60F13DC822C7A6B10095CDDD /* ProductBrowser */,
 				60F13DDE22C7A6B50095CDDD /* ProductBrowserTests */,
 				60F13DE922C7A6B50095CDDD /* ProductBrowserUITests */,
-				60F13EF922C7F6B40095CDDD /* GenericService */,
-				60F13F0122C7F6B40095CDDD /* GenericServiceTests */,
 				60F13F1D22C7F8760095CDDD /* ProductModel */,
 				60F13F2522C7F8760095CDDD /* ProductModelTests */,
+				60F13EF922C7F6B40095CDDD /* GenericService */,
+				60F13F0122C7F6B40095CDDD /* GenericServiceTests */,
 			);
 		};
 /* End PBXProject section */
@@ -684,6 +701,7 @@
 				60F13E7A22C7D8D60095CDDD /* ProductCell.swift in Sources */,
 				60F13E7722C7D8720095CDDD /* ProductDetailController.swift in Sources */,
 				60F13DCD22C7A6B10095CDDD /* AppDelegate.swift in Sources */,
+				60F13F4822C801CE0095CDDD /* ProductService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -707,7 +725,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				60F13F1722C7F7260095CDDD /* ProductService.swift in Sources */,
+				60F13F5222C80A6D0095CDDD /* JSONParser.swift in Sources */,
+				60F13F5322C80A6D0095CDDD /* Result.swift in Sources */,
+				60F13F5422C80A6D0095CDDD /* ErrorResult.swift in Sources */,
+				60F13F5522C80A6D0095CDDD /* RequestService.swift in Sources */,
+				60F13F5622C80A6D0095CDDD /* RequestHandler.swift in Sources */,
+				60F13F5722C80A6D0095CDDD /* RequestFactory.swift in Sources */,
+				60F13F5822C80A6D0095CDDD /* Reachability.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -723,6 +747,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60F13F4122C7FBF30095CDDD /* Response.swift in Sources */,
+				60F13F4322C7FCA50095CDDD /* Product.swift in Sources */,
+				60F13F4522C7FF6F0095CDDD /* Meta.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1041,7 +1068,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = GenericService/Resources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1050,6 +1077,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.blueantcorp.GenericService;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_UIKITFORMAC = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1069,7 +1097,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = GenericService/Resources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1078,6 +1106,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.blueantcorp.GenericService;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_UIKITFORMAC = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1130,6 +1159,7 @@
 		60F13F3622C7F8760095CDDD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -1139,7 +1169,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = ProductModel/Resources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1148,6 +1178,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.blueantcorp.ProductModel;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_UIKITFORMAC = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1158,6 +1190,7 @@
 		60F13F3722C7F8760095CDDD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -1167,7 +1200,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = ProductModel/Resources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1176,6 +1209,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.blueantcorp.ProductModel;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_UIKITFORMAC = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
