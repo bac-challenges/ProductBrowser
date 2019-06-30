@@ -48,12 +48,10 @@ final class ProductService: RequestHandler, ProductServiceProtocol {
 	
 	func fetchProducts(_ completion: @escaping ((Result<Response, ErrorResult>) -> Void)) {
 		self.cancelFetchProducts()
-		
 		task = RequestService().loadData(urlString: endpoint, completion: self.networkResult(completion: completion))
 	}
 	
 	func cancelFetchProducts() {
-		
 		if let task = task {
 			task.cancel()
 		}
