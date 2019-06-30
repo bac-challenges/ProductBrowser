@@ -35,12 +35,6 @@ import GenericUtils
 import GenericService
 
 struct ProductViewModel: GenericViewModel {
-	
-	weak var dataSource : GenericDataSource<Product>?
-	weak var service: ProductServiceProtocol?
-	
-	var onErrorHandling : ((ErrorResult?) -> Void)?
-	
 	internal let model: Product
 	
 	init(model: Product) {
@@ -48,6 +42,7 @@ struct ProductViewModel: GenericViewModel {
 	}
 }
 
+// MARK: - Values
 extension ProductViewModel {
 	
 	var userIdString: String {
@@ -56,5 +51,9 @@ extension ProductViewModel {
 	
 	var priceString: String {
 		return "\(model.priceAmount)\(model.priceCurrency)"
+	}
+	
+	var description: String {
+		return model.description
 	}
 }

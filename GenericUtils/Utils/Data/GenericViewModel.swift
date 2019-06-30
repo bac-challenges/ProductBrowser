@@ -31,7 +31,7 @@
 
 import Foundation
 
-protocol GenericViewModel {
+public protocol GenericViewModel {
 	associatedtype T
 	var model: T { get }
 	init(model: T)

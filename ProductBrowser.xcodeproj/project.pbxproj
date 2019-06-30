@@ -12,9 +12,6 @@
 		602010D022C8D5CA00E2F456 /* Configurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602010CF22C8D5CA00E2F456 /* Configurable.swift */; };
 		602010D322C8DB4200E2F456 /* ProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602010D222C8DB4200E2F456 /* ProductViewModel.swift */; };
 		602010DD22C904F300E2F456 /* GenericUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 602010DB22C904F300E2F456 /* GenericUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		602010E722C90C3100E2F456 /* DynamicValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602010E322C90AE300E2F456 /* DynamicValue.swift */; };
-		602010E822C90C3100E2F456 /* GenericDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602010E522C90B7F00E2F456 /* GenericDataSource.swift */; };
-		602010EA22C90C5400E2F456 /* ProductDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602010E922C90C5400E2F456 /* ProductDataSource.swift */; };
 		602010EC22C90F2600E2F456 /* GenericViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602010EB22C90F2600E2F456 /* GenericViewModel.swift */; };
 		602010F022C9101200E2F456 /* GenericUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 602010D922C904F300E2F456 /* GenericUtils.framework */; };
 		602010F122C9101200E2F456 /* GenericUtils.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 602010D922C904F300E2F456 /* GenericUtils.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -127,9 +124,6 @@
 		602010D922C904F300E2F456 /* GenericUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GenericUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		602010DB22C904F300E2F456 /* GenericUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GenericUtils.h; sourceTree = "<group>"; };
 		602010DC22C904F300E2F456 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		602010E322C90AE300E2F456 /* DynamicValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicValue.swift; sourceTree = "<group>"; };
-		602010E522C90B7F00E2F456 /* GenericDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericDataSource.swift; sourceTree = "<group>"; };
-		602010E922C90C5400E2F456 /* ProductDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDataSource.swift; sourceTree = "<group>"; };
 		602010EB22C90F2600E2F456 /* GenericViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericViewModel.swift; sourceTree = "<group>"; };
 		60F13DC922C7A6B10095CDDD /* ProductBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProductBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60F13DCC22C7A6B10095CDDD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -241,7 +235,6 @@
 			isa = PBXGroup;
 			children = (
 				602010D222C8DB4200E2F456 /* ProductViewModel.swift */,
-				602010E922C90C5400E2F456 /* ProductDataSource.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -277,8 +270,6 @@
 		602010EE22C90F5800E2F456 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				602010E322C90AE300E2F456 /* DynamicValue.swift */,
-				602010E522C90B7F00E2F456 /* GenericDataSource.swift */,
 				602010EB22C90F2600E2F456 /* GenericViewModel.swift */,
 			);
 			path = Data;
@@ -797,12 +788,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				602010CE22C8D59B00E2F456 /* ReusableCell.swift in Sources */,
-				602010E722C90C3100E2F456 /* DynamicValue.swift in Sources */,
-				602010E822C90C3100E2F456 /* GenericDataSource.swift in Sources */,
 				602010CC22C8D2A700E2F456 /* UIView+Extensions.swift in Sources */,
 				60F13E7D22C7DC5E0095CDDD /* ProductDetailCell.swift in Sources */,
 				602010D022C8D5CA00E2F456 /* Configurable.swift in Sources */,
-				602010EA22C90C5400E2F456 /* ProductDataSource.swift in Sources */,
 				602010D322C8DB4200E2F456 /* ProductViewModel.swift in Sources */,
 				60F13E2E22C7AA760095CDDD /* ProductController.swift in Sources */,
 				60F13E7A22C7D8D60095CDDD /* ProductCell.swift in Sources */,

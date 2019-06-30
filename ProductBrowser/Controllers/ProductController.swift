@@ -34,7 +34,13 @@ import ProductModel
 
 class ProductController: UITableViewController {
 
-	var items: [Product]?
+	var items: [Product]? {
+		didSet {
+			DispatchQueue.main.async {
+				self.tableView.reloadData()
+			}
+		}
+	}
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -42,17 +48,14 @@ class ProductController: UITableViewController {
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
-		
 		super.viewWillAppear(animated)
-		
+		fetchItems()
+	}
+	
+	private func fetchItems() {
 		ProductService.shared.fetchForecast { result in
 			switch result {
-			case .success(let response):
-				self.items = response.products
-				
-				DispatchQueue.main.async {
-					self.tableView.reloadData()
-				}
+			case .success(let response): self.items = response.products
 			case .failure(let error): print(error)
 			}
 		}
@@ -79,4 +82,21 @@ extension ProductController {
 // MARK: - UITableViewDataSource
 extension ProductController {
 	
+	override func numberOfSections(in tableView: UITableView) -> Int {
+		return 1
+	}
+	
+	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		return items?.count ?? 0
+	}
+	
+	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		
+		guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductCell.identifier, for: indexPath) as? ProductCell,
+			  let item = items?[indexPath.row] else { return UITableViewCell() }
+		
+		cell.configure(ProductViewModel(model: item))
+		
+		return cell
+	}
 }
