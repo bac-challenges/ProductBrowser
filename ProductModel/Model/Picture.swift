@@ -33,5 +33,5 @@ import Foundation
 
 struct Picture: Codable {
 	let id: Int
-	let formats: [Format]
+	let formats: [String: Format]
 }
