@@ -36,7 +36,6 @@ import GenericService
 
 struct ProductViewModel: GenericViewModel {
 	internal let model: Product
-	
 	init(model: Product) {
 		self.model = model
 	}
@@ -55,5 +54,13 @@ extension ProductViewModel {
 	
 	var description: String {
 		return model.description
+	}
+	
+	var imageURL: String {
+		guard let url = model.picturesData.first?.formats["P2"]?.url else {
+			return ""
+		}
+		
+		return url
 	}
 }
