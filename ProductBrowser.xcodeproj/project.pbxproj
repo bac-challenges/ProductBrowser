@@ -16,6 +16,8 @@
 		602010E822C90C3100E2F456 /* GenericDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602010E522C90B7F00E2F456 /* GenericDataSource.swift */; };
 		602010EA22C90C5400E2F456 /* ProductDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602010E922C90C5400E2F456 /* ProductDataSource.swift */; };
 		602010EC22C90F2600E2F456 /* GenericViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602010EB22C90F2600E2F456 /* GenericViewModel.swift */; };
+		602010F022C9101200E2F456 /* GenericUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 602010D922C904F300E2F456 /* GenericUtils.framework */; };
+		602010F122C9101200E2F456 /* GenericUtils.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 602010D922C904F300E2F456 /* GenericUtils.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		60F13DCD22C7A6B10095CDDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F13DCC22C7A6B10095CDDD /* AppDelegate.swift */; };
 		60F13DD622C7A6B50095CDDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60F13DD522C7A6B50095CDDD /* Assets.xcassets */; };
 		60F13DD922C7A6B50095CDDD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60F13DD722C7A6B50095CDDD /* LaunchScreen.storyboard */; };
@@ -50,6 +52,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		602010F222C9101200E2F456 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 60F13DC122C7A6B10095CDDD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 602010D822C904F300E2F456;
+			remoteInfo = GenericUtils;
+		};
 		60F13DE022C7A6B50095CDDD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 60F13DC122C7A6B10095CDDD /* Project object */;
@@ -103,6 +112,7 @@
 			files = (
 				60F13F3422C7F8760095CDDD /* ProductModel.framework in Embed Frameworks */,
 				60F13F1022C7F6B50095CDDD /* GenericService.framework in Embed Frameworks */,
+				602010F122C9101200E2F456 /* GenericUtils.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -175,6 +185,7 @@
 			files = (
 				60F13F3322C7F8760095CDDD /* ProductModel.framework in Frameworks */,
 				60F13F0F22C7F6B50095CDDD /* GenericService.framework in Frameworks */,
+				602010F022C9101200E2F456 /* GenericUtils.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,6 +284,13 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
+		602010EF22C9101200E2F456 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		60F13DC022C7A6B10095CDDD = {
 			isa = PBXGroup;
 			children = (
@@ -284,6 +302,7 @@
 				60F13EFB22C7F6B40095CDDD /* GenericService */,
 				60F13F0822C7F6B50095CDDD /* GenericServiceTests */,
 				60F13DCA22C7A6B10095CDDD /* Products */,
+				602010EF22C9101200E2F456 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -550,6 +569,7 @@
 			dependencies = (
 				60F13F0E22C7F6B50095CDDD /* PBXTargetDependency */,
 				60F13F3222C7F8760095CDDD /* PBXTargetDependency */,
+				602010F322C9101200E2F456 /* PBXTargetDependency */,
 			);
 			name = ProductBrowser;
 			productName = ProductBrowser;
@@ -846,6 +866,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		602010F322C9101200E2F456 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 602010D822C904F300E2F456 /* GenericUtils */;
+			targetProxy = 602010F222C9101200E2F456 /* PBXContainerItemProxy */;
+		};
 		60F13DE122C7A6B50095CDDD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 60F13DC822C7A6B10095CDDD /* ProductBrowser */;

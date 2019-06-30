@@ -31,7 +31,7 @@
 
 import Foundation
 import ProductModel
-
+import GenericUtils
 import GenericService
 
 struct ProductViewModel: GenericViewModel {
