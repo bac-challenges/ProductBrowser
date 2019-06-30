@@ -32,21 +32,6 @@
 import Foundation
 
 final class JSONParser {
-	
-	static func parse<T: Codable>(data: Data, completion : (Result<[T], ErrorResult>) -> Void) {
-		
-		do {
-			let decoder = JSONDecoder()
-			decoder.dateDecodingStrategy = .secondsSince1970
-			decoder.keyDecodingStrategy = .convertFromSnakeCase
-			
-			let model = try decoder.decode(T.self, from: data)
-			completion(.success([model]))
-		} catch {
-			completion(.failure(.parser(string: "Error while decoding json data - \(error)")))
-		}
-	}
-	
 	static func parse<T: Codable>(data: Data, completion : (Result<T, ErrorResult>) -> Void) {
 		
 		do {

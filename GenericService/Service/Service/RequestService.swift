@@ -33,8 +33,6 @@ import Foundation
 
 public final class RequestService {
 	
-	public init() {}
-	
 	public func loadData(urlString: String, session: URLSession = URLSession(configuration: .default), completion: @escaping (Result<Data, ErrorResult>) -> Void) -> URLSessionTask? {
 		
 		guard let url = URL(string: urlString) else {
@@ -61,4 +59,6 @@ public final class RequestService {
 		task.resume()
 		return task
 	}
+	
+	public init(){}
 }
