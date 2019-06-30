@@ -32,9 +32,29 @@
 import UIKit
 import ProductModel
 
+class ProductCell: UITableViewCell, Configurable, ReusableCell {
+	typealias T = ProductViewModel
+	
+	
+	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+		super.init(style: .value1, reuseIdentifier: nil)
+	}
+	
+	required init?(coder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
+	
+	func configure(_ model: ProductViewModel) {
+		imageView?.backgroundColor = .groupTableViewBackground
+		textLabel?.text = model.userIdString
+		detailTextLabel?.text = model.priceString
+		detailTextLabel?.textColor = .systemPink
+	}
+}
+
+/*
 class ProductCell: UITableViewCell, ReusableCell {
 
-	// UI
 	private lazy var container: UIStackView = {
 		let view = UIStackView()
 		view.spacing = 10
@@ -72,8 +92,7 @@ class ProductCell: UITableViewCell, ReusableCell {
 		view.font = UIFont.systemFont(ofSize: 18, weight: .medium)
 		return view
 	}()
-	
-	// Init
+
 	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 		super.init(style: CellStyle.value1, reuseIdentifier: reuseIdentifier)
 		setupView()
@@ -92,11 +111,12 @@ extension ProductCell: Configurable {
 	}
 }
 
-// MARK: - Setup UI
+// MARK: - UI
 extension  ProductCell {
 	
 	private func setupView() {
 		selectionStyle = .none
+		accessoryType = .disclosureIndicator
 		addSubview(container)
 		container.addArrangedSubview(iconView)
 		container.addArrangedSubview(titleLabel)
@@ -105,7 +125,6 @@ extension  ProductCell {
 	}
 	
 	private func setupLayout() {
-		
 		container.anchor(top: topAnchor,
 						 bottom: bottomAnchor,
 						 left: leftAnchor,
@@ -114,3 +133,4 @@ extension  ProductCell {
 		iconView.anchor(width: 60)
 	}
 }
+*/

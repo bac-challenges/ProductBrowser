@@ -40,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		
 		window = UIWindow(frame: UIScreen.main.bounds)
 		window?.makeKeyAndVisible()
-		window?.rootViewController = UINavigationController(rootViewController: ProductController())
+		window?.rootViewController = UINavigationController(rootViewController: ProductListController())
 		window?.tintColor = UIColor.systemPink
 		
 		applyAppearace()
