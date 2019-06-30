@@ -32,8 +32,8 @@
 import Foundation
 
 public struct Response {
-	let products: [Product]
-	let meta: Meta
+	public let products: [Product]
+	public let meta: Meta
 }
 
 // MARK: - Codable

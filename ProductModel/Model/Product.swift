@@ -34,13 +34,13 @@ import Foundation
 public struct Product: Codable {
 	
 	// Primary
-	let userId: Int
-	let priceAmount: String
-	let priceCurrency: String
+	public let userId: Int
+	public let priceAmount: String
+	public let priceCurrency: String
+	public let picturesData: [Picture]
 	
 	// Secondary
-	let description: String
-	let picturesData: [Picture]
+	public let description: String
 	
 	// Other
 //	let variantSet: Int

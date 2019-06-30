@@ -31,7 +31,7 @@
 
 import Foundation
 
-struct Picture: Codable {
-	let id: Int
-	let formats: [String: Format]
+public struct Picture: Codable {
+	public let id: Int
+	public let formats: [String: Format]
 }

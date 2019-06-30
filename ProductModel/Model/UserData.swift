@@ -31,6 +31,6 @@
 
 import Foundation
 
-struct UserData: Codable {
-	let id: Int
+public struct UserData: Codable {
+	public let id: Int
 }
