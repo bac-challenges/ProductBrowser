@@ -42,7 +42,7 @@ final class ProductService: RequestHandler, ProductServiceProtocol {
 
 	static let shared = ProductService()
 
-	let endpoint = "https://api.garage.me/api/v1/products/popular/?limit=1&offset_id" //"\(apiBase)/\(apiPath)?q=\(apiLocation)&appid=\(apiKey)&units%20=\(apiUnits)"
+	let endpoint = "https://api.garage.me/api/v1/products/popular/?limit=100&offset_id" //"\(apiBase)/\(apiPath)?q=\(apiLocation)&appid=\(apiKey)&units%20=\(apiUnits)"
 	var task: URLSessionTask?
 	
 	func fetchForecast(_ completion: @escaping ((Result<Response, ErrorResult>) -> Void)) {
