@@ -20,9 +20,9 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: F4522544-5742-4B4C-BEF1-3D490DCF6BAD
+//	ID: A09A763E-8806-4128-8285-7AF8C6018EAA
 //
-//	Pkg: ProductBrowser
+//	Pkg: GenericUtils
 //
 //	Swift: 5.0 
 //
@@ -30,31 +30,9 @@
 //
 
 import Foundation
-import ProductModel
 
-import GenericService
-
-struct ProductViewModel: GenericViewModel {
-	
-	weak var dataSource : GenericDataSource<Product>?
-	weak var service: ProductServiceProtocol?
-	
-	var onErrorHandling : ((ErrorResult?) -> Void)?
-	
-	internal let model: Product
-	
-	init(model: Product) {
-		self.model = model
-	}
-}
-
-extension ProductViewModel {
-	
-	var userIdString: String {
-		return "ID: \(model.userId)"
-	}
-	
-	var priceString: String {
-		return "\(model.priceAmount)\(model.priceCurrency)"
-	}
+protocol GenericViewModel {
+	associatedtype T
+	var model: T { get }
+	init(model: T)
 }
