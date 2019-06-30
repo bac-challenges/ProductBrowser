@@ -31,8 +31,46 @@
 
 import UIKit
 
-class ProductCell: UITableViewCell {
+class ProductCell: UITableViewCell, ReusableCell {
 
+	private lazy var iconView: UIImageView = {
+		let view = UIImageView()
+		view.image = UIImage(named: "barcode")
+		view.tintColor = .darkGray
+		view.contentMode = .scaleAspectFit
+		return view
+	}()
+	
+	private lazy var titleLabel: UILabel = {
+		let view = UILabel()
+		view.text = "N/A"
+		view.textAlignment = .right
+		view.textColor = .darkGray
+		view.translatesAutoresizingMaskIntoConstraints = false
+		view.font = UIFont.systemFont(ofSize: 18, weight: .light)
+		return view
+	}()
+	
+	private lazy var detailLabel: UILabel = {
+		let view = UILabel()
+		view.text = "N/A"
+		view.textAlignment = .right
+		view.textColor = .darkGray
+		view.translatesAutoresizingMaskIntoConstraints = false
+		view.font = UIFont.systemFont(ofSize: 18, weight: .light)
+		return view
+	}()
+	
+	private lazy var subtitleLabel: UILabel = {
+		let view = UILabel()
+		view.text = "N/A"
+		view.textAlignment = .right
+		view.textColor = .darkGray
+		view.translatesAutoresizingMaskIntoConstraints = false
+		view.font = UIFont.systemFont(ofSize: 18, weight: .light)
+		return view
+	}()
+	
 	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 		super.init(style: CellStyle.value1, reuseIdentifier: reuseIdentifier)
 		setupView()
@@ -43,13 +81,23 @@ class ProductCell: UITableViewCell {
 	}
 }
 
+extension ProductCell: Configurable {
+	
+	func configure(_ item: String) {
+		
+	}
+}
+
 // MARK: - Setup UI
 extension  ProductCell {
 	
 	private func setupView() {
 		selectionStyle = .none
-		layoutMargins = UIEdgeInsets.zero
-		preservesSuperviewLayoutMargins = false
+		addSubview(iconView)
+		addSubview(titleLabel)
+		addSubview(detailLabel)
+		addSubview(subtitleLabel)
+		setupLayout()
 	}
 	
 	private func setupLayout() {

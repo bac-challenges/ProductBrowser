@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		602010CC22C8D2A700E2F456 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602010CB22C8D2A700E2F456 /* UIView+Extensions.swift */; };
+		602010CE22C8D59B00E2F456 /* ReusableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602010CD22C8D59B00E2F456 /* ReusableCell.swift */; };
+		602010D022C8D5CA00E2F456 /* Configurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602010CF22C8D5CA00E2F456 /* Configurable.swift */; };
 		60F13DCD22C7A6B10095CDDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F13DCC22C7A6B10095CDDD /* AppDelegate.swift */; };
 		60F13DD622C7A6B50095CDDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60F13DD522C7A6B50095CDDD /* Assets.xcassets */; };
 		60F13DD922C7A6B50095CDDD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60F13DD722C7A6B50095CDDD /* LaunchScreen.storyboard */; };
@@ -117,6 +120,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		602010CB22C8D2A700E2F456 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		602010CD22C8D59B00E2F456 /* ReusableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableCell.swift; sourceTree = "<group>"; };
+		602010CF22C8D5CA00E2F456 /* Configurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurable.swift; sourceTree = "<group>"; };
 		60F13DC922C7A6B10095CDDD /* ProductBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProductBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60F13DCC22C7A6B10095CDDD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		60F13DD522C7A6B50095CDDD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -217,6 +223,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		602010CA22C8D27E00E2F456 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				602010CB22C8D2A700E2F456 /* UIView+Extensions.swift */,
+				602010CD22C8D59B00E2F456 /* ReusableCell.swift */,
+				602010CF22C8D5CA00E2F456 /* Configurable.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		60F13DC022C7A6B10095CDDD = {
 			isa = PBXGroup;
 			children = (
@@ -252,6 +268,7 @@
 				60F13ECF22C7F3030095CDDD /* ProductService.swift */,
 				60F13E7822C7D8990095CDDD /* Controllers */,
 				60F13E7B22C7D8DC0095CDDD /* Views */,
+				602010CA22C8D27E00E2F456 /* Utils */,
 				60F13DFC22C7A6D00095CDDD /* Resources */,
 			);
 			path = ProductBrowser;
@@ -721,7 +738,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				602010CE22C8D59B00E2F456 /* ReusableCell.swift in Sources */,
+				602010CC22C8D2A700E2F456 /* UIView+Extensions.swift in Sources */,
 				60F13E7D22C7DC5E0095CDDD /* ProductDetailCell.swift in Sources */,
+				602010D022C8D5CA00E2F456 /* Configurable.swift in Sources */,
 				60F13E2E22C7AA760095CDDD /* ProductController.swift in Sources */,
 				60F13E7A22C7D8D60095CDDD /* ProductCell.swift in Sources */,
 				60F13E7722C7D8720095CDDD /* ProductDetailController.swift in Sources */,
