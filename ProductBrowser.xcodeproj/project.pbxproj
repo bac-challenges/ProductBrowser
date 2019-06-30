@@ -11,6 +11,7 @@
 		602010CE22C8D59B00E2F456 /* ReusableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602010CD22C8D59B00E2F456 /* ReusableCell.swift */; };
 		602010D022C8D5CA00E2F456 /* Configurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602010CF22C8D5CA00E2F456 /* Configurable.swift */; };
 		602010D322C8DB4200E2F456 /* ProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602010D222C8DB4200E2F456 /* ProductViewModel.swift */; };
+		602010DD22C904F300E2F456 /* GenericUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 602010DB22C904F300E2F456 /* GenericUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		60F13DCD22C7A6B10095CDDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F13DCC22C7A6B10095CDDD /* AppDelegate.swift */; };
 		60F13DD622C7A6B50095CDDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60F13DD522C7A6B50095CDDD /* Assets.xcassets */; };
 		60F13DD922C7A6B50095CDDD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60F13DD722C7A6B50095CDDD /* LaunchScreen.storyboard */; };
@@ -109,6 +110,9 @@
 		602010CD22C8D59B00E2F456 /* ReusableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableCell.swift; sourceTree = "<group>"; };
 		602010CF22C8D5CA00E2F456 /* Configurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurable.swift; sourceTree = "<group>"; };
 		602010D222C8DB4200E2F456 /* ProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewModel.swift; sourceTree = "<group>"; };
+		602010D922C904F300E2F456 /* GenericUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GenericUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		602010DB22C904F300E2F456 /* GenericUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GenericUtils.h; sourceTree = "<group>"; };
+		602010DC22C904F300E2F456 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		60F13DC922C7A6B10095CDDD /* ProductBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProductBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60F13DCC22C7A6B10095CDDD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		60F13DD522C7A6B50095CDDD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -150,6 +154,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		602010D622C904F300E2F456 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		60F13DC622C7A6B10095CDDD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -216,6 +227,24 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		602010DA22C904F300E2F456 /* GenericUtils */ = {
+			isa = PBXGroup;
+			children = (
+				602010CA22C8D27E00E2F456 /* Utils */,
+				602010E122C9050700E2F456 /* Resources */,
+			);
+			path = GenericUtils;
+			sourceTree = "<group>";
+		};
+		602010E122C9050700E2F456 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				602010DB22C904F300E2F456 /* GenericUtils.h */,
+				602010DC22C904F300E2F456 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		60F13DC022C7A6B10095CDDD = {
 			isa = PBXGroup;
 			children = (
@@ -223,6 +252,7 @@
 				60F13DE222C7A6B50095CDDD /* ProductBrowserTests */,
 				60F13DED22C7A6B50095CDDD /* ProductBrowserUITests */,
 				60F13F1F22C7F8760095CDDD /* ProductModel */,
+				602010DA22C904F300E2F456 /* GenericUtils */,
 				60F13EFB22C7F6B40095CDDD /* GenericService */,
 				60F13F0822C7F6B50095CDDD /* GenericServiceTests */,
 				60F13DCA22C7A6B10095CDDD /* Products */,
@@ -238,6 +268,7 @@
 				60F13EFA22C7F6B40095CDDD /* GenericService.framework */,
 				60F13F0222C7F6B40095CDDD /* GenericServiceTests.xctest */,
 				60F13F1E22C7F8760095CDDD /* ProductModel.framework */,
+				602010D922C904F300E2F456 /* GenericUtils.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -250,7 +281,6 @@
 				60F13E7822C7D8990095CDDD /* Controllers */,
 				60F13E7B22C7D8DC0095CDDD /* Views */,
 				602010D122C8DB2C00E2F456 /* ViewModel */,
-				602010CA22C8D27E00E2F456 /* Utils */,
 				60F13DFC22C7A6D00095CDDD /* Resources */,
 			);
 			path = ProductBrowser;
@@ -433,6 +463,14 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		602010D422C904F300E2F456 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				602010DD22C904F300E2F456 /* GenericUtils.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		60F13EF522C7F6B40095CDDD /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -452,6 +490,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		602010D822C904F300E2F456 /* GenericUtils */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 602010E022C904F300E2F456 /* Build configuration list for PBXNativeTarget "GenericUtils" */;
+			buildPhases = (
+				602010D422C904F300E2F456 /* Headers */,
+				602010D522C904F300E2F456 /* Sources */,
+				602010D622C904F300E2F456 /* Frameworks */,
+				602010D722C904F300E2F456 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GenericUtils;
+			productName = GenericUtils;
+			productReference = 602010D922C904F300E2F456 /* GenericUtils.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		60F13DC822C7A6B10095CDDD /* ProductBrowser */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 60F13DF322C7A6B50095CDDD /* Build configuration list for PBXNativeTarget "ProductBrowser" */;
@@ -573,6 +629,9 @@
 				LastUpgradeCheck = 1100;
 				ORGANIZATIONNAME = emile;
 				TargetAttributes = {
+					602010D822C904F300E2F456 = {
+						CreatedOnToolsVersion = 11.0;
+					};
 					60F13DC822C7A6B10095CDDD = {
 						CreatedOnToolsVersion = 11.0;
 					};
@@ -614,6 +673,7 @@
 				60F13DDE22C7A6B50095CDDD /* ProductBrowserTests */,
 				60F13DE922C7A6B50095CDDD /* ProductBrowserUITests */,
 				60F13F1D22C7F8760095CDDD /* ProductModel */,
+				602010D822C904F300E2F456 /* GenericUtils */,
 				60F13EF922C7F6B40095CDDD /* GenericService */,
 				60F13F0122C7F6B40095CDDD /* GenericServiceTests */,
 			);
@@ -621,6 +681,13 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		602010D722C904F300E2F456 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		60F13DC722C7A6B10095CDDD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -668,6 +735,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		602010D522C904F300E2F456 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		60F13DC522C7A6B10095CDDD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -783,6 +857,62 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		602010DE22C904F300E2F456 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 7R2H7J9PW2;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = GenericUtils/Resources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.blueantcorp.GenericUtils;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		602010DF22C904F300E2F456 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 7R2H7J9PW2;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = GenericUtils/Resources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.blueantcorp.GenericUtils;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		60F13DF122C7A6B50095CDDD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1185,6 +1315,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		602010E022C904F300E2F456 /* Build configuration list for PBXNativeTarget "GenericUtils" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				602010DE22C904F300E2F456 /* Debug */,
+				602010DF22C904F300E2F456 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		60F13DC422C7A6B10095CDDD /* Build configuration list for PBXProject "ProductBrowser" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
