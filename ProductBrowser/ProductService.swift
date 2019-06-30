@@ -20,7 +20,7 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: 1AF05B1E-939F-485F-BCC7-8EF10D11F9F1
+//	ID: 57AEBC4C-1F62-45DC-AA48-7A9E27B60E5A
 //
 //	Pkg: ProductBrowser
 //
@@ -29,34 +29,33 @@
 //	MacOS: 10.15
 //
 
-import UIKit
+import Foundation
+import ProductModel
+import GenericService
 
-class ProductCell: UITableViewCell {
 
-	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-		super.init(style: CellStyle.value1, reuseIdentifier: reuseIdentifier)
-		setupView()
-	}
-	
-	required init?(coder aDecoder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
-	}
+protocol ProductServiceProtocol: class {
+	func fetchForecast(_ completion: @escaping ((Result<Response, ErrorResult>) -> Void))
 }
 
-// MARK: - Setup UI
-extension  ProductCell {
+final class ProductService: RequestHandler, ProductServiceProtocol {
+
+	static let shared = ProductService()
+
+	let endpoint = "https://api.garage.me/api/v1/products/popular/?limit=100&offset_id" //"\(apiBase)/\(apiPath)?q=\(apiLocation)&appid=\(apiKey)&units%20=\(apiUnits)"
+	var task: URLSessionTask?
 	
-	private func setupView() {
-		selectionStyle = .none
-		layoutMargins = UIEdgeInsets.zero
-		preservesSuperviewLayoutMargins = false
+	func fetchForecast(_ completion: @escaping ((Result<Response, ErrorResult>) -> Void)) {
+		self.cancelFetchForecast()
+		
+		task = RequestService().loadData(urlString: endpoint, completion: self.networkResult(completion: completion))
 	}
 	
-	private func setupLayout() {
-	
-	}
-	
-	override class var requiresConstraintBasedLayout: Bool {
-		return true
+	func cancelFetchForecast() {
+		
+		if let task = task {
+			task.cancel()
+		}
+		task = nil
 	}
 }

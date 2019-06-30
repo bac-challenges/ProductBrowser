@@ -20,23 +20,29 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: E752EA33-0ECD-438B-BC6D-CF413B1ABD03
+//	ID: 5762E7D9-4DBA-4E37-9338-EE330D717DFD
 //
-//	Pkg: ProductBrowserService
+//	Pkg: GenericService
 //
 //	Swift: 5.0 
 //
 //	MacOS: 10.15
 //
 
-#import <UIKit/UIKit.h>
+import Foundation
 
-//! Project version number for ProductBrowserService.
-FOUNDATION_EXPORT double ProductBrowserServiceVersionNumber;
-
-//! Project version string for ProductBrowserService.
-FOUNDATION_EXPORT const unsigned char ProductBrowserServiceVersionString[];
-
-// In this header, you should import all the public headers of your framework using statements like #import <ProductBrowserService/PublicHeader.h>
-
-
+final class JSONParser {
+	static func parse<T: Codable>(data: Data, completion : (Result<T, ErrorResult>) -> Void) {
+		
+		do {
+			let decoder = JSONDecoder()
+			decoder.dateDecodingStrategy = .secondsSince1970
+			decoder.keyDecodingStrategy = .convertFromSnakeCase
+			
+			let model = try decoder.decode(T.self, from: data)
+			completion(.success(model))
+		} catch {
+			completion(.failure(.parser(string: "Error while decoding json data - \(error)")))
+		}
+	}
+}

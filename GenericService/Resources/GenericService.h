@@ -20,43 +20,23 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: 1AF05B1E-939F-485F-BCC7-8EF10D11F9F1
+//	ID: B53BE935-590B-4124-BF73-FA031E5425E0
 //
-//	Pkg: ProductBrowser
+//	Pkg: GenericService
 //
 //	Swift: 5.0 
 //
 //	MacOS: 10.15
 //
 
-import UIKit
+#import <UIKit/UIKit.h>
 
-class ProductCell: UITableViewCell {
+//! Project version number for GenericService.
+FOUNDATION_EXPORT double GenericServiceVersionNumber;
 
-	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-		super.init(style: CellStyle.value1, reuseIdentifier: reuseIdentifier)
-		setupView()
-	}
-	
-	required init?(coder aDecoder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
-	}
-}
+//! Project version string for GenericService.
+FOUNDATION_EXPORT const unsigned char GenericServiceVersionString[];
 
-// MARK: - Setup UI
-extension  ProductCell {
-	
-	private func setupView() {
-		selectionStyle = .none
-		layoutMargins = UIEdgeInsets.zero
-		preservesSuperviewLayoutMargins = false
-	}
-	
-	private func setupLayout() {
-	
-	}
-	
-	override class var requiresConstraintBasedLayout: Bool {
-		return true
-	}
-}
+// In this header, you should import all the public headers of your framework using statements like #import <GenericService/PublicHeader.h>
+
+

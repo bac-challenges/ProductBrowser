@@ -20,43 +20,45 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: 1AF05B1E-939F-485F-BCC7-8EF10D11F9F1
+//	ID: 6DE33BBA-882C-49A9-8EF6-5A72594EF8CD
 //
-//	Pkg: ProductBrowser
+//	Pkg: GenericService
 //
 //	Swift: 5.0 
 //
 //	MacOS: 10.15
 //
 
-import UIKit
+import Foundation
 
-class ProductCell: UITableViewCell {
-
-	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-		super.init(style: CellStyle.value1, reuseIdentifier: reuseIdentifier)
-		setupView()
+public final class RequestService {
+	
+	public func loadData(urlString: String, session: URLSession = URLSession(configuration: .default), completion: @escaping (Result<Data, ErrorResult>) -> Void) -> URLSessionTask? {
+		
+		guard let url = URL(string: urlString) else {
+			completion(.failure(.network(string: "Wrong url format")))
+			return nil
+		}
+		
+		var request = RequestFactory.request(method: .GET, url: url)
+		
+		if let reachability = Reachability(), !reachability.isReachable {
+			request.cachePolicy = .returnCacheDataDontLoad
+		}
+		
+		let task = session.dataTask(with: request) { (data, response, error) in
+			if let error = error {
+				completion(.failure(.network(string: "An error occured during request :" + error.localizedDescription)))
+				return
+			}
+			
+			if let data = data {
+				completion(.success(data))
+			}
+		}
+		task.resume()
+		return task
 	}
 	
-	required init?(coder aDecoder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
-	}
-}
-
-// MARK: - Setup UI
-extension  ProductCell {
-	
-	private func setupView() {
-		selectionStyle = .none
-		layoutMargins = UIEdgeInsets.zero
-		preservesSuperviewLayoutMargins = false
-	}
-	
-	private func setupLayout() {
-	
-	}
-	
-	override class var requiresConstraintBasedLayout: Bool {
-		return true
-	}
+	public init(){}
 }

@@ -20,43 +20,46 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: 1AF05B1E-939F-485F-BCC7-8EF10D11F9F1
+//	ID: DAE66AF9-6D85-4BFF-8648-BD807207B3C9
 //
-//	Pkg: ProductBrowser
+//	Pkg: ProductModel
 //
 //	Swift: 5.0 
 //
 //	MacOS: 10.15
 //
 
-import UIKit
+import Foundation
 
-class ProductCell: UITableViewCell {
-
-	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-		super.init(style: CellStyle.value1, reuseIdentifier: reuseIdentifier)
-		setupView()
-	}
+public struct Product: Codable {
 	
-	required init?(coder aDecoder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
-	}
-}
-
-// MARK: - Setup UI
-extension  ProductCell {
+	// Primary
+	public let userId: Int
+	public let priceAmount: String
+	public let priceCurrency: String
+	public let picturesData: [Picture]
 	
-	private func setupView() {
-		selectionStyle = .none
-		layoutMargins = UIEdgeInsets.zero
-		preservesSuperviewLayoutMargins = false
-	}
+	// Secondary
+	public let description: String
 	
-	private func setupLayout() {
-	
-	}
-	
-	override class var requiresConstraintBasedLayout: Bool {
-		return true
-	}
+	// Other
+//	let variantSet: Int
+//	let quantity: Int
+//	let createdDate: Date
+//	let brandId: String
+//	let activeStatus: String
+//	let country: String
+//	let slug: String
+//	let pubDate: Date
+//	let nationalShippingCost: Float
+//	let id: Int
+//	let handDelivery: Bool
+//	let internationalShippingCost: Float
+//	let status: String
+//	let purchaseViaPaypal: Bool
+//	let categories: [Int]
+//	let address: String
+//	let videos: String
+//	let userData: UserData
+//	let variants: String
 }

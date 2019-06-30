@@ -20,43 +20,17 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: 1AF05B1E-939F-485F-BCC7-8EF10D11F9F1
+//	ID: 7E939B85-D24A-4C27-AE76-6FA480DFE088
 //
-//	Pkg: ProductBrowser
+//	Pkg: ProductModel
 //
 //	Swift: 5.0 
 //
 //	MacOS: 10.15
 //
 
-import UIKit
+import Foundation
 
-class ProductCell: UITableViewCell {
-
-	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-		super.init(style: CellStyle.value1, reuseIdentifier: reuseIdentifier)
-		setupView()
-	}
-	
-	required init?(coder aDecoder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
-	}
-}
-
-// MARK: - Setup UI
-extension  ProductCell {
-	
-	private func setupView() {
-		selectionStyle = .none
-		layoutMargins = UIEdgeInsets.zero
-		preservesSuperviewLayoutMargins = false
-	}
-	
-	private func setupLayout() {
-	
-	}
-	
-	override class var requiresConstraintBasedLayout: Bool {
-		return true
-	}
+public struct UserData: Codable {
+	public let id: Int
 }

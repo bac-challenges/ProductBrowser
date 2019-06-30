@@ -20,43 +20,30 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: 1AF05B1E-939F-485F-BCC7-8EF10D11F9F1
+//	ID: 559C5F09-19B5-414F-AA55-866F66BD919B
 //
-//	Pkg: ProductBrowser
+//	Pkg: GenericService
 //
 //	Swift: 5.0 
 //
 //	MacOS: 10.15
 //
 
-import UIKit
+import Foundation
 
-class ProductCell: UITableViewCell {
-
-	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-		super.init(style: CellStyle.value1, reuseIdentifier: reuseIdentifier)
-		setupView()
+final class RequestFactory {
+	
+	enum Method: String {
+		case GET
+		case POST
+		case PUT
+		case DELETE
+		case PATCH
 	}
 	
-	required init?(coder aDecoder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
-	}
-}
-
-// MARK: - Setup UI
-extension  ProductCell {
-	
-	private func setupView() {
-		selectionStyle = .none
-		layoutMargins = UIEdgeInsets.zero
-		preservesSuperviewLayoutMargins = false
-	}
-	
-	private func setupLayout() {
-	
-	}
-	
-	override class var requiresConstraintBasedLayout: Bool {
-		return true
+	static func request(method: Method, url: URL) -> URLRequest {
+		var request = URLRequest(url: url)
+		request.httpMethod = method.rawValue
+		return request
 	}
 }

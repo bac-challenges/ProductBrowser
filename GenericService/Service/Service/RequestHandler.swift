@@ -20,43 +20,34 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: 1AF05B1E-939F-485F-BCC7-8EF10D11F9F1
+//	ID: F1752C69-506D-411A-9E70-AB563914137E
 //
-//	Pkg: ProductBrowser
+//	Pkg: GenericService
 //
 //	Swift: 5.0 
 //
 //	MacOS: 10.15
 //
 
-import UIKit
+import Foundation
 
-class ProductCell: UITableViewCell {
-
-	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-		super.init(style: CellStyle.value1, reuseIdentifier: reuseIdentifier)
-		setupView()
+open class RequestHandler {
+	
+	public func networkResult<T: Codable>(completion: @escaping ((Result<T, ErrorResult>) -> Void)) -> ((Result<Data, ErrorResult>) -> Void) {
+		return { dataResult in
+			DispatchQueue.global(qos: .background).async(execute: {
+				switch dataResult {
+				case .success(let data):
+					JSONParser.parse(data: data, completion: completion)
+					break
+				case .failure(let error) :
+					print("Network error \(error)")
+					completion(.failure(.network(string: "Network error " + error.localizedDescription)))
+					break
+				}
+			})
+		}
 	}
 	
-	required init?(coder aDecoder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
-	}
-}
-
-// MARK: - Setup UI
-extension  ProductCell {
-	
-	private func setupView() {
-		selectionStyle = .none
-		layoutMargins = UIEdgeInsets.zero
-		preservesSuperviewLayoutMargins = false
-	}
-	
-	private func setupLayout() {
-	
-	}
-	
-	override class var requiresConstraintBasedLayout: Bool {
-		return true
-	}
+	public init(){}
 }

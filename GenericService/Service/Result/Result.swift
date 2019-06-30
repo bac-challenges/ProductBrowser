@@ -20,23 +20,18 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: 1F59FD5C-8743-4E8F-9A91-26FC1305B536
+//	ID: 7579D998-2419-41C1-B835-3D7741BA91EE
 //
-//	Pkg: ProductBrowserModel
+//	Pkg: GenericService
 //
 //	Swift: 5.0 
 //
 //	MacOS: 10.15
 //
 
-#import <UIKit/UIKit.h>
+import Foundation
 
-//! Project version number for ProductBrowserModel.
-FOUNDATION_EXPORT double ProductBrowserModelVersionNumber;
-
-//! Project version string for ProductBrowserModel.
-FOUNDATION_EXPORT const unsigned char ProductBrowserModelVersionString[];
-
-// In this header, you should import all the public headers of your framework using statements like #import <ProductBrowserModel/PublicHeader.h>
-
-
+public enum Result<T, E: Error> {
+	case success(T)
+	case failure(E)
+}

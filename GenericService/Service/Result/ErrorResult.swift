@@ -20,38 +20,19 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: E752EA33-0ECD-438B-BC6D-CF413B1ABD03
+//	ID: CF12A9A1-D37F-4813-BB59-AB7EAA55A7F0
 //
-//	Pkg: ProductBrowserServiceTests
+//	Pkg: GenericService
 //
 //	Swift: 5.0 
 //
 //	MacOS: 10.15
 //
 
-import XCTest
-@testable import ProductBrowserService
+import Foundation
 
-class ProductBrowserServiceTests: XCTestCase {
-
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
+public enum ErrorResult: Error {
+	case network(string: String)
+	case parser(string: String)
+	case custom(string: String)
 }
