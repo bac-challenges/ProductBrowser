@@ -64,7 +64,10 @@ extension ProductController {
 	
 	private func setupView() {
 		title = "Products"
-		tableView.register(ProductCell.self, forCellReuseIdentifier: "ProductCell")
+		tableView.register(ProductCell.self, forCellReuseIdentifier: ProductCell.identifier)
+		tableView.backgroundColor = .groupTableViewBackground
+		tableView.rowHeight = UITableView.automaticDimension
+		tableView.estimatedRowHeight = 600
 	}
 }
 
@@ -88,15 +91,15 @@ extension ProductController {
 	
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		
-		let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell", for: indexPath)
+		let cell = tableView.dequeueReusableCell(withIdentifier: ProductCell.identifier, for: indexPath)
 		
 		guard let item = items?[indexPath.row] else {
 			return cell
 		}
 		
 		if let cell = cell as? ProductCell {
-			cell.textLabel?.text = "User ID: \(item.userId)"
-			cell.detailTextLabel?.text = "Price: \(item.priceAmount)\(item.priceCurrency)"
+		//	cell.title.text = "User ID: \(item.userId)"
+		//	cell.detailTextLabel?.text = "Price: \(item.priceAmount)\(item.priceCurrency)"
 		}
 
 		return cell
