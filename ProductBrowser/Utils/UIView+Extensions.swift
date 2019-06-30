@@ -31,6 +31,7 @@
 
 import UIKit
 
+// MARK: - AutoLayout Helper
 extension UIView {
 	
 	func anchor(top: NSLayoutYAxisAnchor? = nil, paddingTop: CGFloat = 0, bottom: NSLayoutYAxisAnchor? = nil, paddingBottom: CGFloat = 0, left: NSLayoutXAxisAnchor? = nil, paddingLeft: CGFloat = 0, right: NSLayoutXAxisAnchor? = nil, paddingRight: CGFloat = 0, width: CGFloat = 0, height: CGFloat = 0) {
@@ -55,5 +56,14 @@ extension UIView {
 		if height != 0 {
 			heightAnchor.constraint(equalToConstant: height).isActive = true
 		}
+	}
+}
+
+// MARK: - Debug Mode
+extension UIView {
+	func debugMode(_ active: Bool) {
+		
+		layer.borderColor = UIColor.red.cgColor
+		layer.borderWidth = active ? 1:0
 	}
 }
