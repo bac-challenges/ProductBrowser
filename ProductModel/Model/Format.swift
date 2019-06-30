@@ -32,5 +32,7 @@
 import Foundation
 
 struct Format: Codable {
-	
+	let url: String
+	let width: Int
+	let height: Int
 }

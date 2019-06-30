@@ -43,7 +43,7 @@ final class JSONParser {
 			let model = try decoder.decode(T.self, from: data)
 			completion(.success([model]))
 		} catch {
-			completion(.failure(.parser(string: "Error while decoding json data")))
+			completion(.failure(.parser(string: "Error while decoding json data - \(error)")))
 		}
 	}
 	

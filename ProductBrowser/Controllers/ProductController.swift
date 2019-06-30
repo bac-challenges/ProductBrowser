@@ -39,9 +39,15 @@ class ProductController: UITableViewController {
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
+		
 		super.viewWillAppear(animated)
 		
-		
+		ProductService.shared.fetchForecast { result in
+			switch result {
+			case .success(let response): print(response)
+			case .failure(let error): print(error)
+			}
+		}
 	}
 }
 

@@ -341,10 +341,7 @@
 		60F13EFB22C7F6B40095CDDD /* GenericService */ = {
 			isa = PBXGroup;
 			children = (
-				60F13EC322C7EF520095CDDD /* Parser */,
-				60F13EC522C7EF530095CDDD /* Result */,
-				60F13EBD22C7EF510095CDDD /* Service */,
-				60F13EC122C7EF510095CDDD /* Utils */,
+				60F13F6422C834880095CDDD /* Service */,
 				60F13F1822C7F72F0095CDDD /* Resources */,
 			);
 			path = GenericService;
@@ -371,12 +368,7 @@
 		60F13F1F22C7F8760095CDDD /* ProductModel */ = {
 			isa = PBXGroup;
 			children = (
-				60F13F4022C7FBF30095CDDD /* Response.swift */,
-				60F13F4222C7FCA50095CDDD /* Product.swift */,
-				60F13F5F22C830710095CDDD /* Picture.swift */,
-				60F13F6122C830AD0095CDDD /* Format.swift */,
-				60F13F5D22C82F920095CDDD /* UserData.swift */,
-				60F13F4422C7FF6F0095CDDD /* Meta.swift */,
+				60F13F6322C8315D0095CDDD /* Model */,
 				60F13F3B22C7F8A70095CDDD /* Resources */,
 			);
 			path = ProductModel;
@@ -430,6 +422,30 @@
 				60F13DE522C7A6B50095CDDD /* Info.plist */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		60F13F6322C8315D0095CDDD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				60F13F4022C7FBF30095CDDD /* Response.swift */,
+				60F13F4222C7FCA50095CDDD /* Product.swift */,
+				60F13F5F22C830710095CDDD /* Picture.swift */,
+				60F13F6122C830AD0095CDDD /* Format.swift */,
+				60F13F5D22C82F920095CDDD /* UserData.swift */,
+				60F13F4422C7FF6F0095CDDD /* Meta.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		60F13F6422C834880095CDDD /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				60F13EC322C7EF520095CDDD /* Parser */,
+				60F13EC522C7EF530095CDDD /* Result */,
+				60F13EBD22C7EF510095CDDD /* Service */,
+				60F13EC122C7EF510095CDDD /* Utils */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
