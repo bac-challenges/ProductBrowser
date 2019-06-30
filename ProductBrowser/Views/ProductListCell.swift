@@ -20,13 +20,42 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: C9500418-802A-408F-B24F-B3118F0B0E3F
+//	ID: 1AF05B1E-939F-485F-BCC7-8EF10D11F9F1
 //
-//	Pkg: GenericUtils
+//	Pkg: ProductBrowser
 //
 //	Swift: 5.0 
 //
 //	MacOS: 10.15
 //
 
-import Foundation
+import UIKit
+import ProductModel
+import GenericUtils
+
+class ProductListCell: UITableViewCell, Configurable, ReusableCell {
+	
+	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+		super.init(style: .value1, reuseIdentifier: nil)
+		imageView?.layer.cornerRadius = (imageView?.frame.height ?? 0)/2
+		imageView?.layer.masksToBounds = true
+	}
+	
+	required init?(coder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
+	
+	func configure(_ model: ProductViewModel) {
+		textLabel?.text = model.userIdString
+		detailTextLabel?.text = model.priceString
+		detailTextLabel?.textColor = .systemPink
+		imageView?.downloadedFrom(link: model.imageURL) {
+			self.setNeedsLayout()
+		}
+	}
+	
+	override func prepareForReuse() {
+		super.prepareForReuse()
+		imageView?.image = nil
+	}
+}

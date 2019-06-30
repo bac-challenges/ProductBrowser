@@ -71,7 +71,7 @@ extension ProductListController {
 extension ProductListController {
 	private func setupView() {
 		title = "Products"
-		tableView.register(ProductCell.self, forCellReuseIdentifier: ProductCell.identifier)
+		tableView.register(ProductListCell.self, forCellReuseIdentifier: ProductListCell.identifier)
 	}
 }
 
@@ -95,7 +95,7 @@ extension ProductListController {
 	
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		
-		guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductCell.identifier, for: indexPath) as? ProductCell,
+		guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductListCell.identifier, for: indexPath) as? ProductListCell,
 			  let item = items?[indexPath.row] else { return UITableViewCell() }
 		
 		cell.configure(ProductViewModel(model: item))

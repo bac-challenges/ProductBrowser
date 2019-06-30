@@ -20,9 +20,9 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: 1AF05B1E-939F-485F-BCC7-8EF10D11F9F1
+//	ID: C9500418-802A-408F-B24F-B3118F0B0E3F
 //
-//	Pkg: ProductBrowser
+//	Pkg: GenericUtils
 //
 //	Swift: 5.0 
 //
@@ -30,22 +30,27 @@
 //
 
 import UIKit
-import ProductModel
 
-class ProductCell: UITableViewCell, Configurable, ReusableCell {
-	
-	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-		super.init(style: .value1, reuseIdentifier: nil)
+public extension UIImageView {
+	func downloadedFrom(url: URL, contentMode mode: UIView.ContentMode = .scaleAspectFit, completion: @escaping (() -> Void)) {
+		
+		contentMode = mode
+		
+		URLSession.shared.dataTask(with: url) { (data, response, error) in
+			guard let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+				  let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
+				  let data = data, error == nil,
+				  let image = UIImage(data: data) else { return }
+			
+			DispatchQueue.main.async() { () -> Void in
+				self.image = image
+				completion()
+			}
+		}.resume()
 	}
 	
-	required init?(coder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
-	}
-	
-	func configure(_ model: ProductViewModel) {
-		imageView?.backgroundColor = .groupTableViewBackground
-		textLabel?.text = model.userIdString
-		detailTextLabel?.text = model.priceString
-		detailTextLabel?.textColor = .systemPink
+	func downloadedFrom(link: String, contentMode mode: UIView.ContentMode = .scaleAspectFit, completion: @escaping (() -> Void)) {
+		guard let url = URL(string: link) else { return }
+		downloadedFrom(url: url, contentMode: mode, completion: completion)
 	}
 }
