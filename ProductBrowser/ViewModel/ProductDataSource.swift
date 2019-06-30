@@ -39,16 +39,16 @@ class ProductDataSource: GenericDataSource<Product>, UITableViewDataSource {
 	}
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return items?.count ?? 0
+		return data.value.count
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		
-		guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductCell.identifier, for: indexPath) as? ProductCell,
-			let item = items?[indexPath.row] else {
+		guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductCell.identifier, for: indexPath) as? ProductCell else {
 				return UITableViewCell()
 		}
 		
+		let item = data.value[indexPath.row]
 		cell.configure(ProductViewModel(model: item))
 		
 		return cell
