@@ -20,7 +20,7 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: F1752C69-506D-411A-9E70-AB563914137E
+//	ID: 6DE33BBA-882C-49A9-8EF6-5A72594EF8CD
 //
 //	Pkg: GenericService
 //
@@ -31,45 +31,34 @@
 
 import Foundation
 
-open class RequestHandler {
+public final class RequestService {
 	
-	let reachability = Reachability()!
+	public func loadData(urlString: String, session: URLSession = URLSession(configuration: .default), completion: @escaping (Result<Data, ErrorResult>) -> Void) -> URLSessionTask? {
+		
+		guard let url = URL(string: urlString) else {
+			completion(.failure(.network(string: "Wrong url format")))
+			return nil
+		}
+		
+		var request = RequestFactory.request(method: .GET, url: url)
+		
+		if let reachability = Reachability(), !reachability.isReachable {
+			request.cachePolicy = .returnCacheDataDontLoad
+		}
+		
+		let task = session.dataTask(with: request) { (data, response, error) in
+			if let error = error {
+				completion(.failure(.network(string: "An error occured during request :" + error.localizedDescription)))
+				return
+			}
+			
+			if let data = data {
+				completion(.success(data))
+			}
+		}
+		task.resume()
+		return task
+	}
 	
 	public init(){}
-	
-	public func networkResult<T: Codable>(completion: @escaping ((Result<[T], ErrorResult>) -> Void)) -> ((Result<Data, ErrorResult>) -> Void) {
-		
-		return { dataResult in
-			
-			DispatchQueue.global(qos: .background).async(execute: {
-				switch dataResult {
-				case .success(let data):
-					JSONParser.parse(data: data, completion: completion)
-					break
-				case .failure(let error) :
-					print("Network error \(error)")
-					completion(.failure(.network(string: "Network error " + error.localizedDescription)))
-					break
-				}
-			})
-		}
-	}
-	
-	public func networkResult<T: Codable>(completion: @escaping ((Result<T, ErrorResult>) -> Void)) -> ((Result<Data, ErrorResult>) -> Void) {
-		
-		return { dataResult in
-			
-			DispatchQueue.global(qos: .background).async(execute: {
-				switch dataResult {
-				case .success(let data):
-					JSONParser.parse(data: data, completion: completion)
-					break
-				case .failure(let error) :
-					print("Network error \(error)")
-					completion(.failure(.network(string: "Network error " + error.localizedDescription)))
-					break
-				}
-			})
-		}
-	}
 }

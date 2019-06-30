@@ -20,7 +20,7 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: 96FC1DE7-B23B-4BA3-825C-B446068E4CA8
+//	ID: BABD3C54-C721-4961-9CC8-28DABE8FB0AA
 //
 //	Pkg: ProductModel
 //
@@ -31,13 +31,7 @@
 
 import Foundation
 
-public struct Response {
-	
-	let products: [Product]
-	let meta: Meta
-}
-
-// MARK: - Codable
-extension Response: Codable {
-	
+public struct Picture: Codable {
+	public let id: Int
+	public let formats: [String: Format]
 }

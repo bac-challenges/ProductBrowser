@@ -20,7 +20,7 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: 3B9A7BC8-0511-4145-95FB-8E83394096A9
+//	ID: 6921D30C-90CA-45EF-A4F4-75CC8F369C0D
 //
 //	Pkg: ProductModel
 //
@@ -31,11 +31,8 @@
 
 import Foundation
 
-public struct Meta {
-	
-}
-
-// MARK: - Codable
-extension Meta: Codable {
-	
+public struct Format: Codable {
+	public let url: String
+	public let width: Int
+	public let height: Int
 }

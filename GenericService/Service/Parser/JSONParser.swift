@@ -20,7 +20,7 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: 6DE33BBA-882C-49A9-8EF6-5A72594EF8CD
+//	ID: 5762E7D9-4DBA-4E37-9338-EE330D717DFD
 //
 //	Pkg: GenericService
 //
@@ -31,34 +31,18 @@
 
 import Foundation
 
-public final class RequestService {
-	
-	public init() {}
-	
-	public func loadData(urlString: String, session: URLSession = URLSession(configuration: .default), completion: @escaping (Result<Data, ErrorResult>) -> Void) -> URLSessionTask? {
+final class JSONParser {
+	static func parse<T: Codable>(data: Data, completion : (Result<T, ErrorResult>) -> Void) {
 		
-		guard let url = URL(string: urlString) else {
-			completion(.failure(.network(string: "Wrong url format")))
-			return nil
-		}
-		
-		var request = RequestFactory.request(method: .GET, url: url)
-		
-		if let reachability = Reachability(), !reachability.isReachable {
-			request.cachePolicy = .returnCacheDataDontLoad
-		}
-		
-		let task = session.dataTask(with: request) { (data, response, error) in
-			if let error = error {
-				completion(.failure(.network(string: "An error occured during request :" + error.localizedDescription)))
-				return
-			}
+		do {
+			let decoder = JSONDecoder()
+			decoder.dateDecodingStrategy = .secondsSince1970
+			decoder.keyDecodingStrategy = .convertFromSnakeCase
 			
-			if let data = data {
-				completion(.success(data))
-			}
+			let model = try decoder.decode(T.self, from: data)
+			completion(.success(model))
+		} catch {
+			completion(.failure(.parser(string: "Error while decoding json data - \(error)")))
 		}
-		task.resume()
-		return task
 	}
 }

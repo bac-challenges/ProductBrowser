@@ -30,18 +30,32 @@
 //
 
 import UIKit
+import ProductModel
 
 class ProductController: UITableViewController {
 
+	var items: [Product]?
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setupView()
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
+		
 		super.viewWillAppear(animated)
 		
-		
+		ProductService.shared.fetchForecast { result in
+			switch result {
+			case .success(let response):
+				self.items = response.products
+				
+				DispatchQueue.main.async {
+					self.tableView.reloadData()
+				}
+			case .failure(let error): print(error)
+			}
+		}
 	}
 }
 
@@ -56,7 +70,9 @@ extension ProductController {
 
 // MARK: - UITableViewDelegate
 extension ProductController {
-	
+	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+		return 60
+	}
 }
 
 // MARK: - UITableViewDataSource
@@ -67,15 +83,20 @@ extension ProductController {
 	}
 	
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 5
+		return items?.count ?? 0
 	}
 	
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		
 		let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell", for: indexPath)
 		
+		guard let item = items?[indexPath.row] else {
+			return cell
+		}
+		
 		if let cell = cell as? ProductCell {
-			cell.textLabel?.text = "Product #\(indexPath.row)"
+			cell.textLabel?.text = "User ID: \(item.userId)"
+			cell.detailTextLabel?.text = "Price: \(item.priceAmount)\(item.priceCurrency)"
 		}
 
 		return cell

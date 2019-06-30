@@ -20,9 +20,9 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: 5762E7D9-4DBA-4E37-9338-EE330D717DFD
+//	ID: 96FC1DE7-B23B-4BA3-825C-B446068E4CA8
 //
-//	Pkg: GenericService
+//	Pkg: ProductModel
 //
 //	Swift: 5.0 
 //
@@ -31,31 +31,21 @@
 
 import Foundation
 
-final class JSONParser {
-	
-	static func parse<T: Codable>(data: Data, completion : (Result<[T], ErrorResult>) -> Void) {
-		
-		do {
-			let decoder = JSONDecoder()
-			decoder.dateDecodingStrategy = .secondsSince1970
-			
-			let model = try decoder.decode(T.self, from: data)
-			completion(.success([model]))
-		} catch {
-			completion(.failure(.parser(string: "Error while decoding json data")))
-		}
+public struct Response {
+	public let products: [Product]
+	public let meta: Meta
+}
+
+// MARK: - Codable
+extension Response: Codable {
+	enum TopLevelCodingKeys: String, CodingKey {
+		case products = "objects"
+		case meta = "meta"
 	}
 	
-	static func parse<T: Codable>(data: Data, completion : (Result<T, ErrorResult>) -> Void) {
-		
-		do {
-			let decoder = JSONDecoder()
-			decoder.dateDecodingStrategy = .secondsSince1970
-			
-			let model = try decoder.decode(T.self, from: data)
-			completion(.success(model))
-		} catch {
-			completion(.failure(.parser(string: "Error while decoding json data")))
-		}
+	public init(from decoder: Decoder) throws {
+		let container = try decoder.container(keyedBy: TopLevelCodingKeys.self)
+		products = try container.decode([Product].self, forKey: .products)
+		meta = try container.decode(Meta.self, forKey: .meta)
 	}
 }
