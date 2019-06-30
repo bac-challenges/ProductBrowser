@@ -34,6 +34,19 @@ import ProductModel
 
 class ProductCell: UITableViewCell, ReusableCell {
 
+	// UI
+	private lazy var container: UIStackView = {
+		let view = UIStackView()
+		view.spacing = 10
+		view.axis = .horizontal
+		view.distribution = .fill
+		view.alignment = .top
+		view.isBaselineRelativeArrangement = true
+		view.isLayoutMarginsRelativeArrangement = true
+		view.layoutMargins = UIEdgeInsets(top: 5, left: 20, bottom: 5, right: 15)
+		return view
+	}()
+	
 	private lazy var iconView: UIImageView = {
 		let view = UIImageView()
 		view.image = UIImage(named: "barcode")
@@ -45,7 +58,7 @@ class ProductCell: UITableViewCell, ReusableCell {
 	private lazy var titleLabel: UILabel = {
 		let view = UILabel()
 		view.text = "N/A"
-		view.textAlignment = .right
+		view.textAlignment = .left
 		view.textColor = .darkGray
 		view.translatesAutoresizingMaskIntoConstraints = false
 		view.font = UIFont.systemFont(ofSize: 18, weight: .light)
@@ -56,22 +69,25 @@ class ProductCell: UITableViewCell, ReusableCell {
 		let view = UILabel()
 		view.text = "N/A"
 		view.textAlignment = .right
-		view.textColor = .darkGray
+		view.textColor = .systemPink
 		view.translatesAutoresizingMaskIntoConstraints = false
-		view.font = UIFont.systemFont(ofSize: 18, weight: .light)
+		view.font = UIFont.systemFont(ofSize: 18, weight: .medium)
 		return view
 	}()
 	
-	private lazy var subtitleLabel: UILabel = {
+	private lazy var subTitleLabel: UILabel = {
 		let view = UILabel()
 		view.text = "N/A"
 		view.textAlignment = .right
 		view.textColor = .darkGray
+		view.lineBreakMode = .byWordWrapping
+		view.numberOfLines = 0
 		view.translatesAutoresizingMaskIntoConstraints = false
 		view.font = UIFont.systemFont(ofSize: 18, weight: .light)
 		return view
 	}()
 	
+	// Init
 	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 		super.init(style: CellStyle.value1, reuseIdentifier: reuseIdentifier)
 		setupView()
@@ -82,11 +98,11 @@ class ProductCell: UITableViewCell, ReusableCell {
 	}
 }
 
+// MARK: - Configurable
 extension ProductCell: Configurable {
-	
-	func configure(_ item: Product) {
-		//	cell.title.text = "User ID: \(item.userId)"
-		//	cell.detailTextLabel?.text = "Price: \(item.priceAmount)\(item.priceCurrency)"
+	func configure(_ model: ProductViewModel) {
+		titleLabel.text = model.userIdString
+		detailLabel.text = model.priceString
 	}
 }
 
@@ -95,15 +111,21 @@ extension  ProductCell {
 	
 	private func setupView() {
 		selectionStyle = .none
-		addSubview(iconView)
-		addSubview(titleLabel)
-		addSubview(detailLabel)
-		addSubview(subtitleLabel)
+		addSubview(container)
+		container.addArrangedSubview(iconView)
+		container.addArrangedSubview(titleLabel)
+		container.addArrangedSubview(detailLabel)
 		setupLayout()
 	}
 	
 	private func setupLayout() {
-	
+		
+		container.anchor(top: topAnchor,
+						 bottom: bottomAnchor,
+						 left: leftAnchor,
+						 right: rightAnchor)
+		
+		iconView.anchor(width: 60)
 	}
 	
 	override class var requiresConstraintBasedLayout: Bool {

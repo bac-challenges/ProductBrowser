@@ -30,3 +30,28 @@
 //
 
 import Foundation
+import ProductModel
+
+protocol GenericViewModel {
+	associatedtype T
+	var model: T { get }
+	init(model: T)
+}
+
+struct ProductViewModel: GenericViewModel {
+	internal let model: Product
+	init(model: Product) {
+		self.model = model
+	}
+}
+
+extension ProductViewModel {
+	
+	var userIdString: String {
+		return "ID: \(model.userId)"
+	}
+	
+	var priceString: String {
+		return "\(model.priceAmount)\(model.priceCurrency)"
+	}
+}

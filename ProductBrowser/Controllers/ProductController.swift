@@ -65,14 +65,12 @@ extension ProductController {
 	private func setupView() {
 		title = "Products"
 		tableView.register(ProductCell.self, forCellReuseIdentifier: ProductCell.identifier)
-		tableView.backgroundColor = .groupTableViewBackground
-		tableView.rowHeight = UITableView.automaticDimension
-		tableView.estimatedRowHeight = 600
 	}
 }
 
 // MARK: - UITableViewDelegate
 extension ProductController {
+
 	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 		return 60
 	}
@@ -96,12 +94,8 @@ extension ProductController {
 			return UITableViewCell()
 		}
 		
-		cell.configure(item)
+		cell.configure(ProductViewModel(model: item))
 
 		return cell
-	}
-	
-	override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-		return ""
 	}
 }
