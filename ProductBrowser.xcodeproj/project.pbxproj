@@ -12,6 +12,8 @@
 		602010D022C8D5CA00E2F456 /* Configurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602010CF22C8D5CA00E2F456 /* Configurable.swift */; };
 		602010D322C8DB4200E2F456 /* ProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602010D222C8DB4200E2F456 /* ProductViewModel.swift */; };
 		602010DD22C904F300E2F456 /* GenericUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 602010DB22C904F300E2F456 /* GenericUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		602010E422C90AE300E2F456 /* DynamicValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602010E322C90AE300E2F456 /* DynamicValue.swift */; };
+		602010E622C90B7F00E2F456 /* GenericDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602010E522C90B7F00E2F456 /* GenericDataSource.swift */; };
 		60F13DCD22C7A6B10095CDDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F13DCC22C7A6B10095CDDD /* AppDelegate.swift */; };
 		60F13DD622C7A6B50095CDDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60F13DD522C7A6B50095CDDD /* Assets.xcassets */; };
 		60F13DD922C7A6B50095CDDD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60F13DD722C7A6B50095CDDD /* LaunchScreen.storyboard */; };
@@ -113,6 +115,8 @@
 		602010D922C904F300E2F456 /* GenericUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GenericUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		602010DB22C904F300E2F456 /* GenericUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GenericUtils.h; sourceTree = "<group>"; };
 		602010DC22C904F300E2F456 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		602010E322C90AE300E2F456 /* DynamicValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicValue.swift; sourceTree = "<group>"; };
+		602010E522C90B7F00E2F456 /* GenericDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericDataSource.swift; sourceTree = "<group>"; };
 		60F13DC922C7A6B10095CDDD /* ProductBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProductBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60F13DCC22C7A6B10095CDDD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		60F13DD522C7A6B50095CDDD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -230,6 +234,7 @@
 		602010DA22C904F300E2F456 /* GenericUtils */ = {
 			isa = PBXGroup;
 			children = (
+				602010E222C90ACE00E2F456 /* Data */,
 				602010CA22C8D27E00E2F456 /* Utils */,
 				602010E122C9050700E2F456 /* Resources */,
 			);
@@ -243,6 +248,15 @@
 				602010DC22C904F300E2F456 /* Info.plist */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		602010E222C90ACE00E2F456 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				602010E322C90AE300E2F456 /* DynamicValue.swift */,
+				602010E522C90B7F00E2F456 /* GenericDataSource.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 		60F13DC022C7A6B10095CDDD = {
@@ -631,6 +645,7 @@
 				TargetAttributes = {
 					602010D822C904F300E2F456 = {
 						CreatedOnToolsVersion = 11.0;
+						LastSwiftMigration = 1100;
 					};
 					60F13DC822C7A6B10095CDDD = {
 						CreatedOnToolsVersion = 11.0;
@@ -739,6 +754,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				602010E622C90B7F00E2F456 /* GenericDataSource.swift in Sources */,
+				602010E422C90AE300E2F456 /* DynamicValue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -860,6 +877,7 @@
 		602010DE22C904F300E2F456 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -878,6 +896,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.blueantcorp.GenericUtils;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -888,6 +907,7 @@
 		602010DF22C904F300E2F456 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;

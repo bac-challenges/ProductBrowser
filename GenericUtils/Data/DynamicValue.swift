@@ -20,7 +20,7 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: 5FB4D009-30D9-4D72-8B33-C33EDA9002AD
+//	ID: 417DB319-6DC8-45AC-8689-D5C38081E6D3
 //
 //	Pkg: GenericUtils
 //
@@ -31,7 +31,36 @@
 
 import Foundation
 
-public protocol Configurable {
-	associatedtype T
-	func configure(_ item: T)
+class DynamicValue<T> {
+	
+	typealias CompletionHandler = ((T) -> Void)
+	
+	var value : T {
+		didSet {
+			self.notify()
+		}
+	}
+	
+	private var observers = [String: CompletionHandler]()
+	
+	init(_ value: T) {
+		self.value = value
+	}
+	
+	public func addObserver(_ observer: NSObject, completionHandler: @escaping CompletionHandler) {
+		observers[observer.description] = completionHandler
+	}
+	
+	public func addAndNotify(observer: NSObject, completionHandler: @escaping CompletionHandler) {
+		self.addObserver(observer, completionHandler: completionHandler)
+		self.notify()
+	}
+	
+	private func notify() {
+		observers.forEach({ $0.value(value) })
+	}
+	
+	deinit {
+		observers.removeAll()
+	}
 }

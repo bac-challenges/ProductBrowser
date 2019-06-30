@@ -20,7 +20,7 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: 5FB4D009-30D9-4D72-8B33-C33EDA9002AD
+//	ID: 47BCE6F8-57E2-44AE-89B2-EF3599EBA7EC
 //
 //	Pkg: GenericUtils
 //
@@ -31,7 +31,6 @@
 
 import Foundation
 
-public protocol Configurable {
-	associatedtype T
-	func configure(_ item: T)
+class GenericDataSource<T> : NSObject {
+	var data: DynamicValue<[T]> = DynamicValue([])
 }

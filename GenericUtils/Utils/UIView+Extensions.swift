@@ -22,7 +22,7 @@
 //
 //	ID: D90632DA-DF52-492E-93FC-2CE70CC435D6
 //
-//	Pkg: ProductBrowser
+//	Pkg: GenericUtils
 //
 //	Swift: 5.0 
 //
