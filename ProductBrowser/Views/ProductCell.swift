@@ -33,4 +33,30 @@ import UIKit
 
 class ProductCell: UITableViewCell {
 
+	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+		super.init(style: CellStyle.value1, reuseIdentifier: reuseIdentifier)
+		setupView()
+	}
+	
+	required init?(coder aDecoder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
+}
+
+// MARK: - Setup UI
+extension  ProductCell {
+	
+	private func setupView() {
+		selectionStyle = .none
+		layoutMargins = UIEdgeInsets.zero
+		preservesSuperviewLayoutMargins = false
+	}
+	
+	private func setupLayout() {
+	
+	}
+	
+	override class var requiresConstraintBasedLayout: Bool {
+		return true
+	}
 }
