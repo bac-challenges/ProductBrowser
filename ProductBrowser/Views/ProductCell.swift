@@ -30,6 +30,7 @@
 //
 
 import UIKit
+import ProductModel
 
 class ProductCell: UITableViewCell, ReusableCell {
 
@@ -83,8 +84,9 @@ class ProductCell: UITableViewCell, ReusableCell {
 
 extension ProductCell: Configurable {
 	
-	func configure(_ item: String) {
-		
+	func configure(_ item: Product) {
+		//	cell.title.text = "User ID: \(item.userId)"
+		//	cell.detailTextLabel?.text = "Price: \(item.priceAmount)\(item.priceCurrency)"
 	}
 }
 

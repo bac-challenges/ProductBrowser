@@ -91,16 +91,12 @@ extension ProductController {
 	
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		
-		let cell = tableView.dequeueReusableCell(withIdentifier: ProductCell.identifier, for: indexPath)
-		
-		guard let item = items?[indexPath.row] else {
-			return cell
+		guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductCell.identifier, for: indexPath) as? ProductCell,
+			  let item = items?[indexPath.row] else {
+			return UITableViewCell()
 		}
 		
-		if let cell = cell as? ProductCell {
-		//	cell.title.text = "User ID: \(item.userId)"
-		//	cell.detailTextLabel?.text = "Price: \(item.priceAmount)\(item.priceCurrency)"
-		}
+		cell.configure(item)
 
 		return cell
 	}
