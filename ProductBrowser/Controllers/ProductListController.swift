@@ -32,52 +32,58 @@
 import UIKit
 import ProductModel
 
-class ProductController: UITableViewController {
+class ProductListController: UITableViewController {
 
-	var items: [Product]?
+	// Data
+	var items: [Product]? {
+		didSet {
+			DispatchQueue.main.async {
+				self.tableView.reloadData()
+			}
+		}
+	}
 	
+	// Init
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setupView()
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
-		
 		super.viewWillAppear(animated)
-		
-		ProductService.shared.fetchForecast { result in
+		fetchItems()
+	}
+}
+
+// MARK: - Service
+extension ProductListController {
+	private func fetchItems() {
+		ProductService.shared.fetchProducts { result in
 			switch result {
-			case .success(let response):
-				self.items = response.products
-				
-				DispatchQueue.main.async {
-					self.tableView.reloadData()
-				}
+			case .success(let response): self.items = response.products
 			case .failure(let error): print(error)
 			}
 		}
 	}
 }
 
-// MARK: - Setup UI
-extension ProductController {
-	
+// MARK: - UI
+extension ProductListController {
 	private func setupView() {
 		title = "Products"
-		tableView.register(ProductCell.self, forCellReuseIdentifier: ProductCell.identifier)
+		tableView.register(ProductListCell.self, forCellReuseIdentifier: ProductListCell.identifier)
 	}
 }
 
 // MARK: - UITableViewDelegate
-extension ProductController {
-
+extension ProductListController {
 	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 		return 60
 	}
 }
 
 // MARK: - UITableViewDataSource
-extension ProductController {
+extension ProductListController {
 	
 	override func numberOfSections(in tableView: UITableView) -> Int {
 		return 1
@@ -89,13 +95,11 @@ extension ProductController {
 	
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		
-		guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductCell.identifier, for: indexPath) as? ProductCell,
-			  let item = items?[indexPath.row] else {
-			return UITableViewCell()
-		}
+		guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductListCell.identifier, for: indexPath) as? ProductListCell,
+			  let item = items?[indexPath.row] else { return UITableViewCell() }
 		
 		cell.configure(ProductViewModel(model: item))
-
+		
 		return cell
 	}
 }

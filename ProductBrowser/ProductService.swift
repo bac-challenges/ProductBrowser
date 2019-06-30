@@ -35,24 +35,23 @@ import GenericService
 
 
 protocol ProductServiceProtocol: class {
-	func fetchForecast(_ completion: @escaping ((Result<Response, ErrorResult>) -> Void))
+	func fetchProducts(_ completion: @escaping ((Result<Response, ErrorResult>) -> Void))
 }
 
 final class ProductService: RequestHandler, ProductServiceProtocol {
 
 	static let shared = ProductService()
 
-	let endpoint = "https://api.garage.me/api/v1/products/popular/?limit=100&offset_id" //"\(apiBase)/\(apiPath)?q=\(apiLocation)&appid=\(apiKey)&units%20=\(apiUnits)"
+	let endpoint = "https://api.garage.me/api/v1/products/popular/?limit=100&offset_id"
+	
 	var task: URLSessionTask?
 	
-	func fetchForecast(_ completion: @escaping ((Result<Response, ErrorResult>) -> Void)) {
-		self.cancelFetchForecast()
-		
+	func fetchProducts(_ completion: @escaping ((Result<Response, ErrorResult>) -> Void)) {
+		self.cancelFetchProducts()
 		task = RequestService().loadData(urlString: endpoint, completion: self.networkResult(completion: completion))
 	}
 	
-	func cancelFetchForecast() {
-		
+	func cancelFetchProducts() {
 		if let task = task {
 			task.cancel()
 		}

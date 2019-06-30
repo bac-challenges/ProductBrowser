@@ -20,9 +20,9 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: 5762E7D9-4DBA-4E37-9338-EE330D717DFD
+//	ID: D9C5F90E-7823-4BED-B4CA-B91D9E58D4CA
 //
-//	Pkg: GenericService
+//	Pkg: GenericUtils
 //
 //	Swift: 5.0 
 //
@@ -31,18 +31,12 @@
 
 import Foundation
 
-final class JSONParser {
-	static func parse<T: Codable>(data: Data, completion: (Result<T, ErrorResult>) -> Void) {
-		
-		do {
-			let decoder = JSONDecoder()
-			decoder.dateDecodingStrategy = .secondsSince1970
-			decoder.keyDecodingStrategy = .convertFromSnakeCase
-			
-			let model = try decoder.decode(T.self, from: data)
-			completion(.success(model))
-		} catch {
-			completion(.failure(.parser(string: "Error while decoding json data - \(error)")))
-		}
+public protocol ReusableCell {
+	static var identifier: String { get }
+}
+
+public extension ReusableCell {
+	static var identifier: String {
+		return String(describing: self)
 	}
 }

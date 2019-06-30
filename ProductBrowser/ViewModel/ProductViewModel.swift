@@ -31,12 +31,8 @@
 
 import Foundation
 import ProductModel
-
-protocol GenericViewModel {
-	associatedtype T
-	var model: T { get }
-	init(model: T)
-}
+import GenericUtils
+import GenericService
 
 struct ProductViewModel: GenericViewModel {
 	internal let model: Product
@@ -45,6 +41,7 @@ struct ProductViewModel: GenericViewModel {
 	}
 }
 
+// MARK: - Values
 extension ProductViewModel {
 	
 	var userIdString: String {
@@ -53,5 +50,17 @@ extension ProductViewModel {
 	
 	var priceString: String {
 		return "\(model.priceAmount)\(model.priceCurrency)"
+	}
+	
+	var description: String {
+		return model.description
+	}
+	
+	var imageURL: String {
+		guard let url = model.picturesData.first?.formats["P2"]?.url else {
+			return ""
+		}
+		
+		return url
 	}
 }

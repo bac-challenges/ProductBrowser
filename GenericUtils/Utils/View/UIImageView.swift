@@ -20,18 +20,37 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: 5FB4D009-30D9-4D72-8B33-C33EDA9002AD
+//	ID: C9500418-802A-408F-B24F-B3118F0B0E3F
 //
-//	Pkg: ProductBrowser
+//	Pkg: GenericUtils
 //
 //	Swift: 5.0 
 //
 //	MacOS: 10.15
 //
 
-import Foundation
+import UIKit
 
-public protocol Configurable {
-	associatedtype T
-	func configure(_ item: T)
+public extension UIImageView {
+	func downloadedFrom(url: URL, contentMode mode: UIView.ContentMode = .scaleAspectFit, completion: @escaping (() -> Void)) {
+		
+		contentMode = mode
+		
+		URLSession.shared.dataTask(with: url) { (data, response, error) in
+			guard let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+				  let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
+				  let data = data, error == nil,
+				  let image = UIImage(data: data) else { return }
+			
+			DispatchQueue.main.async() { () -> Void in
+				self.image = image
+				completion()
+			}
+		}.resume()
+	}
+	
+	func downloadedFrom(link: String, contentMode mode: UIView.ContentMode = .scaleAspectFit, completion: @escaping (() -> Void)) {
+		guard let url = URL(string: link) else { return }
+		downloadedFrom(url: url, contentMode: mode, completion: completion)
+	}
 }

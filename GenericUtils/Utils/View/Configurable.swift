@@ -20,9 +20,9 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: D9C5F90E-7823-4BED-B4CA-B91D9E58D4CA
+//	ID: 5FB4D009-30D9-4D72-8B33-C33EDA9002AD
 //
-//	Pkg: ProductBrowser
+//	Pkg: GenericUtils
 //
 //	Swift: 5.0 
 //
@@ -31,12 +31,7 @@
 
 import Foundation
 
-public protocol ReusableCell {
-	static var identifier: String { get }
-}
-
-public extension ReusableCell {
-	static var identifier: String {
-		return String(describing: self)
-	}
+public protocol Configurable {
+	associatedtype T
+	func configure(_ item: T)
 }
