@@ -20,7 +20,7 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: 6A46B76B-AA0D-4095-97F7-BAF0B89D8649
+//	ID: 43F37157-060C-4792-A7B9-B4A61B2FBDA6
 //
 //	Pkg: ProductBrowser
 //
@@ -29,54 +29,28 @@
 //	MacOS: 10.15
 //
 
-import UIKit
+import Foundation
 import ProductModel
 
-class ProductController: UITableViewController {
-
-	var items: [Product]?
+class ProductDataSource: GenericDataSource<Product>, UITableViewDataSource {
 	
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		setupView()
+	func numberOfSections(in tableView: UITableView) -> Int {
+		return 1
 	}
 	
-	override func viewWillAppear(_ animated: Bool) {
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		return items?.count ?? 0
+	}
+	
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		
-		super.viewWillAppear(animated)
-		
-		ProductService.shared.fetchForecast { result in
-			switch result {
-			case .success(let response):
-				self.items = response.products
-				
-				DispatchQueue.main.async {
-					self.tableView.reloadData()
-				}
-			case .failure(let error): print(error)
-			}
+		guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductCell.identifier, for: indexPath) as? ProductCell,
+			let item = items?[indexPath.row] else {
+				return UITableViewCell()
 		}
+		
+		cell.configure(ProductViewModel(model: item))
+		
+		return cell
 	}
-}
-
-// MARK: - Setup UI
-extension ProductController {
-	
-	private func setupView() {
-		title = "Products"
-		tableView.register(ProductCell.self, forCellReuseIdentifier: ProductCell.identifier)
-	}
-}
-
-// MARK: - UITableViewDelegate
-extension ProductController {
-
-	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		return 60
-	}
-}
-
-// MARK: - UITableViewDataSource
-extension ProductController {
-	
 }
