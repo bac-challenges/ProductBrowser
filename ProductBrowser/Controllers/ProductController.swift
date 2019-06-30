@@ -64,12 +64,13 @@ extension ProductController {
 	
 	private func setupView() {
 		title = "Products"
-		tableView.register(ProductCell.self, forCellReuseIdentifier: "ProductCell")
+		tableView.register(ProductCell.self, forCellReuseIdentifier: ProductCell.identifier)
 	}
 }
 
 // MARK: - UITableViewDelegate
 extension ProductController {
+
 	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 		return 60
 	}
@@ -88,21 +89,13 @@ extension ProductController {
 	
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		
-		let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell", for: indexPath)
-		
-		guard let item = items?[indexPath.row] else {
-			return cell
+		guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductCell.identifier, for: indexPath) as? ProductCell,
+			  let item = items?[indexPath.row] else {
+			return UITableViewCell()
 		}
 		
-		if let cell = cell as? ProductCell {
-			cell.textLabel?.text = "User ID: \(item.userId)"
-			cell.detailTextLabel?.text = "Price: \(item.priceAmount)\(item.priceCurrency)"
-		}
+		cell.configure(ProductViewModel(model: item))
 
 		return cell
-	}
-	
-	override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-		return ""
 	}
 }

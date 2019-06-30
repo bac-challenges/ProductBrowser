@@ -30,9 +30,50 @@
 //
 
 import UIKit
+import ProductModel
 
-class ProductCell: UITableViewCell {
+class ProductCell: UITableViewCell, ReusableCell {
 
+	// UI
+	private lazy var container: UIStackView = {
+		let view = UIStackView()
+		view.spacing = 10
+		view.axis = .horizontal
+		view.distribution = .fill
+		view.alignment = .top
+		view.isBaselineRelativeArrangement = true
+		view.isLayoutMarginsRelativeArrangement = true
+		view.layoutMargins = UIEdgeInsets(top: 5, left: 20, bottom: 5, right: 15)
+		return view
+	}()
+	
+	private lazy var iconView: UIImageView = {
+		let view = UIImageView()
+		view.image = UIImage(named: "barcode")
+		view.tintColor = .darkGray
+		view.contentMode = .scaleAspectFit
+		return view
+	}()
+	
+	private lazy var titleLabel: UILabel = {
+		let view = UILabel()
+		view.text = "N/A"
+		view.textAlignment = .left
+		view.textColor = .darkGray
+		view.font = UIFont.systemFont(ofSize: 18, weight: .light)
+		return view
+	}()
+	
+	private lazy var detailLabel: UILabel = {
+		let view = UILabel()
+		view.text = "N/A"
+		view.textAlignment = .right
+		view.textColor = .systemPink
+		view.font = UIFont.systemFont(ofSize: 18, weight: .medium)
+		return view
+	}()
+	
+	// Init
 	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 		super.init(style: CellStyle.value1, reuseIdentifier: reuseIdentifier)
 		setupView()
@@ -43,20 +84,33 @@ class ProductCell: UITableViewCell {
 	}
 }
 
+// MARK: - Configurable
+extension ProductCell: Configurable {
+	func configure(_ model: ProductViewModel) {
+		titleLabel.text = model.userIdString
+		detailLabel.text = model.priceString
+	}
+}
+
 // MARK: - Setup UI
 extension  ProductCell {
 	
 	private func setupView() {
 		selectionStyle = .none
-		layoutMargins = UIEdgeInsets.zero
-		preservesSuperviewLayoutMargins = false
+		addSubview(container)
+		container.addArrangedSubview(iconView)
+		container.addArrangedSubview(titleLabel)
+		container.addArrangedSubview(detailLabel)
+		setupLayout()
 	}
 	
 	private func setupLayout() {
-	
-	}
-	
-	override class var requiresConstraintBasedLayout: Bool {
-		return true
+		
+		container.anchor(top: topAnchor,
+						 bottom: bottomAnchor,
+						 left: leftAnchor,
+						 right: rightAnchor)
+		
+		iconView.anchor(width: 60)
 	}
 }

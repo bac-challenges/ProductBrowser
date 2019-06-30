@@ -20,38 +20,23 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: 2C6D1EE0-1AB5-4EE0-BE8F-E51AE65B5D35
+//	ID: D9C5F90E-7823-4BED-B4CA-B91D9E58D4CA
 //
-//	Pkg: ProductModelTests
+//	Pkg: ProductBrowser
 //
 //	Swift: 5.0 
 //
 //	MacOS: 10.15
 //
 
-import XCTest
-@testable import ProductModel
+import Foundation
 
-class ProductModelTests: XCTestCase {
+public protocol ReusableCell {
+	static var identifier: String { get }
+}
 
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
+public extension ReusableCell {
+	static var identifier: String {
+		return String(describing: self)
+	}
 }
