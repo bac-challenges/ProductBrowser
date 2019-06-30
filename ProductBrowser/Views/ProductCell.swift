@@ -60,7 +60,6 @@ class ProductCell: UITableViewCell, ReusableCell {
 		view.text = "N/A"
 		view.textAlignment = .left
 		view.textColor = .darkGray
-		view.translatesAutoresizingMaskIntoConstraints = false
 		view.font = UIFont.systemFont(ofSize: 18, weight: .light)
 		return view
 	}()
@@ -70,20 +69,7 @@ class ProductCell: UITableViewCell, ReusableCell {
 		view.text = "N/A"
 		view.textAlignment = .right
 		view.textColor = .systemPink
-		view.translatesAutoresizingMaskIntoConstraints = false
 		view.font = UIFont.systemFont(ofSize: 18, weight: .medium)
-		return view
-	}()
-	
-	private lazy var subTitleLabel: UILabel = {
-		let view = UILabel()
-		view.text = "N/A"
-		view.textAlignment = .right
-		view.textColor = .darkGray
-		view.lineBreakMode = .byWordWrapping
-		view.numberOfLines = 0
-		view.translatesAutoresizingMaskIntoConstraints = false
-		view.font = UIFont.systemFont(ofSize: 18, weight: .light)
 		return view
 	}()
 	
@@ -126,9 +112,5 @@ extension  ProductCell {
 						 right: rightAnchor)
 		
 		iconView.anchor(width: 60)
-	}
-	
-	override class var requiresConstraintBasedLayout: Bool {
-		return true
 	}
 }
