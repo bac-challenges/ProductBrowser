@@ -31,6 +31,6 @@
 
 import UIKit
 
-class ProductDetailCell: UITableViewCell {
+class ProductDetailView: UIView {
 
 }

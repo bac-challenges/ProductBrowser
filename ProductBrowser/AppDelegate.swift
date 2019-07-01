@@ -36,14 +36,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
 	
-	private lazy var rootViewController: UISplitViewController = {
-		let splitController = ProductController()
-		let listController = UINavigationController(rootViewController: ProductListController())
-		let detailController = UINavigationController(rootViewController: ProductDetailController())
-		splitController.viewControllers = [listController, detailController]
-		return splitController
-	}()
-	
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		
 		window = UIWindow(frame: UIScreen.main.bounds)
@@ -53,5 +45,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		Appearance.apply()
 		
 		return true
+	}
+	
+	private var rootViewController: UISplitViewController {
+		let listController = ProductListController()
+		let detailController = ProductDetailController()
+		let productController = ProductController()
+		productController.viewControllers = [UINavigationController(rootViewController: listController),
+											 UINavigationController(rootViewController: detailController)]
+		return productController
 	}
 }

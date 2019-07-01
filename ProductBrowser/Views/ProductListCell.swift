@@ -33,29 +33,34 @@ import UIKit
 import ProductShared
 import GenericService
 
-class ProductListCell: UITableViewCell, Configurable, ReusableCell {
+class ProductListCell: UITableViewCell, ReusableCell {
 	
 	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 		super.init(style: .value1, reuseIdentifier: nil)
-		imageView?.layer.cornerRadius = (imageView?.frame.height ?? 0)/2
-		imageView?.layer.masksToBounds = true
 	}
 	
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
+	override func prepareForReuse() {
+		super.prepareForReuse()
+		textLabel?.text = ""
+		detailTextLabel?.text = ""
+		imageView?.image = nil
+	}
+}
+
+// MARK: - Configurable
+extension ProductListCell: Configurable {
 	func configure(_ model: ProductViewModel) {
 		textLabel?.text = model.userIdString
 		detailTextLabel?.text = model.priceString
 		detailTextLabel?.textColor = .systemPink
+		imageView?.layer.cornerRadius = (imageView?.frame.height ?? 0)/2
+		imageView?.layer.masksToBounds = true
 		imageView?.downloadedFrom(link: model.imageURL) {
 			self.setNeedsLayout()
 		}
-	}
-	
-	override func prepareForReuse() {
-		super.prepareForReuse()
-		imageView?.image = nil
 	}
 }
