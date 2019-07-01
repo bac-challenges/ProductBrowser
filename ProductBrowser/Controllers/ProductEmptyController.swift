@@ -20,7 +20,7 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: 6A46B76B-AA0D-4095-97F7-BAF0B89D8649
+//	ID: 132517DF-58D4-4F6E-AD96-08EEC6DDB841
 //
 //	Pkg: ProductBrowser
 //
@@ -31,28 +31,23 @@
 
 import UIKit
 
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class ProductEmptyController: UIViewController {
 
-	var window: UIWindow?
+	lazy private var imageView: UIImageView = {
+		let view = UIImageView()
+		view.image = UIImage(named: "iconLaunch")
+		return view
+	}()
 	
-	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-		
-		window = UIWindow(frame: UIScreen.main.bounds)
-		window?.rootViewController = rootViewController
-		window?.makeKeyAndVisible()
-
-		Appearance.apply()
-		
-		return true
+    override func viewDidLoad() {
+        super.viewDidLoad()
+		setupView()
 	}
-	
-	private var rootViewController: UISplitViewController {
-		let listController = ProductListController()
-		let detailController = ProductEmptyController()
-		let productController = ProductController()
-		productController.viewControllers = [UINavigationController(rootViewController: listController),
-											 UINavigationController(rootViewController: detailController)]
-		return productController
+}
+
+// MARK: - UI
+extension ProductEmptyController {
+	private func setupView() {
+		view.backgroundColor = .groupTableViewBackground
 	}
 }

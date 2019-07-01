@@ -31,61 +31,10 @@
 
 import UIKit
 import ProductShared
-import GenericUtils
 
-class ProductDetailController: UIViewController {
+class ProductDetailController: UITableViewController {
 
-	private lazy var scrollView: UIScrollView = {
-		let view = UIScrollView()
-		view.isDirectionalLockEnabled = true
-		return view
-	}()
-	
-	private lazy var container: UIStackView = {
-		let view = UIStackView()
-		view.axis = .vertical
-		view.spacing = 10
-		view.alignment = .top
-		view.distribution = .fill
-		return view
-	}()
-	
-	private lazy var imageView: UIImageView = {
-		let view = UIImageView()
-		view.image = UIImage(named: "barcode")
-		view.tintColor = .darkGray
-		view.contentMode = .scaleAspectFit
-		return view
-	}()
-	
-	private lazy var titleLabel: UILabel = {
-		let view = UILabel()
-		view.text = "N/A"
-		view.textAlignment = .left
-		view.textColor = .darkGray
-		view.font = UIFont.systemFont(ofSize: 17, weight: .light)
-		return view
-	}()
-	
-	private lazy var detailLabel: UILabel = {
-		let view = UILabel()
-		view.text = "N/A"
-		view.textAlignment = .left
-		view.textColor = .systemPink
-		view.font = UIFont.systemFont(ofSize: 17, weight: .light)
-		return view
-	}()
-	
-	private lazy var descriptionLabel: UILabel = {
-		let view = UILabel()
-		view.text = "N/A"
-		view.textAlignment = .left
-		view.textColor = .darkGray
-		view.font = UIFont.systemFont(ofSize: 17, weight: .light)
-		view.lineBreakMode = .byWordWrapping
-		view.numberOfLines = 0
-		return view
-	}()
+	public var model: ProductViewModel?
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,48 +42,34 @@ class ProductDetailController: UIViewController {
 	}
 }
 
-// MARK: - Configurable
-extension ProductDetailController: Configurable {
-	func configure(_ model: ProductViewModel) {
-		titleLabel.text = model.userIdString
-		detailLabel.text = model.priceString
-		imageView.downloadedFrom(link: model.imageURL) {
-			self.view.setNeedsLayout()
-		}
-		descriptionLabel.text = model.description
-	}
-}
-
 // MARK: - Setup UI
 extension ProductDetailController {
 	private func setupView() {
-		navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
-		navigationItem.leftItemsSupplementBackButton = true
-		view.backgroundColor = .white
-		view.addSubview(container)
-		container.addArrangedSubview(imageView)
-		container.addArrangedSubview(titleLabel)
-		container.addArrangedSubview(detailLabel)
-		container.addArrangedSubview(descriptionLabel)
-		
-		setupLayout()
-	}
-	
-	private func setupLayout() {
-		container.anchor(top: view.topAnchor,
-						 paddingTop: 60,
-						 left: view.leftAnchor,
-						 paddingLeft: 40,
-						 right: view.rightAnchor,
-						 paddingRight: 40)
-		
-		imageView.anchor(width: 100, height: 100)
-		
-		// Debug
-		imageView.debugMode(true)
-		titleLabel.debugMode(true)
-		detailLabel.debugMode(true)
-		descriptionLabel.debugMode(true)
+		tableView = UITableView(frame: CGRect.zero, style: .plain)
+		tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+		tableView.backgroundColor = .groupTableViewBackground
+		tableView.separatorStyle = .none
 	}
 }
 
+// MARK: - UITableViewDataSource
+extension ProductDetailController {
+	
+	override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+		return ""
+	}
+	
+	override func numberOfSections(in tableView: UITableView) -> Int {
+		return 1
+	}
+	
+	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		return 3
+	}
+	
+	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+		cell.textLabel?.text = "Cell \(indexPath.section)"
+		return cell
+	}
+}

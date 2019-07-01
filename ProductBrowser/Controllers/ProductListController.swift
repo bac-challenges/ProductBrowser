@@ -73,19 +73,16 @@ extension ProductListController {
 		title = "Select Product"
 		tableView.register(ProductListCell.self, forCellReuseIdentifier: ProductListCell.identifier)
 		tableView.backgroundColor = .groupTableViewBackground
+		tableView.rowHeight = 80
 	}
 }
 
 // MARK: - UITableViewDelegate
 extension ProductListController {
-	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		return 80
-	}
-	
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		if let item = items?[indexPath.row] {
 			let child = ProductDetailController()
-			child.configure(ProductViewModel(item))
+			child.model = ProductViewModel(item)
 			let navController = UINavigationController(rootViewController: child)
 			self.navigationController?.showDetailViewController(navController, sender: nil)
 		}

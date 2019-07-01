@@ -42,6 +42,7 @@ class ProductController: UISplitViewController {
 extension ProductController {
 	private func setupView() {
 		title = "Product"
+		view.backgroundColor = .groupTableViewBackground
 		preferredDisplayMode = .allVisible
 		delegate = self
 	}
