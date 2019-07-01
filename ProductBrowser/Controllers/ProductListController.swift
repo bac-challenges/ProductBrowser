@@ -100,7 +100,7 @@ extension ProductListController {
 		guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductListCell.identifier, for: indexPath) as? ProductListCell,
 			  let item = items?[indexPath.row] else { return UITableViewCell() }
 		
-		cell.configure(ProductViewModel(model: item))
+		cell.configure(ProductViewModel(item))
 		
 		return cell
 	}

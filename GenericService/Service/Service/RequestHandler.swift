@@ -34,6 +34,7 @@ import Foundation
 open class RequestHandler {
 	
 	public func networkResult<T: Codable>(completion: @escaping ((Result<T, ErrorResult>) -> Void)) -> ((Result<Data, ErrorResult>) -> Void) {
+		
 		return { dataResult in
 			DispatchQueue.global(qos: .background).async(execute: {
 				switch dataResult {

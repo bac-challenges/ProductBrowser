@@ -35,7 +35,7 @@ import GenericService
 
 public struct ProductViewModel: GenericViewModel {
 	public let model: Product
-	public init(model: Product) {
+	public init(_ model: Product) {
 		self.model = model
 	}
 }
