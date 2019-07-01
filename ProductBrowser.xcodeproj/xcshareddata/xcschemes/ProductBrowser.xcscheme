@@ -26,7 +26,8 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      codeCoverageEnabled = "YES">
       <Testables>
          <TestableReference
             skipped = "NO">
@@ -52,49 +53,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "60F13E3B22C7AB270095CDDD"
-               BuildableName = "ProductBrowserModelTests.xctest"
-               BlueprintName = "ProductBrowserModelTests"
-               ReferencedContainer = "container:ProductBrowser.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "60F13E5E22C7AB510095CDDD"
-               BuildableName = "ProductBrowserServiceTests.xctest"
-               BlueprintName = "ProductBrowserServiceTests"
-               ReferencedContainer = "container:ProductBrowser.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "60F13EDD22C7F41F0095CDDD"
-               BuildableName = "ProductServiceTests.xctest"
-               BlueprintName = "ProductServiceTests"
-               ReferencedContainer = "container:ProductBrowser.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "60F13F0122C7F6B40095CDDD"
+               BlueprintIdentifier = "60245C9E22C9CCDD009C32AD"
                BuildableName = "GenericServiceTests.xctest"
                BlueprintName = "GenericServiceTests"
-               ReferencedContainer = "container:ProductBrowser.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "60F13F2522C7F8760095CDDD"
-               BuildableName = "ProductModelTests.xctest"
-               BlueprintName = "ProductModelTests"
                ReferencedContainer = "container:ProductBrowser.xcodeproj">
             </BuildableReference>
          </TestableReference>

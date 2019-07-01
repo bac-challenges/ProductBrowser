@@ -32,7 +32,6 @@
 import UIKit
 
 class ProductController: UISplitViewController {
-
     override func viewDidLoad() {
         super.viewDidLoad()
 		setupView()
