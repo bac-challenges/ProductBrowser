@@ -20,9 +20,9 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: BABD3C54-C721-4961-9CC8-28DABE8FB0AA
+//	ID: 6921D30C-90CA-45EF-A4F4-75CC8F369C0D
 //
-//	Pkg: ProductModel
+//	Pkg: ProductShared
 //
 //	Swift: 5.0 
 //
@@ -31,7 +31,8 @@
 
 import Foundation
 
-public struct Picture: Codable {
-	public let id: Int
-	public let formats: [String: Format]
+public struct Format: Codable {
+	public let url: String
+	public let width: Int
+	public let height: Int
 }

@@ -38,21 +38,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		
-//		window = UIWindow(frame: UIScreen.main.bounds)
-//		window?.makeKeyAndVisible()
-//		window?.rootViewController = UINavigationController(rootViewController: ProductListController())
-//		window?.tintColor = UIColor.systemPink
-//
-//		applyAppearace()
-//
-//		return true
-		
 		window = UIWindow(frame: UIScreen.main.bounds)
-		window?.rootViewController = ProductController()
+		window?.rootViewController = rootViewController
 		window?.makeKeyAndVisible()
 
 		Appearance.apply()
 		
 		return true
+	}
+	
+	private var rootViewController: UISplitViewController {
+		let listController = ProductListController()
+		let detailController = ProductDetailController()
+		let productController = ProductController()
+		productController.viewControllers = [UINavigationController(rootViewController: listController),
+											 UINavigationController(rootViewController: detailController)]
+		return productController
 	}
 }

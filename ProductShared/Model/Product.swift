@@ -20,17 +20,46 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: A1F89BF0-ACBE-4B27-B55B-C5CD78615A7A
+//	ID: DAE66AF9-6D85-4BFF-8648-BD807207B3C9
 //
-//	Pkg: ProductBrowser
+//	Pkg: ProductShared
 //
 //	Swift: 5.0 
 //
 //	MacOS: 10.15
 //
 
-import UIKit
+import Foundation
 
-class ProductDetailCell: UITableViewCell {
-
+public struct Product: Codable {
+	
+	// Primary
+	public let userId: Int
+	public let priceAmount: String
+	public let priceCurrency: String
+	public let picturesData: [Picture]
+	
+	// Secondary
+	public let description: String
+	
+	// Other
+//	let variantSet: Int
+//	let quantity: Int
+//	let createdDate: Date
+//	let brandId: String
+//	let activeStatus: String
+//	let country: String
+//	let slug: String
+//	let pubDate: Date
+//	let nationalShippingCost: Float
+//	let id: Int
+//	let handDelivery: Bool
+//	let internationalShippingCost: Float
+//	let status: String
+//	let purchaseViaPaypal: Bool
+//	let categories: [Int]
+//	let address: String
+//	let videos: String
+//	let userData: UserData
+//	let variants: String
 }

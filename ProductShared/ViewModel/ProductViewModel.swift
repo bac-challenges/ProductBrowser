@@ -20,9 +20,9 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: DAE66AF9-6D85-4BFF-8648-BD807207B3C9
+//	ID: F4522544-5742-4B4C-BEF1-3D490DCF6BAD
 //
-//	Pkg: ProductModel
+//	Pkg: ProductShared
 //
 //	Swift: 5.0 
 //
@@ -30,36 +30,36 @@
 //
 
 import Foundation
+import GenericUtils
+import GenericService
 
-public struct Product: Codable {
+public struct ProductViewModel: GenericViewModel {
+	public let model: Product
+	public init(model: Product) {
+		self.model = model
+	}
+}
+
+// MARK: - Values
+extension ProductViewModel {
 	
-	// Primary
-	public let userId: Int
-	public let priceAmount: String
-	public let priceCurrency: String
-	public let picturesData: [Picture]
+	public var userIdString: String {
+		return "ID: \(model.userId)"
+	}
 	
-	// Secondary
-	public let description: String
+	public var priceString: String {
+		return "\(model.priceAmount)\(model.priceCurrency)"
+	}
 	
-	// Other
-//	let variantSet: Int
-//	let quantity: Int
-//	let createdDate: Date
-//	let brandId: String
-//	let activeStatus: String
-//	let country: String
-//	let slug: String
-//	let pubDate: Date
-//	let nationalShippingCost: Float
-//	let id: Int
-//	let handDelivery: Bool
-//	let internationalShippingCost: Float
-//	let status: String
-//	let purchaseViaPaypal: Bool
-//	let categories: [Int]
-//	let address: String
-//	let videos: String
-//	let userData: UserData
-//	let variants: String
+	public var description: String {
+		return model.description
+	}
+	
+	public var imageURL: String {
+		guard let url = model.picturesData.first?.formats["P2"]?.url else {
+			return ""
+		}
+		
+		return url
+	}
 }

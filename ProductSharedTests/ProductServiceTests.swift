@@ -20,21 +20,27 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: 2C6D1EE0-1AB5-4EE0-BE8F-E51AE65B5D35
+//	ID: F78D89E0-65B3-4CAA-980E-B8D48838F748
 //
-//	Pkg: ProductModel
+//	Pkg: ProductSharedTests
 //
 //	Swift: 5.0 
 //
 //	MacOS: 10.15
 //
 
-#import <UIKit/UIKit.h>
+import XCTest
+@testable import ProductShared
 
-//! Project version number for ProductModel.
-FOUNDATION_EXPORT double ProductModelVersionNumber;
+class ProductServiceTests: XCTestCase {
 
-//! Project version string for ProductModel.
-FOUNDATION_EXPORT const unsigned char ProductModelVersionString[];
+	func testCancelRequest() {
 
-// In this header, you should import all the public headers of your framework using statements like #import <ProductModel/PublicHeader.h>
+		ProductService.shared.fetchProducts() { (_) in
+			// ignore call
+		}
+		
+		ProductService.shared.cancelFetchProducts()
+		XCTAssertNil(ProductService.shared.task, "Expected task nil")
+	}
+}

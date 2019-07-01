@@ -20,9 +20,9 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: 57AEBC4C-1F62-45DC-AA48-7A9E27B60E5A
+//	ID: BABD3C54-C721-4961-9CC8-28DABE8FB0AA
 //
-//	Pkg: ProductBrowser
+//	Pkg: ProductShared
 //
 //	Swift: 5.0 
 //
@@ -30,31 +30,8 @@
 //
 
 import Foundation
-import ProductModel
-import GenericService
 
-
-protocol ProductServiceProtocol: class {
-	func fetchProducts(_ completion: @escaping ((Result<Response, ErrorResult>) -> Void))
-}
-
-final class ProductService: RequestHandler, ProductServiceProtocol {
-
-	static let shared = ProductService()
-
-	let endpoint = "https://api.garage.me/api/v1/products/popular/?limit=100&offset_id"
-	
-	var task: URLSessionTask?
-	
-	func fetchProducts(_ completion: @escaping ((Result<Response, ErrorResult>) -> Void)) {
-		self.cancelFetchProducts()
-		task = RequestService().loadData(urlString: endpoint, completion: self.networkResult(completion: completion))
-	}
-	
-	func cancelFetchProducts() {
-		if let task = task {
-			task.cancel()
-		}
-		task = nil
-	}
+public struct Picture: Codable {
+	public let id: Int
+	public let formats: [String: Format]
 }

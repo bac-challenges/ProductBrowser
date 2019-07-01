@@ -20,38 +20,32 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: B53BE935-590B-4124-BF73-FA031E5425E0
+//	ID: 96FC1DE7-B23B-4BA3-825C-B446068E4CA8
 //
-//	Pkg: GenericServiceTests
+//	Pkg: ProductShared
 //
 //	Swift: 5.0 
 //
 //	MacOS: 10.15
 //
 
-import XCTest
-@testable import GenericService
+import Foundation
 
-class GenericServiceTests: XCTestCase {
+public struct Response {
+	public let products: [Product]
+	public let meta: Meta
+}
 
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
+// MARK: - Codable
+extension Response: Codable {
+	enum TopLevelCodingKeys: String, CodingKey {
+		case products = "objects"
+		case meta = "meta"
+	}
+	
+	public init(from decoder: Decoder) throws {
+		let container = try decoder.container(keyedBy: TopLevelCodingKeys.self)
+		products = try container.decode([Product].self, forKey: .products)
+		meta = try container.decode(Meta.self, forKey: .meta)
+	}
 }

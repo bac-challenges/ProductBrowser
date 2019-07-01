@@ -20,32 +20,23 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: 96FC1DE7-B23B-4BA3-825C-B446068E4CA8
+//	ID: 19A21378-0A19-44F5-B93F-07F3B9E7FF42
 //
-//	Pkg: ProductModel
+//	Pkg: ProductShared
 //
 //	Swift: 5.0 
 //
 //	MacOS: 10.15
 //
 
-import Foundation
+#import <UIKit/UIKit.h>
 
-public struct Response {
-	public let products: [Product]
-	public let meta: Meta
-}
+//! Project version number for ProductShared.
+FOUNDATION_EXPORT double ProductSharedVersionNumber;
 
-// MARK: - Codable
-extension Response: Codable {
-	enum TopLevelCodingKeys: String, CodingKey {
-		case products = "objects"
-		case meta = "meta"
-	}
-	
-	public init(from decoder: Decoder) throws {
-		let container = try decoder.container(keyedBy: TopLevelCodingKeys.self)
-		products = try container.decode([Product].self, forKey: .products)
-		meta = try container.decode(Meta.self, forKey: .meta)
-	}
-}
+//! Project version string for ProductShared.
+FOUNDATION_EXPORT const unsigned char ProductSharedVersionString[];
+
+// In this header, you should import all the public headers of your framework using statements like #import <ProductShared/PublicHeader.h>
+
+

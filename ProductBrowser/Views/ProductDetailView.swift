@@ -20,20 +20,17 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: 3B9A7BC8-0511-4145-95FB-8E83394096A9
+//	ID: A1F89BF0-ACBE-4B27-B55B-C5CD78615A7A
 //
-//	Pkg: ProductModel
+//	Pkg: ProductBrowser
 //
 //	Swift: 5.0 
 //
 //	MacOS: 10.15
 //
 
-import Foundation
+import UIKit
 
-public struct Meta: Codable {
-	public let limit: Int
-	public let lastOffsetId: String
-	public let end: Bool
-	public let offsetId: String
+class ProductDetailView: UIView {
+
 }

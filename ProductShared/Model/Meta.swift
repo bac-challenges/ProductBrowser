@@ -20,9 +20,9 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: F4522544-5742-4B4C-BEF1-3D490DCF6BAD
+//	ID: 3B9A7BC8-0511-4145-95FB-8E83394096A9
 //
-//	Pkg: ProductBrowser
+//	Pkg: ProductShared
 //
 //	Swift: 5.0 
 //
@@ -30,37 +30,10 @@
 //
 
 import Foundation
-import ProductModel
-import GenericUtils
-import GenericService
 
-struct ProductViewModel: GenericViewModel {
-	internal let model: Product
-	init(model: Product) {
-		self.model = model
-	}
-}
-
-// MARK: - Values
-extension ProductViewModel {
-	
-	var userIdString: String {
-		return "ID: \(model.userId)"
-	}
-	
-	var priceString: String {
-		return "\(model.priceAmount)\(model.priceCurrency)"
-	}
-	
-	var description: String {
-		return model.description
-	}
-	
-	var imageURL: String {
-		guard let url = model.picturesData.first?.formats["P2"]?.url else {
-			return ""
-		}
-		
-		return url
-	}
+public struct Meta: Codable {
+	public let limit: Int
+	public let lastOffsetId: String
+	public let end: Bool
+	public let offsetId: String
 }
