@@ -20,22 +20,19 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: 6A46B76B-AA0D-4095-97F7-BAF0B89D8649
+//	ID: A09A763E-8806-4128-8285-7AF8C6018EAA
 //
-//	Pkg: ProductBrowserTests
+//	Pkg: GenericUtils
 //
 //	Swift: 5.0 
 //
 //	MacOS: 10.15
 //
 
-import XCTest
-@testable import ProductBrowser
+import Foundation
 
-class ProductBrowserTests: XCTestCase {
-
-	func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
+public protocol GenericViewModel {
+	associatedtype T
+	var model: T { get }
+	init(_ model: T)
 }
