@@ -20,9 +20,9 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: 6A46B76B-AA0D-4095-97F7-BAF0B89D8649
+//	ID: 59E9995E-256D-4F8D-B90B-50227CA9E1AF
 //
-//	Pkg: ProductBrowser
+//	Pkg: ProductBrowser	
 //
 //	Swift: 5.0 
 //
@@ -31,28 +31,30 @@
 
 import UIKit
 
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class ProductController: UISplitViewController {
 
-	var window: UIWindow?
+    override func viewDidLoad() {
+        super.viewDidLoad()
+		setupView()
+    }
+}
+
+// MARK: - UI
+extension ProductController {
+	private func setupView() {
+		title = "Product"
+		preferredDisplayMode = .allVisible
+		delegate = self
+		let rootController = UINavigationController(rootViewController: ProductListController())
+		let detailController = UINavigationController(rootViewController: ProductDetailController())
+		viewControllers = [rootController, detailController]
+	}
+}
+
+// MARK: - UISplitViewControllerDelegate
+extension ProductController: UISplitViewControllerDelegate {
 	
-	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-		
-//		window = UIWindow(frame: UIScreen.main.bounds)
-//		window?.makeKeyAndVisible()
-//		window?.rootViewController = UINavigationController(rootViewController: ProductListController())
-//		window?.tintColor = UIColor.systemPink
-//
-//		applyAppearace()
-//
-//		return true
-		
-		window = UIWindow(frame: UIScreen.main.bounds)
-		window?.rootViewController = ProductController()
-		window?.makeKeyAndVisible()
-
-		Appearance.apply()
-		
+	func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
 		return true
 	}
 }
