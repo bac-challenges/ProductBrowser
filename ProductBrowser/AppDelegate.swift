@@ -36,19 +36,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
 	
+	private lazy var rootViewController: UISplitViewController = {
+		let splitController = ProductController()
+		let listController = UINavigationController(rootViewController: ProductListController())
+		let detailController = UINavigationController(rootViewController: ProductDetailController())
+		splitController.viewControllers = [listController, detailController]
+		return splitController
+	}()
+	
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		
-//		window = UIWindow(frame: UIScreen.main.bounds)
-//		window?.makeKeyAndVisible()
-//		window?.rootViewController = UINavigationController(rootViewController: ProductListController())
-//		window?.tintColor = UIColor.systemPink
-//
-//		applyAppearace()
-//
-//		return true
-		
 		window = UIWindow(frame: UIScreen.main.bounds)
-		window?.rootViewController = ProductController()
+		window?.rootViewController = rootViewController
 		window?.makeKeyAndVisible()
 
 		Appearance.apply()

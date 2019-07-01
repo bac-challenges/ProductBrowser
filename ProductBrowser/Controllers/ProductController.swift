@@ -44,9 +44,6 @@ extension ProductController {
 		title = "Product"
 		preferredDisplayMode = .allVisible
 		delegate = self
-		let rootController = UINavigationController(rootViewController: ProductListController())
-		let detailController = UINavigationController(rootViewController: ProductDetailController())
-		viewControllers = [rootController, detailController]
 	}
 }
 
