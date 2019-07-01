@@ -20,7 +20,7 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: 6A46B76B-AA0D-4095-97F7-BAF0B89D8649
+//	ID: 99EF2F83-F624-4B68-B454-DBF6572FC91E
 //
 //	Pkg: ProductBrowser
 //
@@ -31,28 +31,25 @@
 
 import UIKit
 
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
-
-	var window: UIWindow?
+public struct Appearance {
 	
-	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+	static func apply() {
 		
-//		window = UIWindow(frame: UIScreen.main.bounds)
-//		window?.makeKeyAndVisible()
-//		window?.rootViewController = UINavigationController(rootViewController: ProductListController())
-//		window?.tintColor = UIColor.systemPink
-//
-//		applyAppearace()
-//
-//		return true
+		// Global
+		let window = UIWindow.appearance()
+		window.backgroundColor = .groupTableViewBackground
+		window.tintColor = .systemPink
 		
-		window = UIWindow(frame: UIScreen.main.bounds)
-		window?.rootViewController = ProductController()
-		window?.makeKeyAndVisible()
-
-		Appearance.apply()
+		// Navigation
+		let navigationBarAppearace = UINavigationBar.appearance()
 		
-		return true
+		navigationBarAppearace.prefersLargeTitles = false
+		navigationBarAppearace.barTintColor = UIColor.white
+		
+		navigationBarAppearace.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemPink,
+													  NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17, weight: .medium)]
+		
+		navigationBarAppearace.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemPink,
+														   NSAttributedString.Key.font: UIFont.systemFont(ofSize: 48, weight: .medium)]
 	}
 }
