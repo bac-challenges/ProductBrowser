@@ -35,6 +35,13 @@ class ProductDetailController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+		setupView()
+	}
+}
+
+// MARK: - UI
+extension ProductDetailController {
+	private func setupView() {
 		navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
 		navigationItem.leftItemsSupplementBackButton = true
 		view.backgroundColor = .white
