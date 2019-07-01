@@ -57,8 +57,6 @@ extension ProductListCell: Configurable {
 		textLabel?.text = model.userIdString
 		detailTextLabel?.text = model.priceString
 		detailTextLabel?.textColor = .systemPink
-		imageView?.layer.cornerRadius = (imageView?.frame.height ?? 0)/2
-		imageView?.layer.masksToBounds = true
 		imageView?.downloadedFrom(link: model.imageURL) {
 			self.setNeedsLayout()
 		}

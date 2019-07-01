@@ -37,7 +37,7 @@ public struct Appearance {
 		
 		// Global
 		let window = UIWindow.appearance()
-		window.backgroundColor = .groupTableViewBackground
+		window.backgroundColor = .white
 		window.tintColor = .systemPink
 		
 		// Navigation

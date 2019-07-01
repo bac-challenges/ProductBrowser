@@ -35,7 +35,6 @@ import GenericService
 
 class ProductListController: UITableViewController {
 
-	// Data
 	var items: [Product]? {
 		didSet {
 			DispatchQueue.main.async {
@@ -43,16 +42,7 @@ class ProductListController: UITableViewController {
 			}
 		}
 	}
-	
-	//
-	var childController: ProductDetailController? {
-		if let splitViewController = self.splitViewController {
-			return splitViewController.viewControllers.last as? ProductDetailController
-		}
-		return nil
-	}
-	
-	// Init
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setupView()
@@ -60,6 +50,7 @@ class ProductListController: UITableViewController {
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
+		clearsSelectionOnViewWillAppear = splitViewController!.isCollapsed
 		fetchItems()
 	}
 }
@@ -88,7 +79,16 @@ extension ProductListController {
 // MARK: - UITableViewDelegate
 extension ProductListController {
 	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		return 60
+		return 80
+	}
+	
+	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		if let item = items?[indexPath.row] {
+			let child = ProductDetailController()
+			child.configure(ProductViewModel(item))
+			let navController = UINavigationController(rootViewController: child)
+			self.navigationController?.showDetailViewController(navController, sender: nil)
+		}
 	}
 }
 
@@ -106,9 +106,12 @@ extension ProductListController {
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		
 		guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductListCell.identifier, for: indexPath) as? ProductListCell,
-			  let item = items?[indexPath.row] else { return UITableViewCell() }
+			  let item = items?[indexPath.row] else {
+				return UITableViewCell()
+		}
 		
 		cell.configure(ProductViewModel(item))
+		cell.accessoryType = splitViewController!.isCollapsed ? .disclosureIndicator : .none
 		
 		return cell
 	}
