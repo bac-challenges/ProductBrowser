@@ -30,13 +30,12 @@
 //
 
 import Foundation
-import ProductModel
 import GenericUtils
 import GenericService
 
-struct ProductViewModel: GenericViewModel {
-	internal let model: Product
-	init(model: Product) {
+public struct ProductViewModel: GenericViewModel {
+	public let model: Product
+	public init(model: Product) {
 		self.model = model
 	}
 }
@@ -44,19 +43,19 @@ struct ProductViewModel: GenericViewModel {
 // MARK: - Values
 extension ProductViewModel {
 	
-	var userIdString: String {
+	public var userIdString: String {
 		return "ID: \(model.userId)"
 	}
 	
-	var priceString: String {
+	public var priceString: String {
 		return "\(model.priceAmount)\(model.priceCurrency)"
 	}
 	
-	var description: String {
+	public var description: String {
 		return model.description
 	}
 	
-	var imageURL: String {
+	public var imageURL: String {
 		guard let url = model.picturesData.first?.formats["P2"]?.url else {
 			return ""
 		}

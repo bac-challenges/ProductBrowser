@@ -30,7 +30,8 @@
 //
 
 import UIKit
-import ProductModel
+import ProductShared
+import GenericService
 
 class ProductListController: UITableViewController {
 

@@ -20,21 +20,39 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: 2C6D1EE0-1AB5-4EE0-BE8F-E51AE65B5D35
+//	ID: 57AEBC4C-1F62-45DC-AA48-7A9E27B60E5A
 //
-//	Pkg: ProductModel
+//	Pkg: ProductBrowser
 //
 //	Swift: 5.0 
 //
 //	MacOS: 10.15
 //
 
-#import <UIKit/UIKit.h>
+import Foundation
+import GenericService
 
-//! Project version number for ProductModel.
-FOUNDATION_EXPORT double ProductModelVersionNumber;
+public protocol ProductServiceProtocol: class {
+	func fetchProducts(_ completion: @escaping ((Result<Response, ErrorResult>) -> Void))
+}
 
-//! Project version string for ProductModel.
-FOUNDATION_EXPORT const unsigned char ProductModelVersionString[];
+public final class ProductService: RequestHandler, ProductServiceProtocol {
 
-// In this header, you should import all the public headers of your framework using statements like #import <ProductModel/PublicHeader.h>
+	public static let shared = ProductService()
+
+	let endpoint = "https://api.garage.me/api/v1/products/popular/?limit=100&offset_id"
+	
+	var task: URLSessionTask?
+	
+	public func fetchProducts(_ completion: @escaping ((Result<Response, ErrorResult>) -> Void)) {
+		self.cancelFetchProducts()
+		task = RequestService().loadData(urlString: endpoint, completion: self.networkResult(completion: completion))
+	}
+	
+	func cancelFetchProducts() {
+		if let task = task {
+			task.cancel()
+		}
+		task = nil
+	}
+}

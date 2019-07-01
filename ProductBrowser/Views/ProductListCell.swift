@@ -30,8 +30,8 @@
 //
 
 import UIKit
-import ProductModel
-import GenericUtils
+import ProductShared
+import GenericService
 
 class ProductListCell: UITableViewCell, Configurable, ReusableCell {
 	
