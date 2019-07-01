@@ -44,6 +44,14 @@ class ProductListController: UITableViewController {
 		}
 	}
 	
+	//
+	var childController: ProductDetailController? {
+		if let splitViewController = self.splitViewController {
+			return splitViewController.viewControllers.last as? ProductDetailController
+		}
+		return nil
+	}
+	
 	// Init
 	override func viewDidLoad() {
 		super.viewDidLoad()

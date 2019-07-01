@@ -30,6 +30,8 @@
 //
 
 import UIKit
+import ProductShared
+import GenericUtils
 
 class ProductDetailController: UIViewController {
 
@@ -45,5 +47,11 @@ extension ProductDetailController {
 		navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
 		navigationItem.leftItemsSupplementBackButton = true
 		view.backgroundColor = .white
+	}
+}
+
+// MARK: - Configurable
+extension ProductDetailController: Configurable {
+	func configure(_ model: ProductViewModel) {
 	}
 }

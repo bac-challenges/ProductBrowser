@@ -739,9 +739,9 @@
 				6056F7FC22C9EFE7008CD0BD /* Format.swift in Sources */,
 				6056F7FF22C9EFE7008CD0BD /* UserData.swift in Sources */,
 				6056F80022C9EFE7008CD0BD /* Response.swift in Sources */,
-				6056F7FB22C9EFE7008CD0BD /* ProductService.swift in Sources */,
-				6056F80C22C9F133008CD0BD /* ProductViewModel.swift in Sources */,
 				6056F80122C9EFE7008CD0BD /* Product.swift in Sources */,
+				6056F80C22C9F133008CD0BD /* ProductViewModel.swift in Sources */,
+				6056F7FB22C9EFE7008CD0BD /* ProductService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
