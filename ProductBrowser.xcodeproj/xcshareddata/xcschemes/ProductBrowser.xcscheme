@@ -59,6 +59,16 @@
                ReferencedContainer = "container:ProductBrowser.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "60884AB922CA09C80037F6E0"
+               BuildableName = "ProductSharedTests.xctest"
+               BlueprintName = "ProductSharedTests"
+               ReferencedContainer = "container:ProductBrowser.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
