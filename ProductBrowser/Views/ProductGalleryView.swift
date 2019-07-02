@@ -30,6 +30,7 @@
 //
 
 import UIKit
+import GenericUtils
 
 class ProductGalleryView: UIStackView {
 	
@@ -39,12 +40,31 @@ class ProductGalleryView: UIStackView {
 		}
 	}
 	
+	override init(frame: CGRect = CGRect.zero) {
+		super.init(frame: frame)
+		setupView()
+	}
+	
+	required init(coder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
+	
 	private func addArrangedSubviews() {
 		
 		removeAllArrangedSubviews()
 		
 		items?.forEach {
-			addArrangedSubview(ProductImageView(url: $0))
+			addArrangedSubview(UIImageView(url: $0))
 		}
+	}
+}
+
+// MARK: - UI
+extension ProductGalleryView {
+	private func setupView() {
+		spacing = 14
+		axis = .horizontal
+		distribution = .equalSpacing
+		alignment = .center
 	}
 }

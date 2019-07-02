@@ -20,7 +20,7 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: DBCF6701-5B71-43FA-8568-89F66AF21472
+//	ID: 0CEDE0AA-0B82-44A0-AB1D-AC9D3C18D1D1
 //
 //	Pkg: ProductBrowser
 //
@@ -30,14 +30,24 @@
 //
 
 import UIKit
-import GenericUtils
 
-class ProductImageView: UIImageView {
+// MARK: - UILabel
+extension UILabel {
+	public static func textLabel(color: UIColor = .darkGray) -> UILabel {
+		let view = UILabel()
+		view.text = "N/A"
+		view.textAlignment = .left
+		view.textColor = color
+		view.font = .systemFont(ofSize: 17, weight: .regular)
+		return view
+	}
+}
 
-	convenience init(url: String) {
-		self.init()
-		contentMode = .scaleAspectFit
-		anchor(width: 50, height: 50)
-		downloadFrom(link: url)
+// MARK: - UIView
+extension UIView {
+	public static var separator: UIView {
+		let view = UIView()
+		view.backgroundColor = .groupTableViewBackground
+		return view
 	}
 }

@@ -41,36 +41,13 @@ class ProductListCell: UITableViewCell, ReusableCell {
 		view.axis = .horizontal
 		view.distribution = .fill
 		view.alignment = .center
-		view.isBaselineRelativeArrangement = true
-		view.isLayoutMarginsRelativeArrangement = true
 		view.layoutMargins = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 15)
 		return view
 	}()
 	
-	public lazy var iconView: UIImageView = {
-		let view = UIImageView()
-		view.image = UIImage(named: "01d")
-		view.contentMode = .scaleAspectFit
-		return view
-	}()
-	
-	public lazy var titleLabel: UILabel = {
-		let view = UILabel()
-		view.text = "N/A"
-		view.textAlignment = .left
-		view.textColor = .darkGray
-		view.font = .systemFont(ofSize: 17, weight: .regular)
-		return view
-	}()
-	
-	public lazy var detailLabel: UILabel = {
-		let view = UILabel()
-		view.text = "N/A"
-		view.textAlignment = .left
-		view.textColor = .systemPink
-		view.font = .systemFont(ofSize: 17, weight: .regular)
-		return view
-	}()
+	private lazy var iconView = UIImageView()
+	private lazy var titleLabel = UILabel.textLabel()
+	private lazy var detailLabel = UILabel.textLabel(color: .systemPink)
 	
 	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 		super.init(style: .value1, reuseIdentifier: nil)

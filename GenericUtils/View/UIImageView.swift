@@ -56,4 +56,11 @@ public extension UIImageView {
 		guard let url = URL(string: link) else { return }
 		downloadFrom(url: url, contentMode: mode, completion: completion)
 	}
+	
+	convenience init(url: String = "") {
+		self.init()
+		contentMode = .scaleAspectFit
+		anchor(width: 50, height: 50)
+		downloadFrom(link: url)
+	}
 }
