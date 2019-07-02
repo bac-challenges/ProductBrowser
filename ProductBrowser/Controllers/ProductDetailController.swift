@@ -35,10 +35,15 @@ import ProductShared
 class ProductDetailController: UITableViewController {
 
 	public var model: ProductViewModel?
-	
+
     override func viewDidLoad() {
         super.viewDidLoad()
 		setupView()
+	}
+	
+	override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+		super.traitCollectionDidChange(previousTraitCollection)
+		print("trait: \(String(describing: previousTraitCollection?.description))")
 	}
 }
 
@@ -47,29 +52,40 @@ extension ProductDetailController {
 	private func setupView() {
 		tableView = UITableView(frame: CGRect.zero, style: .plain)
 		tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
-		tableView.backgroundColor = .groupTableViewBackground
+		tableView.register(ProductListCell.self, forCellReuseIdentifier: ProductListCell.identifier)
+		tableView.backgroundColor = .white
 		tableView.separatorStyle = .none
+		tableView.estimatedRowHeight = 80
+		tableView.rowHeight = UITableView.automaticDimension
 	}
 }
 
 // MARK: - UITableViewDataSource
 extension ProductDetailController {
 	
-	override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-		return ""
-	}
-	
 	override func numberOfSections(in tableView: UITableView) -> Int {
-		return 1
-	}
-	
-	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return 3
 	}
 	
+	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		return 1
+	}
+	
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-		cell.textLabel?.text = "Cell \(indexPath.section)"
+		
+		var cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+		
+		if indexPath.section == 0 {
+			let productCell = tableView.dequeueReusableCell(withIdentifier: ProductListCell.identifier,
+															for: indexPath) as! ProductListCell
+			productCell.configure(model!)
+			cell = productCell
+		} else if indexPath.section == 2 {
+			cell.selectionStyle = .none
+			cell.textLabel?.numberOfLines = 0
+			cell.textLabel?.text = model?.description
+		}
+		
 		return cell
 	}
 }

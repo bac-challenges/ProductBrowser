@@ -35,7 +35,9 @@ class ProductEmptyController: UIViewController {
 
 	lazy private var imageView: UIImageView = {
 		let view = UIImageView()
-		view.image = UIImage(named: "iconLaunch")
+		view.image = UIImage(named: "barcode")
+		view.tintColor = .lightGray
+		view.alpha = 0.4
 		return view
 	}()
 	
@@ -49,5 +51,25 @@ class ProductEmptyController: UIViewController {
 extension ProductEmptyController {
 	private func setupView() {
 		view.backgroundColor = .groupTableViewBackground
+		view.addSubview(imageView)
+		
+		imageView.anchor(width: 100, height: 100)
+		imageView.translatesAutoresizingMaskIntoConstraints = false
+
+		view.addConstraint(NSLayoutConstraint(item: imageView,
+											  attribute: NSLayoutConstraint.Attribute.centerX,
+											  relatedBy: NSLayoutConstraint.Relation.equal,
+											  toItem: view,
+											  attribute: NSLayoutConstraint.Attribute.centerX,
+											  multiplier: 1.0,
+											  constant: 0.0))
+		
+		view.addConstraint(NSLayoutConstraint(item: imageView,
+											  attribute: NSLayoutConstraint.Attribute.centerY,
+											  relatedBy: NSLayoutConstraint.Relation.equal,
+											  toItem: view,
+											  attribute: NSLayoutConstraint.Attribute.centerY,
+											  multiplier: 1.0,
+											  constant: 20.0))
 	}
 }

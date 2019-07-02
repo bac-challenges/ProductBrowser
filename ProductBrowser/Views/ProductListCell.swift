@@ -37,6 +37,7 @@ class ProductListCell: UITableViewCell, ReusableCell {
 	
 	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 		super.init(style: .value1, reuseIdentifier: nil)
+		selectionStyle = .none
 	}
 	
 	required init?(coder: NSCoder) {
