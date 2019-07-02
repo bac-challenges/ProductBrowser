@@ -37,34 +37,23 @@ struct ImageViewModel {
 	
 }
 
-// MARK: -
+// MARK: - Prefered Resolution Helpers
 extension ImageViewModel {
 
-//		let width = 120*3
-//		let index = formats.map { $1 }
-//			.sorted { $0.width < $1.width}
-//			.firstIndex(where: { $0.width >= width })!
-//
-//		let item = formats.map { $1 }
-//			.sorted { $0.width < $1.width}
-//			.first(where: { $0.width >= width })!
-		
-//		print(index, item, items)
-//	
-//	private func images(for width: Int) -> [String] {
-//		return model.map {
-//			$0.formats.map { $1 }
-//			.sorted { $0.width < $1.width }
-//			.first(where: { $0.width >= width })!.url
-//		}
-//	}
-	
-	public func preferredURL(from formats: [Format], width: Int) -> String? {
-		return preferredFormat(from: formats, width: width)?.url
+	public func preferredImagesLocation(from images: [Picture], width: Int) -> [String?] {
+		return images.map {
+			preferredLocation(from: $0.formats.map { $1 }, width: width)
+		}
 	}
 	
-	public func preferredURLIndex(from formats: [Format], width: Int) -> Int? {
-		return preferredFormatIndex(from: formats, width: width)
+	public func preferredImagesFormat(from images: [Picture], width: Int) -> [Format?] {
+		return images.map {
+			preferredFormat(from: $0.formats.map { $1 }, width: width)
+		}
+	}
+	
+	public func preferredLocation(from formats: [Format], width: Int) -> String? {
+		return preferredFormat(from: formats, width: width)?.url
 	}
 	
 	public func preferredFormat(from formats: [Format], width: Int) -> Format? {
@@ -72,7 +61,7 @@ extension ImageViewModel {
 					  .first(where: { $0.width >= width })
 	}
 	
-	public func preferredFormatIndex(from formats: [Format], width: Int) -> Int? {
+	public func preferredIndex(from formats: [Format], width: Int) -> Int? {
 		return formats.sorted { $0.width < $1.width }
 					  .firstIndex(where: { $0.width >= width })
 	}

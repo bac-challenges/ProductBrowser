@@ -34,33 +34,54 @@ import XCTest
 
 class ImageViewModelTests: XCTestCase {
 
+	let imageSizeCorrect = 360
+	let imageSizeIncorrect = 3600
+	
 	let sizes = [150, 210, 320, 480, 640, 960, 1280]
 	
-	let model = ImageViewModel()
+	var formats: [String: Format] {
+		return sizes.reduce([String: Format]()) { (dict, size) -> [String: Format] in
+			var dict = dict
+			dict["P\(size)"] = Format(url: "url_\(size)", width: size, height: size)
+			return dict
+		}
+	}
+	lazy var format = formats.map { $0.value }
 	
-	var formats: [Format] {
+	var pictures: [Picture] {
 		return sizes.map {
-			Format(url: "url_\($0)", width: $0, height: $0)
+			Picture(id: $0, formats: formats)
 		}
 	}
 	
-    func testPreferredURL() {
-
-		let imageSize = 120*3
-		let result = model.preferredURL(from: formats, width: imageSize)
-		
+	let model = ImageViewModel()
+	
+	func testPreferredImagesLocation() {
+		let result = model.preferredImagesLocation(from: pictures, width: imageSizeCorrect)
+		XCTAssertNotNil(result, "Format can not be nil")
+	}
+	
+	func testPreferredImagesFormat() {
+		let result = model.preferredImagesFormat(from: pictures, width: imageSizeCorrect)
+		XCTAssertNotNil(result, "Format can not be nil")
+	}
+	
+    func testPreferredLocation() {
+		let result = model.preferredLocation(from: format, width: imageSizeCorrect)
 		XCTAssertNotEqual(result!, "", "URL string can not be empty")
 		XCTAssertNotNil(result, "URL string can not be nil")
 		XCTAssertEqual(result!, "url_480")
     }
-	
+		
 	func testPreferredFormat() {
-		
-		let imageSize = 120*3
-		let result = model.preferredFormat(from: formats, width: imageSize)
-		
-		XCTAssertNotNil(result, "URL string can not be nil")
-		XCTAssertNotEqual(result!.url, "", "URL string can not be empty")
+		let result = model.preferredFormat(from: format, width: imageSizeCorrect)
+		XCTAssertNotNil(result, "Format can not be nil")
+		XCTAssertNotEqual(result!.url, "", "Format string can not be empty")
 		XCTAssertEqual(result!.width, 480)
+	}
+	
+	func testPreferredIndex() {
+		let result = model.preferredIndex(from: format, width: imageSizeCorrect)
+		XCTAssertEqual(result!, 3)
 	}
 }
