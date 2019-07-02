@@ -30,11 +30,61 @@
 //
 
 import UIKit
+import ProductShared
 
-class ProductDetailController: UIViewController {
+class ProductDetailController: UITableViewController {
+
+	public var model: ProductViewModel?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-		view.backgroundColor = .white
+		setupView()
+	}
+}
+
+// MARK: - Setup UI
+extension ProductDetailController {
+	private func setupView() {
+		title = "Product"
+		navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
+		navigationItem.leftItemsSupplementBackButton = true
+		tableView.register(UITableViewCell.self, forCellReuseIdentifier: "descrptionCell")
+		tableView.register(ProductHeaderCell.self, forCellReuseIdentifier: ProductHeaderCell.identifier)
+		tableView.backgroundColor = .white
+		tableView.separatorStyle = .none
+		tableView.estimatedRowHeight = 80
+		tableView.rowHeight = UITableView.automaticDimension
+	}
+}
+
+// MARK: - UITableViewDataSource
+extension ProductDetailController {
+	
+	override func numberOfSections(in tableView: UITableView) -> Int {
+		return 2
+	}
+	
+	override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+		return section == 1 ? "description":""
+	}
+	
+	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		return 1
+	}
+	
+	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		
+		if indexPath.section == 0 {
+			let cell = tableView.dequeueReusableCell(withIdentifier: ProductHeaderCell.identifier,
+													 for: indexPath) as! ProductHeaderCell
+			cell.configure(model!)
+			return cell
+		} else {
+			let cell = tableView.dequeueReusableCell(withIdentifier: "descrptionCell", for: indexPath)
+			cell.selectionStyle = .none
+			cell.textLabel?.numberOfLines = 0
+			cell.textLabel?.text = model?.description
+			return cell
+		}
 	}
 }

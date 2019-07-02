@@ -20,7 +20,7 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: A1F89BF0-ACBE-4B27-B55B-C5CD78615A7A
+//	ID: DBCF6701-5B71-43FA-8568-89F66AF21472
 //
 //	Pkg: ProductBrowser
 //
@@ -30,7 +30,14 @@
 //
 
 import UIKit
+import GenericUtils
 
-class ProductDetailView: UIView {
+class ProductImageView: UIImageView {
 
+	convenience init(url: String) {
+		self.init()
+		contentMode = .scaleAspectFit
+		anchor(width: 50, height: 50)
+		downloadFrom(link: url)
+	}
 }

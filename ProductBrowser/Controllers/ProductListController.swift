@@ -35,7 +35,6 @@ import GenericService
 
 class ProductListController: UITableViewController {
 
-	// Data
 	var items: [Product]? {
 		didSet {
 			DispatchQueue.main.async {
@@ -43,8 +42,7 @@ class ProductListController: UITableViewController {
 			}
 		}
 	}
-	
-	// Init
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setupView()
@@ -52,6 +50,7 @@ class ProductListController: UITableViewController {
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
+		clearsSelectionOnViewWillAppear = splitViewController!.isCollapsed
 		fetchItems()
 	}
 }
@@ -71,16 +70,22 @@ extension ProductListController {
 // MARK: - UI
 extension ProductListController {
 	private func setupView() {
-		title = "Select Product"
+		title = "PB"
 		tableView.register(ProductListCell.self, forCellReuseIdentifier: ProductListCell.identifier)
-		tableView.backgroundColor = .groupTableViewBackground
+		tableView.backgroundColor = .white
+		tableView.rowHeight = 80
 	}
 }
 
 // MARK: - UITableViewDelegate
 extension ProductListController {
-	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		return 60
+	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		if let item = items?[indexPath.row] {
+			let child = ProductDetailController()
+			child.model = ProductViewModel(item)
+			let navController = UINavigationController(rootViewController: child)
+			self.navigationController?.showDetailViewController(navController, sender: nil)
+		}
 	}
 }
 
@@ -96,12 +101,12 @@ extension ProductListController {
 	}
 	
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		
-		guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductListCell.identifier, for: indexPath) as? ProductListCell,
-			  let item = items?[indexPath.row] else { return UITableViewCell() }
-		
+		let identifier = ProductListCell.identifier
+		guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? ProductListCell,
+			  let item = items?[indexPath.row] else {
+				return UITableViewCell()
+		}
 		cell.configure(ProductViewModel(item))
-		
 		return cell
 	}
 }

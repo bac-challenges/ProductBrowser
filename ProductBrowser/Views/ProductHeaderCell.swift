@@ -20,7 +20,7 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: 1AF05B1E-939F-485F-BCC7-8EF10D11F9F1
+//	ID: CCB0C2DF-C27D-4645-A539-FF79E3864A69
 //
 //	Pkg: ProductBrowser
 //
@@ -32,21 +32,10 @@
 import UIKit
 import ProductShared
 import GenericService
+import GenericUtils
 
-class ProductListCell: UITableViewCell, ReusableCell {
-	
-	private lazy var container: UIStackView = {
-		let view = UIStackView()
-		view.spacing = 10
-		view.axis = .horizontal
-		view.distribution = .fill
-		view.alignment = .center
-		view.isBaselineRelativeArrangement = true
-		view.isLayoutMarginsRelativeArrangement = true
-		view.layoutMargins = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 15)
-		return view
-	}()
-	
+class ProductHeaderCell: UITableViewCell, ReusableCell {
+
 	public lazy var iconView: UIImageView = {
 		let view = UIImageView()
 		view.image = UIImage(named: "01d")
@@ -72,6 +61,22 @@ class ProductListCell: UITableViewCell, ReusableCell {
 		return view
 	}()
 	
+	private lazy var gallery: ProductGalleryView = {
+		let view = ProductGalleryView()
+		view.spacing = 14
+		view.axis = .horizontal
+		view.distribution = .equalSpacing
+		view.alignment = .center
+		view.debugMode(true)
+		return view
+	}()
+	
+	private lazy var separator: UIView = {
+		let view = UIView()
+		view.backgroundColor = .groupTableViewBackground
+		return view
+	}()
+	
 	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 		super.init(style: .value1, reuseIdentifier: nil)
 		setupView()
@@ -88,24 +93,26 @@ class ProductListCell: UITableViewCell, ReusableCell {
 }
 
 // MARK: - Configurable
-extension ProductListCell: Configurable {
+extension ProductHeaderCell: Configurable {
 	func configure(_ model: ProductViewModel) {
 		titleLabel.text = model.userIdString
 		detailLabel.text = model.priceString
 		iconView.downloadFrom(link: model.imageURL)
+		gallery.items = model.imageGallery
 	}
 }
 
-// MARK: - Setup UI
-extension  ProductListCell {
+// MARK: - UI
+extension  ProductHeaderCell {
 	
 	private func setupView() {
 		selectionStyle = .none
 		preservesSuperviewLayoutMargins = true
-		addSubview(container)
-		container.addArrangedSubview(iconView)
-		container.addArrangedSubview(titleLabel)
-		container.addArrangedSubview(detailLabel)
+		addSubview(iconView)
+		addSubview(titleLabel)
+		addSubview(detailLabel)
+		addSubview(gallery)
+		addSubview(separator)
 		setupLayout()
 	}
 	
@@ -113,15 +120,33 @@ extension  ProductListCell {
 		iconView.image = nil
 		titleLabel.text = ""
 		detailLabel.text = ""
+		gallery.items = []
 	}
 	
 	private func setupLayout() {
-		container.anchor(top: topAnchor,
-						 bottom: bottomAnchor,
+		iconView.anchor(top: layoutMarginsGuide.topAnchor,
+						bottom: layoutMarginsGuide.bottomAnchor,
+						paddingBottom: 10,
+						left: layoutMarginsGuide.leftAnchor,
+						width: 120,
+						height: 120)
+		
+		titleLabel.anchor(top: iconView.topAnchor,
+						  left: iconView.rightAnchor,
+						  paddingLeft: 10)
+		
+		detailLabel.anchor(top: titleLabel.bottomAnchor,
+						   paddingTop: 5,
+						   left: titleLabel.leftAnchor)
+		
+		gallery.anchor(bottom: iconView.bottomAnchor,
+						 left: iconView.rightAnchor,
+						 paddingLeft: 10)
+		
+		separator.anchor(top: iconView.bottomAnchor,
+						 paddingTop: 20,
 						 left: layoutMarginsGuide.leftAnchor,
-						 paddingLeft: -10,
-						 right: layoutMarginsGuide.rightAnchor)
-
-		iconView.anchor(width: 60, height: 60)
+						 right: layoutMarginsGuide.rightAnchor,
+						 height: 1)
 	}
 }

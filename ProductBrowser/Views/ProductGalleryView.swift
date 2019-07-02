@@ -20,7 +20,7 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: 6A46B76B-AA0D-4095-97F7-BAF0B89D8649
+//	ID: B7D7CF6D-216F-414E-9C43-D0F0C25FB605
 //
 //	Pkg: ProductBrowser
 //
@@ -31,28 +31,20 @@
 
 import UIKit
 
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
-
-	var window: UIWindow?
+class ProductGalleryView: UIStackView {
 	
-	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-		
-		window = UIWindow(frame: UIScreen.main.bounds)
-		window?.rootViewController = rootViewController
-		window?.makeKeyAndVisible()
-
-		Appearance.apply()
-		
-		return true
+	public var items: [String]? {
+		didSet {
+			addArrangedSubviews()
+		}
 	}
 	
-	private var rootViewController: UISplitViewController {
-		let listController = ProductListController()
-		let detailController = ProductEmptyController()
-		let productController = ProductController()
-		productController.viewControllers = [UINavigationController(rootViewController: listController),
-											 UINavigationController(rootViewController: detailController)]
-		return productController
+	private func addArrangedSubviews() {
+		
+		removeAllArrangedSubviews()
+		
+		items?.forEach {
+			addArrangedSubview(ProductImageView(url: $0))
+		}
 	}
 }
