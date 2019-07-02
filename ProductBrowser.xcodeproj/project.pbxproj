@@ -46,6 +46,7 @@
 		60D4753422CB1D6E0060598D /* ProductHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D4753322CB1D6E0060598D /* ProductHeaderCell.swift */; };
 		60D4753622CB42C20060598D /* UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D4753522CB42C20060598D /* UIStackView.swift */; };
 		60D4753822CB5BEC0060598D /* ProductGalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D4753722CB5BEC0060598D /* ProductGalleryView.swift */; };
+		60D4753A22CB76FE0060598D /* ProductImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D4753922CB76FE0060598D /* ProductImageView.swift */; };
 		60F13DCD22C7A6B10095CDDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F13DCC22C7A6B10095CDDD /* AppDelegate.swift */; };
 		60F13DD622C7A6B50095CDDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60F13DD522C7A6B50095CDDD /* Assets.xcassets */; };
 		60F13DD922C7A6B50095CDDD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60F13DD722C7A6B50095CDDD /* LaunchScreen.storyboard */; };
@@ -175,6 +176,7 @@
 		60D4753322CB1D6E0060598D /* ProductHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductHeaderCell.swift; sourceTree = "<group>"; };
 		60D4753522CB42C20060598D /* UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackView.swift; sourceTree = "<group>"; };
 		60D4753722CB5BEC0060598D /* ProductGalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductGalleryView.swift; sourceTree = "<group>"; };
+		60D4753922CB76FE0060598D /* ProductImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductImageView.swift; sourceTree = "<group>"; };
 		60F13DC922C7A6B10095CDDD /* ProductBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProductBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60F13DCC22C7A6B10095CDDD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		60F13DD522C7A6B50095CDDD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -417,6 +419,7 @@
 				60CBC17222C9497F00196D4B /* ProductListCell.swift */,
 				60D4753322CB1D6E0060598D /* ProductHeaderCell.swift */,
 				60D4753722CB5BEC0060598D /* ProductGalleryView.swift */,
+				60D4753922CB76FE0060598D /* ProductImageView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -769,6 +772,7 @@
 			files = (
 				60D4753422CB1D6E0060598D /* ProductHeaderCell.swift in Sources */,
 				602010CE22C8D59B00E2F456 /* ReusableCell.swift in Sources */,
+				60D4753A22CB76FE0060598D /* ProductImageView.swift in Sources */,
 				602010CC22C8D2A700E2F456 /* UIView.swift in Sources */,
 				60CBC17322C9497F00196D4B /* ProductListCell.swift in Sources */,
 				602010D022C8D5CA00E2F456 /* Configurable.swift in Sources */,

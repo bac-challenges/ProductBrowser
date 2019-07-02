@@ -20,7 +20,7 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: B7D7CF6D-216F-414E-9C43-D0F0C25FB605
+//	ID: DBCF6701-5B71-43FA-8568-89F66AF21472
 //
 //	Pkg: ProductBrowser
 //
@@ -30,25 +30,14 @@
 //
 
 import UIKit
+import GenericUtils
 
-class ProductGalleryView: UIStackView {
-	
-	public var items: [String]? {
-		didSet {
-			addArrangedSubviews()
-		}
-	}
-	
-	private func addArrangedSubviews() {
-		
-		removeAllArrangedSubviews()
-		
-		guard let items = items else {
-			return
-		}
-		
-		for item in items {
-			addArrangedSubview(ProductImageView(url: item))
-		}
+class ProductImageView: UIImageView {
+
+	convenience init(url: String) {
+		self.init()
+		contentMode = .scaleAspectFit
+		anchor(width: 50, height: 50)
+		downloadFrom(link: url)
 	}
 }
