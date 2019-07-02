@@ -32,6 +32,26 @@
 import UIKit
 import ProductShared
 
+enum ProductDetailConfig: Int {
+	case title, album, descrption
+	
+	var height: CGFloat {
+		switch self {
+		case .title: return 200
+		case .album: return 100
+		case .descrption: return UITableView.automaticDimension
+		}
+	}
+	
+	var identifier: String {
+		switch self {
+		case .title: return ProductHeaderCell.identifier
+		case .album: return ""
+		case .descrption: return "descrptionCell"
+		}
+	}
+}
+
 class ProductDetailController: UITableViewController {
 
 	public var model: ProductViewModel?
@@ -40,23 +60,29 @@ class ProductDetailController: UITableViewController {
         super.viewDidLoad()
 		setupView()
 	}
-	
-	override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-		super.traitCollectionDidChange(previousTraitCollection)
-		print("trait: \(String(describing: previousTraitCollection?.description))")
-	}
 }
 
 // MARK: - Setup UI
 extension ProductDetailController {
 	private func setupView() {
-		tableView = UITableView(frame: CGRect.zero, style: .plain)
-		tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
-		tableView.register(ProductListCell.self, forCellReuseIdentifier: ProductListCell.identifier)
+		navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
+		navigationItem.leftItemsSupplementBackButton = true
+		tableView.register(UITableViewCell.self, forCellReuseIdentifier: ProductDetailConfig.descrption.identifier)
+		tableView.register(ProductHeaderCell.self, forCellReuseIdentifier: ProductDetailConfig.title.identifier)
 		tableView.backgroundColor = .white
 		tableView.separatorStyle = .none
 		tableView.estimatedRowHeight = 80
 		tableView.rowHeight = UITableView.automaticDimension
+	}
+}
+
+// MARK: - UITableViewDelegate
+extension ProductDetailController {
+	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+		if let section = ProductDetailConfig(rawValue: indexPath.section) {
+			return section.height
+		}
+		return UITableView.automaticDimension
 	}
 }
 
@@ -73,19 +99,21 @@ extension ProductDetailController {
 	
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		
-		var cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+		guard let section = ProductDetailConfig(rawValue: indexPath.section) else {
+			return tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+		}
 		
-		if indexPath.section == 0 {
-			let productCell = tableView.dequeueReusableCell(withIdentifier: ProductListCell.identifier,
-															for: indexPath) as! ProductListCell
-			productCell.configure(model!)
-			cell = productCell
-		} else if indexPath.section == 2 {
+		switch section {
+		case .title:
+			let cell = tableView.dequeueReusableCell(withIdentifier: section.identifier, for: indexPath) as! ProductHeaderCell
+			cell.configure(model!)
+			return cell
+		default:
+			let cell = tableView.dequeueReusableCell(withIdentifier: ProductDetailConfig.descrption.identifier, for: indexPath)
 			cell.selectionStyle = .none
 			cell.textLabel?.numberOfLines = 0
 			cell.textLabel?.text = model?.description
+			return cell
 		}
-		
-		return cell
 	}
 }

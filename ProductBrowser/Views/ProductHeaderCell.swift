@@ -20,7 +20,7 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: 1AF05B1E-939F-485F-BCC7-8EF10D11F9F1
+//	ID: CCB0C2DF-C27D-4645-A539-FF79E3864A69
 //
 //	Pkg: ProductBrowser
 //
@@ -33,20 +33,8 @@ import UIKit
 import ProductShared
 import GenericService
 
-class ProductListCell: UITableViewCell, ReusableCell {
-	
-	private lazy var container: UIStackView = {
-		let view = UIStackView()
-		view.spacing = 10
-		view.axis = .horizontal
-		view.distribution = .fill
-		view.alignment = .center
-		view.isBaselineRelativeArrangement = true
-		view.isLayoutMarginsRelativeArrangement = true
-		view.layoutMargins = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 15)
-		return view
-	}()
-	
+class ProductHeaderCell: UITableViewCell, ReusableCell {
+
 	public lazy var iconView: UIImageView = {
 		let view = UIImageView()
 		view.image = UIImage(named: "01d")
@@ -90,38 +78,48 @@ class ProductListCell: UITableViewCell, ReusableCell {
 }
 
 // MARK: - Configurable
-extension ProductListCell: Configurable {
+extension ProductHeaderCell: Configurable {
 	func configure(_ model: ProductViewModel) {
 		titleLabel.text = model.userIdString
 		detailLabel.text = model.priceString
 		iconView.downloadedFrom(link: model.imageURL) {
-			self.iconView.layer.cornerRadius = self.iconView.frame.height/2
-			self.iconView.layer.masksToBounds = true
 			self.setNeedsLayout()
 		}
 	}
 }
 
 // MARK: - Setup UI
-extension  ProductListCell {
+extension  ProductHeaderCell {
 	
 	private func setupView() {
 		selectionStyle = .none
 		layoutMargins = UIEdgeInsets.zero
 		preservesSuperviewLayoutMargins = false
-		addSubview(container)
-		container.addArrangedSubview(iconView)
-		container.addArrangedSubview(titleLabel)
-		container.addArrangedSubview(detailLabel)
+		addSubview(iconView)
+		addSubview(titleLabel)
+		addSubview(detailLabel)
 		setupLayout()
 	}
 	
 	private func setupLayout() {
-		container.anchor(top: topAnchor,
-						 bottom: bottomAnchor,
-						 left: leftAnchor,
-						 right: rightAnchor)
-
-		iconView.anchor(width: 60, height: 60)
+		iconView.anchor(top: topAnchor,
+						paddingTop: 10,
+						paddingBottom: 10,
+						left: leftAnchor,
+						paddingLeft: 20,
+						width: 180,
+						height: 180)
+		
+		titleLabel.anchor(top: iconView.topAnchor,
+						  left: iconView.rightAnchor,
+						  paddingLeft: 20)
+		
+		detailLabel.anchor(top: titleLabel.bottomAnchor,
+						   paddingTop: 5,
+						   left: titleLabel.leftAnchor)
+	}
+	
+	override class var requiresConstraintBasedLayout: Bool {
+		return true
 	}
 }
