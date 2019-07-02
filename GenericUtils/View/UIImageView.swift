@@ -32,7 +32,7 @@
 import UIKit
 
 public extension UIImageView {
-	func downloadedFrom(url: URL, contentMode mode: UIView.ContentMode = .scaleAspectFit, completion: @escaping (() -> Void)) {
+	func downloadFrom(url: URL, contentMode mode: UIView.ContentMode = .scaleAspectFit, completion: (() -> Void)? = nil) {
 		
 		contentMode = mode
 		
@@ -44,13 +44,16 @@ public extension UIImageView {
 			
 			DispatchQueue.main.async() { () -> Void in
 				self.image = image
-				completion()
+				self.setNeedsDisplay()
+				if let completion = completion {
+					completion()
+				}
 			}
 		}.resume()
 	}
 	
-	func downloadedFrom(link: String, contentMode mode: UIView.ContentMode = .scaleAspectFit, completion: @escaping (() -> Void)) {
+	func downloadFrom(link: String, contentMode mode: UIView.ContentMode = .scaleAspectFit, completion: (() -> Void)? = nil) {
 		guard let url = URL(string: link) else { return }
-		downloadedFrom(url: url, contentMode: mode, completion: completion)
+		downloadFrom(url: url, contentMode: mode, completion: completion)
 	}
 }
