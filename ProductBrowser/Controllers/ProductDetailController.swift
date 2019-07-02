@@ -45,8 +45,11 @@ class ProductDetailController: UITableViewController {
 // MARK: - Setup UI
 extension ProductDetailController {
 	private func setupView() {
+		title = "Selling"
+		
 		navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
 		navigationItem.leftItemsSupplementBackButton = true
+		
 		tableView.register(UITableViewCell.self, forCellReuseIdentifier: "descrptionCell")
 		tableView.register(ProductHeaderCell.self, forCellReuseIdentifier: ProductHeaderCell.identifier)
 		tableView.backgroundColor = .white
@@ -61,6 +64,10 @@ extension ProductDetailController {
 	
 	override func numberOfSections(in tableView: UITableView) -> Int {
 		return 2
+	}
+	
+	override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+		return section == 1 ? "description":""
 	}
 	
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

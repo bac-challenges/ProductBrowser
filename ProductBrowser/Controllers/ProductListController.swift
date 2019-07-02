@@ -70,7 +70,7 @@ extension ProductListController {
 // MARK: - UI
 extension ProductListController {
 	private func setupView() {
-		title = "Select Product"
+		title = "Products"
 		tableView.register(ProductListCell.self, forCellReuseIdentifier: ProductListCell.identifier)
 		tableView.backgroundColor = .white
 		tableView.rowHeight = 100
