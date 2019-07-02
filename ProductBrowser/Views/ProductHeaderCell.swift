@@ -64,7 +64,7 @@ extension ProductHeaderCell: Configurable {
 		detailLabel.text = model.priceString
 		detailLabel.textColor = .systemPink
 		iconView.downloadFrom(link: model.imageURL)
-		gallery.items = model.imageGallery
+		gallery.items = model.imageGallery as? [String]
 	}
 }
 

@@ -33,8 +33,11 @@ import Foundation
 
 struct ImageViewModel {
 	
-	var model: [Picture]?
+	var model: [Picture]
 	
+	public func gallery(resolution: Int) -> [String?] {
+		return preferredImagesLocation(from: model, width: resolution)
+	}
 }
 
 // MARK: - Prefered Resolution Helpers

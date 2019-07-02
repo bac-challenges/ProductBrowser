@@ -34,6 +34,7 @@ import GenericUtils
 import GenericService
 
 public struct ProductViewModel: GenericViewModel {
+	
 	public let model: Product
 	public init(_ model: Product) {
 		self.model = model
@@ -63,8 +64,8 @@ extension ProductViewModel {
 		return url
 	}
 	
-	public var imageGallery: [String] {
-		return [imageURL, imageURL, imageURL, imageURL]
+	public var imageGallery: [String?] {
+		return ImageViewModel(model: model.picturesData).gallery(resolution: 360)
 	}
 }
 
