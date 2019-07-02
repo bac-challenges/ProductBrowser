@@ -37,13 +37,20 @@ class ProductEmptyController: UIViewController {
 		let view = UIImageView()
 		view.image = UIImage(named: "barcode")
 		view.tintColor = .lightGray
-		view.alpha = 0.4
+		view.alpha = 0
 		return view
 	}()
 	
     override func viewDidLoad() {
         super.viewDidLoad()
 		setupView()
+	}
+	
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		UIView.animate(withDuration: 1.5) {
+			self.imageView.alpha = 0.4
+		}
 	}
 }
 
@@ -52,9 +59,9 @@ extension ProductEmptyController {
 	private func setupView() {
 		view.backgroundColor = .groupTableViewBackground
 		view.addSubview(imageView)
-		imageView.anchor(width: 100, height: 100,
+		imageView.anchor(width: 100,
+						 height: 100,
 						 centerX: view.centerXAnchor,
-						 centerY: view.centerYAnchor,
-						 paddingY: 100)
+						 centerY: view.centerYAnchor)
 	}
 }
