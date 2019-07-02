@@ -63,7 +63,7 @@ class ProductHeaderCell: UITableViewCell, ReusableCell {
 	
 	private lazy var container: UIStackView = {
 		let view = UIStackView()
-		view.spacing = 10
+		view.spacing = 14
 		view.axis = .horizontal
 		view.distribution = .equalSpacing
 		view.alignment = .center
@@ -72,7 +72,7 @@ class ProductHeaderCell: UITableViewCell, ReusableCell {
 	
 	private lazy var separator: UIView = {
 		let view = UIView()
-		view.backgroundColor = .systemPink
+		view.backgroundColor = .groupTableViewBackground
 		return view
 	}()
 	
@@ -100,6 +100,14 @@ extension ProductHeaderCell: Configurable {
 		iconView.downloadedFrom(link: model.imageURL) {
 			self.setNeedsLayout()
 		}
+		
+		//
+		for _ in 0...3 {
+			let view = UIView()
+			view.debugMode(true)
+			view.anchor(width: 50, height: 50)
+			container.addArrangedSubview(view)
+		}
 	}
 }
 
@@ -114,15 +122,6 @@ extension  ProductHeaderCell {
 		addSubview(detailLabel)
 		addSubview(container)
 		addSubview(separator)
-
-		//
-		for _ in 0...3 {
-			let view = UIView()
-			view.debugMode(true)
-			view.anchor(width: 40, height: 40)
-			container.addArrangedSubview(view)
-		}
-		
 		setupLayout()
 	}
 	
@@ -136,9 +135,10 @@ extension  ProductHeaderCell {
 	private func setupLayout() {
 		iconView.anchor(top: layoutMarginsGuide.topAnchor,
 						bottom: layoutMarginsGuide.bottomAnchor,
+						paddingBottom: 10,
 						left: layoutMarginsGuide.leftAnchor,
-						width: 100,
-						height: 100)
+						width: 120,
+						height: 120)
 		
 		titleLabel.anchor(top: iconView.topAnchor,
 						  left: iconView.rightAnchor,
@@ -149,13 +149,11 @@ extension  ProductHeaderCell {
 						   left: titleLabel.leftAnchor)
 		
 		container.anchor(bottom: iconView.bottomAnchor,
-						 paddingBottom: -10,
 						 left: iconView.rightAnchor,
-						 paddingLeft: 10,
-						 height: 60)
+						 paddingLeft: 10)
 		
 		separator.anchor(top: iconView.bottomAnchor,
-						 paddingTop: 10,
+						 paddingTop: 20,
 						 left: layoutMarginsGuide.leftAnchor,
 						 right: layoutMarginsGuide.rightAnchor,
 						 height: 1)
