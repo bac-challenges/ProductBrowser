@@ -40,7 +40,7 @@ public struct ProductViewModel: GenericViewModel {
 	}
 }
 
-// MARK: - Values
+// MARK: - Presentation
 extension ProductViewModel {
 	
 	public var userIdString: String {
@@ -62,4 +62,13 @@ extension ProductViewModel {
 		
 		return url
 	}
+	
+	public var imageGallery: [String] {
+		return [imageURL, imageURL, imageURL, imageURL]
+	}
+}
+
+// MARK: - Service
+extension ProductViewModel {
+	
 }

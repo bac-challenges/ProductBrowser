@@ -95,16 +95,10 @@ class ProductHeaderCell: UITableViewCell, ReusableCell {
 // MARK: - Configurable
 extension ProductHeaderCell: Configurable {
 	func configure(_ model: ProductViewModel) {
-		resetView()
 		titleLabel.text = model.userIdString
 		detailLabel.text = model.priceString
-		iconView.downloadFrom(link: model.imageURL) {
-			self.setNeedsLayout()
-		}
-		gallery.items = [model.imageURL,
-						 model.imageURL,
-						 model.imageURL,
-						 model.imageURL]
+		iconView.downloadFrom(link: model.imageURL)
+		gallery.items = model.imageGallery
 	}
 }
 
