@@ -30,15 +30,30 @@
 //
 
 import UIKit
+import GenericUtils
 
 class ProductGalleryView: UIStackView {
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
-
+	
+	public var items: [String]? {
+		didSet {
+			addArrangedSubviews()
+		}
+	}
+	
+	private func addArrangedSubviews() {
+		
+		removeAllArrangedSubviews()
+		
+		guard let items = items else {
+			return
+		}
+		
+		for item in items {
+			let view = UIImageView()
+			view.contentMode = .scaleAspectFit
+			view.anchor(width: 50, height: 50)
+			addArrangedSubview(view)
+			view.downloadFrom(link: item)
+		}
+	}
 }
