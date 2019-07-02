@@ -43,12 +43,8 @@ class ProductGalleryView: UIStackView {
 		
 		removeAllArrangedSubviews()
 		
-		guard let items = items else {
-			return
-		}
-		
-		for item in items {
-			addArrangedSubview(ProductImageView(url: item))
+		items?.forEach {
+			addArrangedSubview(ProductImageView(url: $0))
 		}
 	}
 }
