@@ -101,7 +101,6 @@ extension  ProductListCell {
 	
 	private func setupView() {
 		selectionStyle = .none
-		accessoryType = .disclosureIndicator
 		preservesSuperviewLayoutMargins = true
 		addSubview(container)
 		container.addArrangedSubview(iconView)
