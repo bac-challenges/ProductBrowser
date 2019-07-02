@@ -20,7 +20,7 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: 132517DF-58D4-4F6E-AD96-08EEC6DDB841
+//	ID: B7D7CF6D-216F-414E-9C43-D0F0C25FB605
 //
 //	Pkg: ProductBrowser
 //
@@ -31,30 +31,14 @@
 
 import UIKit
 
-class ProductEmptyController: UIViewController {
+class ProductGalleryView: UIStackView {
 
-	lazy private var imageView: UIImageView = {
-		let view = UIImageView()
-		view.image = UIImage(named: "barcode")
-		view.tintColor = .lightGray
-		view.alpha = 0.4
-		return view
-	}()
-	
-    override func viewDidLoad() {
-        super.viewDidLoad()
-		setupView()
-	}
-}
+    /*
+    // Only override draw() if you perform custom drawing.
+    // An empty implementation adversely affects performance during animation.
+    override func draw(_ rect: CGRect) {
+        // Drawing code
+    }
+    */
 
-// MARK: - UI
-extension ProductEmptyController {
-	private func setupView() {
-		view.backgroundColor = .groupTableViewBackground
-		view.addSubview(imageView)
-		imageView.anchor(width: 100, height: 100,
-						 centerX: view.centerXAnchor,
-						 centerY: view.centerYAnchor,
-						 paddingY: 100)
-	}
 }
