@@ -20,62 +20,13 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: B7D7CF6D-216F-414E-9C43-D0F0C25FB605
+//	ID: 6027BD58-9E7E-4026-A770-D8CC499D129A
 //
-//	Pkg: ProductBrowser
+//	Pkg: ProductShared
 //
 //	Swift: 5.0 
 //
 //	MacOS: 10.15
 //
 
-import UIKit
-import GenericUtils
-
-class ProductGalleryView: UIStackView {
-	
-	public var items: [String]? {
-		didSet {
-			addArrangedSubviews()
-		}
-	}
-	
-	override init(frame: CGRect = CGRect.zero) {
-		super.init(frame: frame)
-		setupView()
-	}
-	
-	required init(coder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
-	}
-	
-	private func addArrangedSubviews() {
-		
-		removeAllArrangedSubviews()
-		
-		items?.forEach {
-			addArrangedSubview(UIImageView(url: $0))
-		}
-	}
-	
-//	@objc private func didReceiveTap(sender: UITapGestureRecognizer) {
-//		let view = UIImageView(url: $0)
-//		view.isUserInteractionEnabled = true
-//		let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didReceiveTap(sender:)))
-//		view.addGestureRecognizer(tapGesture)
-//
-//		if let view = sender.view as? UIImageView {
-//			print(view.image?.size.width ?? "image")
-//		}
-//	}
-}
-
-// MARK: - UI
-extension ProductGalleryView {
-	private func setupView() {
-		spacing = 14
-		axis = .horizontal
-		distribution = .equalSpacing
-		alignment = .center
-	}
-}
+import Foundation
