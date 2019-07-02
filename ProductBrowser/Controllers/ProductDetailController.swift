@@ -57,15 +57,22 @@ extension ProductDetailController {
 	}
 }
 
+// MARK: - UITableViewDelegate
+extension ProductDetailController {
+	override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+		return section == 1 ? TableHeaderView(title: "Description") : nil
+	}
+	
+	override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+		return section == 1 ? 30:0
+	}
+}
+
 // MARK: - UITableViewDataSource
 extension ProductDetailController {
 	
 	override func numberOfSections(in tableView: UITableView) -> Int {
 		return 2
-	}
-	
-	override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-		return section == 1 ? "description":""
 	}
 	
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -86,5 +93,21 @@ extension ProductDetailController {
 			cell.textLabel?.text = model?.description
 			return cell
 		}
+	}
+}
+
+// MARK: -
+private class TableHeaderView: UIView {
+	
+	convenience init(title: String) {
+		self.init()
+		let view = UILabel()
+		view.font = .systemFont(ofSize: 20, weight: .regular)
+		view.textColor = .systemPink
+		view.text = title
+		addSubview(view)
+		view.anchor(top: layoutMarginsGuide.topAnchor,
+					left: layoutMarginsGuide.leftAnchor,
+					paddingLeft: 10)
 	}
 }

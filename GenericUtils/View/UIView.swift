@@ -67,7 +67,7 @@ extension UIView {
 
 // MARK: - Debug Mode
 extension UIView {
-	func debugMode(_ active: Bool) {
+	func debugMode(_ active: Bool = true) {
 		layer.borderColor = UIColor.red.cgColor
 		layer.borderWidth = active ? 1:0
 	}

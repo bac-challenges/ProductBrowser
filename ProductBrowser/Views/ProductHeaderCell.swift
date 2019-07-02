@@ -36,46 +36,11 @@ import GenericUtils
 
 class ProductHeaderCell: UITableViewCell, ReusableCell {
 
-	public lazy var iconView: UIImageView = {
-		let view = UIImageView()
-		view.image = UIImage(named: "01d")
-		view.contentMode = .scaleAspectFit
-		return view
-	}()
-	
-	public lazy var titleLabel: UILabel = {
-		let view = UILabel()
-		view.text = "N/A"
-		view.textAlignment = .left
-		view.textColor = .darkGray
-		view.font = .systemFont(ofSize: 17, weight: .regular)
-		return view
-	}()
-	
-	public lazy var detailLabel: UILabel = {
-		let view = UILabel()
-		view.text = "N/A"
-		view.textAlignment = .left
-		view.textColor = .systemPink
-		view.font = .systemFont(ofSize: 17, weight: .regular)
-		return view
-	}()
-	
-	private lazy var gallery: ProductGalleryView = {
-		let view = ProductGalleryView()
-		view.spacing = 14
-		view.axis = .horizontal
-		view.distribution = .equalSpacing
-		view.alignment = .center
-		view.debugMode(true)
-		return view
-	}()
-	
-	private lazy var separator: UIView = {
-		let view = UIView()
-		view.backgroundColor = .groupTableViewBackground
-		return view
-	}()
+	private lazy var iconView = UIImageView()
+	private lazy var titleLabel = UILabel()
+	private lazy var detailLabel = UILabel()
+	private lazy var gallery = ProductGalleryView()
+	private lazy var separator = UIView.separator
 	
 	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 		super.init(style: .value1, reuseIdentifier: nil)
@@ -97,6 +62,7 @@ extension ProductHeaderCell: Configurable {
 	func configure(_ model: ProductViewModel) {
 		titleLabel.text = model.userIdString
 		detailLabel.text = model.priceString
+		detailLabel.textColor = .systemPink
 		iconView.downloadFrom(link: model.imageURL)
 		gallery.items = model.imageGallery
 	}

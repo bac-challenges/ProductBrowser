@@ -20,62 +20,49 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: B7D7CF6D-216F-414E-9C43-D0F0C25FB605
+//	ID: 6027BD58-9E7E-4026-A770-D8CC499D129A
 //
-//	Pkg: ProductBrowser
+//	Pkg: ProductShared
 //
 //	Swift: 5.0 
 //
 //	MacOS: 10.15
 //
 
-import UIKit
-import GenericUtils
+import Foundation
 
-class ProductGalleryView: UIStackView {
+struct ImageViewModel {
 	
-	public var items: [String]? {
-		didSet {
-			addArrangedSubviews()
-		}
-	}
+	var model: [Picture]?
 	
-	override init(frame: CGRect = CGRect.zero) {
-		super.init(frame: frame)
-		setupView()
-	}
-	
-	required init(coder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
-	}
-	
-	private func addArrangedSubviews() {
-		
-		removeAllArrangedSubviews()
-		
-		items?.forEach {
-			addArrangedSubview(UIImageView(url: $0))
-		}
-	}
-	
-//	@objc private func didReceiveTap(sender: UITapGestureRecognizer) {
-//		let view = UIImageView(url: $0)
-//		view.isUserInteractionEnabled = true
-//		let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didReceiveTap(sender:)))
-//		view.addGestureRecognizer(tapGesture)
-//
-//		if let view = sender.view as? UIImageView {
-//			print(view.image?.size.width ?? "image")
-//		}
-//	}
 }
 
-// MARK: - UI
-extension ProductGalleryView {
-	private func setupView() {
-		spacing = 14
-		axis = .horizontal
-		distribution = .equalSpacing
-		alignment = .center
+// MARK: - Prefered Resolution Helpers
+extension ImageViewModel {
+
+	public func preferredImagesLocation(from images: [Picture], width: Int) -> [String?] {
+		return images.map {
+			preferredLocation(from: $0.formats.map { $1 }, width: width)
+		}
+	}
+	
+	public func preferredImagesFormat(from images: [Picture], width: Int) -> [Format?] {
+		return images.map {
+			preferredFormat(from: $0.formats.map { $1 }, width: width)
+		}
+	}
+	
+	public func preferredLocation(from formats: [Format], width: Int) -> String? {
+		return preferredFormat(from: formats, width: width)?.url
+	}
+	
+	public func preferredFormat(from formats: [Format], width: Int) -> Format? {
+		return formats.sorted { $0.width < $1.width }
+					  .first(where: { $0.width >= width })
+	}
+	
+	public func preferredIndex(from formats: [Format], width: Int) -> Int? {
+		return formats.sorted { $0.width < $1.width }
+					  .firstIndex(where: { $0.width >= width })
 	}
 }
