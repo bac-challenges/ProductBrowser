@@ -45,11 +45,9 @@ class ProductDetailController: UITableViewController {
 // MARK: - Setup UI
 extension ProductDetailController {
 	private func setupView() {
-		title = "Selling"
-		
+		title = "Product"
 		navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
 		navigationItem.leftItemsSupplementBackButton = true
-		
 		tableView.register(UITableViewCell.self, forCellReuseIdentifier: "descrptionCell")
 		tableView.register(ProductHeaderCell.self, forCellReuseIdentifier: ProductHeaderCell.identifier)
 		tableView.backgroundColor = .white
