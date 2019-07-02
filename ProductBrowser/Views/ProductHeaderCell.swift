@@ -61,12 +61,13 @@ class ProductHeaderCell: UITableViewCell, ReusableCell {
 		return view
 	}()
 	
-	private lazy var container: UIStackView = {
-		let view = UIStackView()
+	private lazy var gallery: ProductGalleryView = {
+		let view = ProductGalleryView()
 		view.spacing = 14
 		view.axis = .horizontal
 		view.distribution = .equalSpacing
 		view.alignment = .center
+		view.debugMode(true)
 		return view
 	}()
 	
@@ -97,17 +98,13 @@ extension ProductHeaderCell: Configurable {
 		resetView()
 		titleLabel.text = model.userIdString
 		detailLabel.text = model.priceString
-		iconView.downloadedFrom(link: model.imageURL) {
+		iconView.downloadFrom(link: model.imageURL) {
 			self.setNeedsLayout()
 		}
-		
-		//
-		for _ in 0...3 {
-			let view = UIView()
-			view.debugMode(true)
-			view.anchor(width: 50, height: 50)
-			container.addArrangedSubview(view)
-		}
+		gallery.items = [model.imageURL,
+						 model.imageURL,
+						 model.imageURL,
+						 model.imageURL]
 	}
 }
 
@@ -120,7 +117,7 @@ extension  ProductHeaderCell {
 		addSubview(iconView)
 		addSubview(titleLabel)
 		addSubview(detailLabel)
-		addSubview(container)
+		addSubview(gallery)
 		addSubview(separator)
 		setupLayout()
 	}
@@ -129,7 +126,7 @@ extension  ProductHeaderCell {
 		iconView.image = nil
 		titleLabel.text = ""
 		detailLabel.text = ""
-		container.removeAllArrangedSubviews()
+		gallery.items = []
 	}
 	
 	private func setupLayout() {
@@ -148,7 +145,7 @@ extension  ProductHeaderCell {
 						   paddingTop: 5,
 						   left: titleLabel.leftAnchor)
 		
-		container.anchor(bottom: iconView.bottomAnchor,
+		gallery.anchor(bottom: iconView.bottomAnchor,
 						 left: iconView.rightAnchor,
 						 paddingLeft: 10)
 		

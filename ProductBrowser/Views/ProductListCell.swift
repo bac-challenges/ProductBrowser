@@ -94,7 +94,7 @@ extension ProductListCell: Configurable {
 	func configure(_ model: ProductViewModel) {
 		titleLabel.text = model.userIdString
 		detailLabel.text = model.priceString
-		iconView.downloadedFrom(link: model.imageURL) {
+		iconView.downloadFrom(link: model.imageURL) {
 			self.iconView.layer.cornerRadius = self.iconView.frame.height/2
 			self.iconView.layer.masksToBounds = true
 			self.setNeedsLayout()
