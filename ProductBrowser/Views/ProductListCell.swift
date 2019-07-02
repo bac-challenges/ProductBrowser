@@ -83,9 +83,7 @@ class ProductListCell: UITableViewCell, ReusableCell {
 	
 	override func prepareForReuse() {
 		super.prepareForReuse()
-		iconView.image = nil
-		titleLabel.text = ""
-		detailLabel.text = ""
+		resetView()
 	}
 }
 
@@ -94,11 +92,7 @@ extension ProductListCell: Configurable {
 	func configure(_ model: ProductViewModel) {
 		titleLabel.text = model.userIdString
 		detailLabel.text = model.priceString
-		iconView.downloadFrom(link: model.imageURL) {
-			self.iconView.layer.cornerRadius = self.iconView.frame.height/2
-			self.iconView.layer.masksToBounds = true
-			self.setNeedsLayout()
-		}
+		iconView.downloadFrom(link: model.imageURL)
 	}
 }
 
@@ -107,8 +101,8 @@ extension  ProductListCell {
 	
 	private func setupView() {
 		selectionStyle = .none
-		layoutMargins = UIEdgeInsets.zero
-		preservesSuperviewLayoutMargins = false
+		accessoryType = .disclosureIndicator
+		preservesSuperviewLayoutMargins = true
 		addSubview(container)
 		container.addArrangedSubview(iconView)
 		container.addArrangedSubview(titleLabel)
@@ -116,11 +110,18 @@ extension  ProductListCell {
 		setupLayout()
 	}
 	
+	private func resetView() {
+		iconView.image = nil
+		titleLabel.text = ""
+		detailLabel.text = ""
+	}
+	
 	private func setupLayout() {
 		container.anchor(top: topAnchor,
 						 bottom: bottomAnchor,
-						 left: leftAnchor,
-						 right: rightAnchor)
+						 left: layoutMarginsGuide.leftAnchor,
+						 paddingLeft: -10,
+						 right: layoutMarginsGuide.rightAnchor)
 
 		iconView.anchor(width: 60, height: 60)
 	}
