@@ -37,8 +37,8 @@ import GenericUtils
 class ProductHeaderCell: UITableViewCell, ReusableCell {
 
 	private lazy var iconView = UIImageView()
-	private lazy var titleLabel = UILabel.textLabel()
-	private lazy var detailLabel = UILabel.textLabel(color: .systemPink)
+	private lazy var titleLabel = UILabel()
+	private lazy var detailLabel = UILabel()
 	private lazy var gallery = ProductGalleryView()
 	private lazy var separator = UIView.separator
 	
@@ -62,6 +62,7 @@ extension ProductHeaderCell: Configurable {
 	func configure(_ model: ProductViewModel) {
 		titleLabel.text = model.userIdString
 		detailLabel.text = model.priceString
+		detailLabel.textColor = .systemPink
 		iconView.downloadFrom(link: model.imageURL)
 		gallery.items = model.imageGallery
 	}

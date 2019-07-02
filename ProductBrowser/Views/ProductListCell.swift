@@ -46,8 +46,8 @@ class ProductListCell: UITableViewCell, ReusableCell {
 	}()
 	
 	private lazy var iconView = UIImageView()
-	private lazy var titleLabel = UILabel.textLabel()
-	private lazy var detailLabel = UILabel.textLabel(color: .systemPink)
+	private lazy var titleLabel = UILabel()
+	private lazy var detailLabel = UILabel()
 	
 	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 		super.init(style: .value1, reuseIdentifier: nil)
@@ -69,6 +69,7 @@ extension ProductListCell: Configurable {
 	func configure(_ model: ProductViewModel) {
 		titleLabel.text = model.userIdString
 		detailLabel.text = model.priceString
+		detailLabel.textColor = .systemPink
 		iconView.downloadFrom(link: model.imageURL)
 	}
 }

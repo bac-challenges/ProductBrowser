@@ -31,18 +31,6 @@
 
 import UIKit
 
-// MARK: - UILabel
-extension UILabel {
-	public static func textLabel(color: UIColor = .darkGray) -> UILabel {
-		let view = UILabel()
-		view.text = "N/A"
-		view.textAlignment = .left
-		view.textColor = color
-		view.font = .systemFont(ofSize: 17, weight: .regular)
-		return view
-	}
-}
-
 // MARK: - UIView
 extension UIView {
 	public static var separator: UIView {

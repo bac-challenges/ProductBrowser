@@ -51,5 +51,12 @@ public struct Appearance {
 		
 		navigationBarAppearace.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemPink,
 														   NSAttributedString.Key.font: UIFont.systemFont(ofSize: 48, weight: .medium)]
+		
+		// UILabel
+		let labelAppearace = UILabel.appearance()
+		labelAppearace.text = "N/A"
+		labelAppearace.textAlignment = .left
+		labelAppearace.textColor = .darkGray
+		labelAppearace.font = .systemFont(ofSize: 17, weight: .regular)
 	}
 }
