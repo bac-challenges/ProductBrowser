@@ -41,6 +41,16 @@ class ProductEmptyController: UIViewController {
 		return view
 	}()
 	
+	public lazy var titleLabel: UILabel = {
+		let view = UILabel()
+		view.text = "Select Product".uppercased()
+		view.textAlignment = .center
+		view.textColor = .lightGray
+		view.font = .systemFont(ofSize: 11.5, weight: .regular)
+		view.alpha = 0
+		return view
+	}()
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 		setupView()
@@ -50,6 +60,7 @@ class ProductEmptyController: UIViewController {
 		super.viewDidAppear(animated)
 		UIView.animate(withDuration: 1.5) {
 			self.imageView.alpha = 0.4
+			self.titleLabel.alpha = 1
 		}
 	}
 }
@@ -59,9 +70,18 @@ extension ProductEmptyController {
 	private func setupView() {
 		view.backgroundColor = .groupTableViewBackground
 		view.addSubview(imageView)
+		view.addSubview(titleLabel)
+		setupLayout()
+	}
+	
+	private func setupLayout() {
 		imageView.anchor(width: 100,
 						 height: 100,
 						 centerX: view.centerXAnchor,
 						 centerY: view.centerYAnchor)
+		
+		titleLabel.anchor(top: imageView.bottomAnchor,
+						  paddingTop: 0,
+						  centerX: imageView.centerXAnchor)
 	}
 }
