@@ -44,6 +44,7 @@
 		60CBC17822C957A800196D4B /* ProductController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CBC17722C957A800196D4B /* ProductController.swift */; };
 		60D4753222CA95DF0060598D /* ProductEmptyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D4753122CA95DF0060598D /* ProductEmptyController.swift */; };
 		60D4753422CB1D6E0060598D /* ProductHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D4753322CB1D6E0060598D /* ProductHeaderCell.swift */; };
+		60D4753622CB42C20060598D /* UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D4753522CB42C20060598D /* UIStackView.swift */; };
 		60F13DCD22C7A6B10095CDDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F13DCC22C7A6B10095CDDD /* AppDelegate.swift */; };
 		60F13DD622C7A6B50095CDDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60F13DD522C7A6B50095CDDD /* Assets.xcassets */; };
 		60F13DD922C7A6B50095CDDD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60F13DD722C7A6B50095CDDD /* LaunchScreen.storyboard */; };
@@ -171,6 +172,7 @@
 		60CBC17722C957A800196D4B /* ProductController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductController.swift; sourceTree = "<group>"; };
 		60D4753122CA95DF0060598D /* ProductEmptyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductEmptyController.swift; sourceTree = "<group>"; };
 		60D4753322CB1D6E0060598D /* ProductHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductHeaderCell.swift; sourceTree = "<group>"; };
+		60D4753522CB42C20060598D /* UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackView.swift; sourceTree = "<group>"; };
 		60F13DC922C7A6B10095CDDD /* ProductBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProductBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60F13DCC22C7A6B10095CDDD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		60F13DD522C7A6B50095CDDD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 				60CBC16E22C93AA200196D4B /* UIImageView.swift */,
 				602010CD22C8D59B00E2F456 /* ReusableCell.swift */,
 				602010CF22C8D5CA00E2F456 /* Configurable.swift */,
+				60D4753522CB42C20060598D /* UIStackView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -292,8 +295,8 @@
 			isa = PBXGroup;
 			children = (
 				6056F7F422C9EFE7008CD0BD /* Model */,
-				6056F7F222C9EFE7008CD0BD /* Service */,
 				6056F80A22C9F132008CD0BD /* ViewModel */,
+				6056F7F222C9EFE7008CD0BD /* Service */,
 				6056F7DE22C9EF7E008CD0BD /* ProductShared.h */,
 				6056F7DF22C9EF7E008CD0BD /* Info.plist */,
 			);
@@ -717,6 +720,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6056F7A522C9E26B008CD0BD /* GenericViewModel.swift in Sources */,
+				60D4753622CB42C20060598D /* UIStackView.swift in Sources */,
 				6056F7A622C9E26B008CD0BD /* UIView.swift in Sources */,
 				6056F7A722C9E26B008CD0BD /* UIImageView.swift in Sources */,
 				6056F7A822C9E26B008CD0BD /* ReusableCell.swift in Sources */,

@@ -32,6 +32,7 @@
 import UIKit
 import ProductShared
 import GenericService
+import GenericUtils
 
 class ProductHeaderCell: UITableViewCell, ReusableCell {
 
@@ -60,6 +61,21 @@ class ProductHeaderCell: UITableViewCell, ReusableCell {
 		return view
 	}()
 	
+	private lazy var container: UIStackView = {
+		let view = UIStackView()
+		view.spacing = 10
+		view.axis = .horizontal
+		view.distribution = .equalSpacing
+		view.alignment = .center
+		return view
+	}()
+	
+	private lazy var separator: UIView = {
+		let view = UIView()
+		view.backgroundColor = .systemPink
+		return view
+	}()
+	
 	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 		super.init(style: .value1, reuseIdentifier: nil)
 		setupView()
@@ -71,15 +87,14 @@ class ProductHeaderCell: UITableViewCell, ReusableCell {
 	
 	override func prepareForReuse() {
 		super.prepareForReuse()
-		iconView.image = nil
-		titleLabel.text = ""
-		detailLabel.text = ""
+		resetView()
 	}
 }
 
 // MARK: - Configurable
 extension ProductHeaderCell: Configurable {
 	func configure(_ model: ProductViewModel) {
+		resetView()
 		titleLabel.text = model.userIdString
 		detailLabel.text = model.priceString
 		iconView.downloadedFrom(link: model.imageURL) {
@@ -88,38 +103,61 @@ extension ProductHeaderCell: Configurable {
 	}
 }
 
-// MARK: - Setup UI
+// MARK: - UI
 extension  ProductHeaderCell {
 	
 	private func setupView() {
 		selectionStyle = .none
-		layoutMargins = UIEdgeInsets.zero
-		preservesSuperviewLayoutMargins = false
+		preservesSuperviewLayoutMargins = true
 		addSubview(iconView)
 		addSubview(titleLabel)
 		addSubview(detailLabel)
+		addSubview(container)
+		addSubview(separator)
+
+		//
+		for _ in 0...3 {
+			let view = UIView()
+			view.debugMode(true)
+			view.anchor(width: 40, height: 40)
+			container.addArrangedSubview(view)
+		}
+		
 		setupLayout()
 	}
 	
+	private func resetView() {
+		iconView.image = nil
+		titleLabel.text = ""
+		detailLabel.text = ""
+		container.removeAllArrangedSubviews()
+	}
+	
 	private func setupLayout() {
-		iconView.anchor(top: topAnchor,
-						paddingTop: 10,
-						paddingBottom: 10,
-						left: leftAnchor,
-						paddingLeft: 20,
-						width: 180,
-						height: 180)
+		iconView.anchor(top: layoutMarginsGuide.topAnchor,
+						bottom: layoutMarginsGuide.bottomAnchor,
+						left: layoutMarginsGuide.leftAnchor,
+						width: 100,
+						height: 100)
 		
 		titleLabel.anchor(top: iconView.topAnchor,
 						  left: iconView.rightAnchor,
-						  paddingLeft: 20)
+						  paddingLeft: 10)
 		
 		detailLabel.anchor(top: titleLabel.bottomAnchor,
 						   paddingTop: 5,
 						   left: titleLabel.leftAnchor)
-	}
-	
-	override class var requiresConstraintBasedLayout: Bool {
-		return true
+		
+		container.anchor(bottom: iconView.bottomAnchor,
+						 paddingBottom: -10,
+						 left: iconView.rightAnchor,
+						 paddingLeft: 10,
+						 height: 60)
+		
+		separator.anchor(top: iconView.bottomAnchor,
+						 paddingTop: 10,
+						 left: layoutMarginsGuide.leftAnchor,
+						 right: layoutMarginsGuide.rightAnchor,
+						 height: 1)
 	}
 }
