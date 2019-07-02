@@ -35,9 +35,46 @@ import GenericService
 
 class ProductListCell: UITableViewCell, ReusableCell {
 	
+	private lazy var container: UIStackView = {
+		let view = UIStackView()
+		view.spacing = 10
+		view.axis = .horizontal
+		view.distribution = .fill
+		view.alignment = .center
+		view.isBaselineRelativeArrangement = true
+		view.isLayoutMarginsRelativeArrangement = true
+		view.layoutMargins = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 15)
+		return view
+	}()
+	
+	public lazy var iconView: UIImageView = {
+		let view = UIImageView()
+		view.image = UIImage(named: "01d")
+		view.contentMode = .scaleAspectFit
+		return view
+	}()
+	
+	public lazy var titleLabel: UILabel = {
+		let view = UILabel()
+		view.text = "N/A"
+		view.textAlignment = .left
+		view.textColor = .darkGray
+		view.font = .systemFont(ofSize: 17, weight: .regular)
+		return view
+	}()
+	
+	public lazy var detailLabel: UILabel = {
+		let view = UILabel()
+		view.text = "N/A"
+		view.textAlignment = .left
+		view.textColor = .systemPink
+		view.font = .systemFont(ofSize: 17, weight: .regular)
+		return view
+	}()
+	
 	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 		super.init(style: .value1, reuseIdentifier: nil)
-		selectionStyle = .none
+		setupView()
 	}
 	
 	required init?(coder: NSCoder) {
@@ -46,20 +83,49 @@ class ProductListCell: UITableViewCell, ReusableCell {
 	
 	override func prepareForReuse() {
 		super.prepareForReuse()
-		textLabel?.text = ""
-		detailTextLabel?.text = ""
-		imageView?.image = nil
+		iconView.image = nil
+		titleLabel.text = ""
+		detailLabel.text = ""
 	}
 }
 
 // MARK: - Configurable
 extension ProductListCell: Configurable {
 	func configure(_ model: ProductViewModel) {
-		textLabel?.text = model.userIdString
-		detailTextLabel?.text = model.priceString
-		detailTextLabel?.textColor = .systemPink
-		imageView?.downloadedFrom(link: model.imageURL) {
+		titleLabel.text = model.userIdString
+		detailLabel.text = model.priceString
+		iconView.downloadedFrom(link: model.imageURL) {
+			self.iconView.layer.cornerRadius = self.iconView.frame.height/2
+			self.iconView.layer.masksToBounds = true
 			self.setNeedsLayout()
 		}
+	}
+}
+
+// MARK: - Setup UI
+extension  ProductListCell {
+	
+	private func setupView() {
+		selectionStyle = .none
+		layoutMargins = UIEdgeInsets.zero
+		preservesSuperviewLayoutMargins = false
+		addSubview(container)
+		container.addArrangedSubview(iconView)
+		container.addArrangedSubview(titleLabel)
+		container.addArrangedSubview(detailLabel)
+		setupLayout()
+	}
+	
+	private func setupLayout() {
+		container.anchor(top: topAnchor,
+						 bottom: bottomAnchor,
+						 left: leftAnchor,
+						 right: rightAnchor)
+
+		iconView.anchor(width: 60, height: 60)
+	}
+	
+	override class var requiresConstraintBasedLayout: Bool {
+		return true
 	}
 }

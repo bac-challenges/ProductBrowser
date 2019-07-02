@@ -73,7 +73,7 @@ extension ProductListController {
 		title = "Select Product"
 		tableView.register(ProductListCell.self, forCellReuseIdentifier: ProductListCell.identifier)
 		tableView.backgroundColor = .white
-		tableView.rowHeight = 80
+		tableView.rowHeight = 100
 	}
 }
 
@@ -101,15 +101,12 @@ extension ProductListController {
 	}
 	
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		
-		guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductListCell.identifier, for: indexPath) as? ProductListCell,
+		let identifier = ProductListCell.identifier
+		guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? ProductListCell,
 			  let item = items?[indexPath.row] else {
 				return UITableViewCell()
 		}
-		
 		cell.configure(ProductViewModel(item))
-		cell.accessoryType = splitViewController!.isCollapsed ? .disclosureIndicator : .none
-		
 		return cell
 	}
 }
