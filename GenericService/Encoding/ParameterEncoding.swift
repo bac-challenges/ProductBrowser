@@ -20,7 +20,7 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: CF12A9A1-D37F-4813-BB59-AB7EAA55A7F0
+//	ID: 76F39B77-EBD8-4EB9-B407-BAFAE3B77F17
 //
 //	Pkg: GenericService
 //
@@ -31,14 +31,39 @@
 
 import Foundation
 
-public enum ErrorResult: Error {
-	case network(string: String)
-	case parser(string: String)
-	case custom(string: String)
+public typealias Parameters = [String: Any]
+
+public protocol ParameterEncoder {
+	func encode(urlRequest: inout URLRequest, with parameters: Parameters) throws
 }
 
-public enum NetworkError : String, Error {
-	case parametersNil = "Parameters were nil."
-	case encodingFailed = "Parameter encoding failed."
-	case missingURL = "URL is nil."
+public enum ParameterEncoding {
+	case urlEncoding, jsonEncoding, urlAndJsonEncoding
+}
+
+// MARK: - Encode
+extension ParameterEncoding {
+	
+	public func encode(urlRequest: inout URLRequest, bodyParameters: Parameters?, urlParameters: Parameters?) throws {
+		do {
+			switch self {
+			case .urlEncoding:
+				guard let urlParameters = urlParameters else { return }
+				try URLParameterEncoder().encode(urlRequest: &urlRequest, with: urlParameters)
+				
+			case .jsonEncoding:
+				guard let bodyParameters = bodyParameters else { return }
+				try JSONParameterEncoder().encode(urlRequest: &urlRequest, with: bodyParameters)
+				
+			case .urlAndJsonEncoding:
+				guard let bodyParameters = bodyParameters,
+					let urlParameters = urlParameters else { return }
+				try URLParameterEncoder().encode(urlRequest: &urlRequest, with: urlParameters)
+				try JSONParameterEncoder().encode(urlRequest: &urlRequest, with: bodyParameters)
+				
+			}
+		} catch {
+			throw error
+		}
+	}
 }

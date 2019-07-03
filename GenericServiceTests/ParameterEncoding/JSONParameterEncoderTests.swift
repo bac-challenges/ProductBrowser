@@ -20,25 +20,41 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: CF12A9A1-D37F-4813-BB59-AB7EAA55A7F0
+//	ID: CF975B8B-83B8-478C-A088-75578E4E991C
 //
-//	Pkg: GenericService
+//	Pkg: GenericServiceTests
 //
 //	Swift: 5.0 
 //
 //	MacOS: 10.15
 //
 
-import Foundation
+import XCTest
+@testable import GenericService
 
-public enum ErrorResult: Error {
-	case network(string: String)
-	case parser(string: String)
-	case custom(string: String)
-}
+class JSONParameterEncoderTests: XCTestCase {
 
-public enum NetworkError : String, Error {
-	case parametersNil = "Parameters were nil."
-	case encodingFailed = "Parameter encoding failed."
-	case missingURL = "URL is nil."
+    func testJSONEncoding() {
+		guard let url = URL(string: "https://www.network.com/") else {
+			XCTAssertTrue(false, "Could not instantiate url")
+			return
+		}
+		var urlRequest = URLRequest(url: url)
+		let parameters: Parameters = [
+			"UserID": 1,
+			"Name": "emile",
+			"Email": "emile@network.com",
+			"IsCool": true]
+		do {
+			let encoder = JSONParameterEncoder()
+			try encoder.encode(urlRequest: &urlRequest, with: parameters)
+			
+			guard urlRequest.httpBody != nil else {
+				XCTAssertTrue(false, "JSON paramers are nil.")
+				return
+			}
+			
+			
+		} catch {}
+    }
 }

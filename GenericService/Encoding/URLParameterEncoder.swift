@@ -20,7 +20,7 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: CF12A9A1-D37F-4813-BB59-AB7EAA55A7F0
+//	ID: 090E0817-0B94-4F3E-8DDF-912FF2DF946A
 //
 //	Pkg: GenericService
 //
@@ -31,14 +31,26 @@
 
 import Foundation
 
-public enum ErrorResult: Error {
-	case network(string: String)
-	case parser(string: String)
-	case custom(string: String)
-}
+public struct URLParameterEncoder: ParameterEncoder {
 
-public enum NetworkError : String, Error {
-	case parametersNil = "Parameters were nil."
-	case encodingFailed = "Parameter encoding failed."
-	case missingURL = "URL is nil."
+	public func encode(urlRequest: inout URLRequest, with parameters: Parameters) throws {
+		
+		guard let url = urlRequest.url else { throw NetworkError.missingURL }
+		
+		if var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false), !parameters.isEmpty {
+			
+			urlComponents.queryItems = [URLQueryItem]()
+			
+			for (key,value) in parameters {
+				let queryItem = URLQueryItem(name: key, value: "\(value)".addingPercentEncoding(withAllowedCharacters: .urlHostAllowed))
+				urlComponents.queryItems?.append(queryItem)
+			}
+			urlRequest.url = urlComponents.url
+		}
+		
+		if urlRequest.value(forHTTPHeaderField: "Content-Type") == nil {
+			urlRequest.setValue("application/x-www-form-urlencoded; charset=utf-8", forHTTPHeaderField: "Content-Type")
+		}
+		
+	}
 }
