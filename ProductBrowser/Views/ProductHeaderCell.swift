@@ -63,8 +63,8 @@ extension ProductHeaderCell: Configurable {
 		titleLabel.text = model.userIdString
 		detailLabel.text = model.priceString
 		detailLabel.textColor = .systemPink
-		iconView.downloadFrom(link: model.imagevViewModel.image(size: 360))
-		gallery.items = model.imagevViewModel.gallery(size: 150)
+		iconView.downloadFrom(link: model.imagevViewModel.image(size: 120))
+		gallery.items = model.imagevViewModel.gallery(size: 50)
 	}
 }
 

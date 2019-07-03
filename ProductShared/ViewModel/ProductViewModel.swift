@@ -60,8 +60,3 @@ extension ProductViewModel {
 		return ImageViewModel(model: model.picturesData)
 	}
 }
-
-// MARK: - Service
-extension ProductViewModel {
-	
-}

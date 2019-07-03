@@ -33,14 +33,20 @@ import Foundation
 
 public struct ImageViewModel {
 	
-	var model: [Picture]
-	
-	public func gallery(size: Int) -> [String] {
-		return preferredImagesLocation(from: model, width: size)
+	public enum Quality: Int {
+		case x1 = 1
+		case x2 = 2
+		case x3 = 3
 	}
 	
-	public func image(size: Int) -> String {
-		return gallery(size: size).first!
+	var model: [Picture]
+	
+	public func gallery(size: Int, quality: Quality = .x3) -> [String] {
+		return preferredImagesLocation(from: model, width: size * quality.rawValue)
+	}
+	
+	public func image(size: Int, quality: Quality = .x3) -> String {
+		return gallery(size: size * quality.rawValue).first!
 	}
 }
 
