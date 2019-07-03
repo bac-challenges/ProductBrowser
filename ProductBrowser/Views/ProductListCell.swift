@@ -70,7 +70,7 @@ extension ProductListCell: Configurable {
 		titleLabel.text = model.userIdString
 		detailLabel.text = model.priceString
 		detailLabel.textColor = .systemPink
-		iconView.downloadFrom(link: model.imageURL)
+		iconView.downloadFrom(link: model.imagevViewModel.image(size: 180))
 	}
 }
 

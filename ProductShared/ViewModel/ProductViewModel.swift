@@ -56,16 +56,8 @@ extension ProductViewModel {
 		return model.description
 	}
 	
-	public var imageURL: String {
-		guard let url = model.picturesData.first?.formats["P2"]?.url else {
-			return ""
-		}
-		
-		return url
-	}
-	
-	public var imageGallery: [String?] {
-		return ImageViewModel(model: model.picturesData).gallery(resolution: 360)
+	public var imagevViewModel: ImageViewModel {
+		return ImageViewModel(model: model.picturesData)
 	}
 }
 
