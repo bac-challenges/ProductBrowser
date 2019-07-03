@@ -42,7 +42,7 @@ public struct Product: Codable {
 	// Secondary
 	public let description: String
 	
-	// Other
+	// Not used
 //	let variantSet: Int
 //	let quantity: Int
 //	let createdDate: Date

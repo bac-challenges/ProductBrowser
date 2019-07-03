@@ -353,8 +353,8 @@
 		60884ABB22CA09C80037F6E0 /* ProductSharedTests */ = {
 			isa = PBXGroup;
 			children = (
-				60884ABC22CA09C80037F6E0 /* ProductServiceTests.swift */,
 				607058A722CBE33B00C36CDB /* ImageViewModelTests.swift */,
+				60884ABC22CA09C80037F6E0 /* ProductServiceTests.swift */,
 				60884ABE22CA09C80037F6E0 /* Info.plist */,
 			);
 			path = ProductSharedTests;

@@ -31,38 +31,51 @@
 
 import Foundation
 
-struct ImageViewModel {
+public struct ImageViewModel {
 	
-	var model: [Picture]?
+	public enum Quality: Int {
+		case x1 = 1
+		case x2 = 2
+		case x3 = 3
+	}
 	
+	var model: [Picture]
+	
+	public func gallery(size: Int, quality: Quality = .x3) -> [String] {
+		return preferredImagesLocation(from: model, width: size * quality.rawValue)
+	}
+	
+	public func image(size: Int, quality: Quality = .x3) -> String {
+		return gallery(size: size * quality.rawValue).first!
+	}
 }
 
 // MARK: - Prefered Resolution Helpers
 extension ImageViewModel {
 
-	public func preferredImagesLocation(from images: [Picture], width: Int) -> [String?] {
+	public func preferredImagesLocation(from images: [Picture], width: Int) -> [String] {
 		return images.map {
 			preferredLocation(from: $0.formats.map { $1 }, width: width)
 		}
 	}
 	
-	public func preferredImagesFormat(from images: [Picture], width: Int) -> [Format?] {
+	public func preferredImagesFormat(from images: [Picture], width: Int) -> [Format] {
 		return images.map {
 			preferredFormat(from: $0.formats.map { $1 }, width: width)
 		}
 	}
 	
-	public func preferredLocation(from formats: [Format], width: Int) -> String? {
-		return preferredFormat(from: formats, width: width)?.url
+	public func preferredLocation(from formats: [Format], width: Int) -> String {
+		return preferredFormat(from: formats, width: width).url
 	}
 	
-	public func preferredFormat(from formats: [Format], width: Int) -> Format? {
+	public func preferredFormat(from formats: [Format], width: Int) -> Format {
 		return formats.sorted { $0.width < $1.width }
-					  .first(where: { $0.width >= width })
+					  .first(where: { $0.width >= width })!
 	}
 	
-	public func preferredIndex(from formats: [Format], width: Int) -> Int? {
+	public func preferredIndex(from formats: [Format], width: Int) -> Int {
 		return formats.sorted { $0.width < $1.width }
-					  .firstIndex(where: { $0.width >= width })
+					  .firstIndex(where: { $0.width >= width }) ?? 0
 	}
 }

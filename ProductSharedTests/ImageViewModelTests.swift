@@ -54,7 +54,7 @@ class ImageViewModelTests: XCTestCase {
 		}
 	}
 	
-	let model = ImageViewModel()
+	lazy var model = ImageViewModel(model: pictures)
 	
 	func testPreferredImagesLocation() {
 		let result = model.preferredImagesLocation(from: pictures, width: imageSizeCorrect)
@@ -68,20 +68,20 @@ class ImageViewModelTests: XCTestCase {
 	
     func testPreferredLocation() {
 		let result = model.preferredLocation(from: format, width: imageSizeCorrect)
-		XCTAssertNotEqual(result!, "", "URL string can not be empty")
+		XCTAssertNotEqual(result, "", "URL string can not be empty")
 		XCTAssertNotNil(result, "URL string can not be nil")
-		XCTAssertEqual(result!, "url_480")
+		XCTAssertEqual(result, "url_480")
     }
 		
 	func testPreferredFormat() {
 		let result = model.preferredFormat(from: format, width: imageSizeCorrect)
 		XCTAssertNotNil(result, "Format can not be nil")
-		XCTAssertNotEqual(result!.url, "", "Format string can not be empty")
-		XCTAssertEqual(result!.width, 480)
+		XCTAssertNotEqual(result.url, "", "Format string can not be empty")
+		XCTAssertEqual(result.width, 480)
 	}
 	
 	func testPreferredIndex() {
 		let result = model.preferredIndex(from: format, width: imageSizeCorrect)
-		XCTAssertEqual(result!, 3)
+		XCTAssertEqual(result, 3)
 	}
 }

@@ -41,7 +41,6 @@ class ProductListCell: UITableViewCell, ReusableCell {
 		view.axis = .horizontal
 		view.distribution = .fill
 		view.alignment = .center
-		view.layoutMargins = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 15)
 		return view
 	}()
 	
@@ -70,7 +69,7 @@ extension ProductListCell: Configurable {
 		titleLabel.text = model.userIdString
 		detailLabel.text = model.priceString
 		detailLabel.textColor = .systemPink
-		iconView.downloadFrom(link: model.imageURL)
+		iconView.downloadFrom(link: model.imagevViewModel.image(size: 60))
 	}
 }
 

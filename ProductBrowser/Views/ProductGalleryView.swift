@@ -57,17 +57,6 @@ class ProductGalleryView: UIStackView {
 			addArrangedSubview(UIImageView(url: $0))
 		}
 	}
-	
-//	@objc private func didReceiveTap(sender: UITapGestureRecognizer) {
-//		let view = UIImageView(url: $0)
-//		view.isUserInteractionEnabled = true
-//		let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didReceiveTap(sender:)))
-//		view.addGestureRecognizer(tapGesture)
-//
-//		if let view = sender.view as? UIImageView {
-//			print(view.image?.size.width ?? "image")
-//		}
-//	}
 }
 
 // MARK: - UI
