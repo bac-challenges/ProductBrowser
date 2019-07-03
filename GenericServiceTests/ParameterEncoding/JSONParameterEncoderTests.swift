@@ -30,27 +30,31 @@
 //
 
 import XCTest
+@testable import GenericService
 
 class JSONParameterEncoderTests: XCTestCase {
 
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    func testJSONEncoding() {
+		guard let url = URL(string: "https://www.network.com/") else {
+			XCTAssertTrue(false, "Could not instantiate url")
+			return
+		}
+		var urlRequest = URLRequest(url: url)
+		let parameters: Parameters = [
+			"UserID": 1,
+			"Name": "emile",
+			"Email": "emile@network.com",
+			"IsCool": true]
+		do {
+			let encoder = JSONParameterEncoder()
+			try encoder.encode(urlRequest: &urlRequest, with: parameters)
+			
+			guard urlRequest.httpBody != nil else {
+				XCTAssertTrue(false, "JSON paramers are nil.")
+				return
+			}
+			
+			
+		} catch {}
     }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
 }

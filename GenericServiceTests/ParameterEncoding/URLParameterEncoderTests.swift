@@ -39,7 +39,9 @@ class URLParameterEncoderTests: XCTestCase {
 			XCTAssertTrue(false, "Could not instantiate url")
 			return
 		}
+		
 		var urlRequest = URLRequest(url: url)
+		
 		let parameters: Parameters = [
 			"UserID": 1,
 			"Name": "emile",
@@ -49,6 +51,7 @@ class URLParameterEncoderTests: XCTestCase {
 		do {
 			let encoder = URLParameterEncoder()
 			try encoder.encode(urlRequest: &urlRequest, with: parameters)
+			
 			guard let fullURL = urlRequest.url else {
 				XCTAssertTrue(false, "urlRequest url is nil.")
 				return
