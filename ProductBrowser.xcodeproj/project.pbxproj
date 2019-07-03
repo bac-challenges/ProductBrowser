@@ -304,8 +304,8 @@
 		60245CA022C9CCDD009C32AD /* GenericServiceTests */ = {
 			isa = PBXGroup;
 			children = (
-				60245CA922C9CFF1009C32AD /* JSONParserTests.swift */,
-				6056F79622C9DBBA008CD0BD /* RequestFactoryTests.swift */,
+				60EC2F7722CCA48C0047BC64 /* Parser */,
+				60EC2F7622CCA4810047BC64 /* Service */,
 				60EC2F7322CCA4300047BC64 /* ParameterEncoding */,
 				60245CA322C9CCDD009C32AD /* Info.plist */,
 			);
@@ -391,6 +391,22 @@
 				60EC2F7122CCA4230047BC64 /* JSONParameterEncoderTests.swift */,
 			);
 			path = ParameterEncoding;
+			sourceTree = "<group>";
+		};
+		60EC2F7622CCA4810047BC64 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				6056F79622C9DBBA008CD0BD /* RequestFactoryTests.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		60EC2F7722CCA48C0047BC64 /* Parser */ = {
+			isa = PBXGroup;
+			children = (
+				60245CA922C9CFF1009C32AD /* JSONParserTests.swift */,
+			);
+			path = Parser;
 			sourceTree = "<group>";
 		};
 		60F13DC022C7A6B10095CDDD = {
