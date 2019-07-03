@@ -20,39 +20,46 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: 6A46B76B-AA0D-4095-97F7-BAF0B89D8649
+//	ID: DAE66AF9-6D85-4BFF-8648-BD807207B3C9
 //
-//	Pkg: ProductBrowser
+//	Pkg: ProductShared
 //
 //	Swift: 5.0 
 //
 //	MacOS: 10.15
 //
 
-import UIKit
+import Foundation
 
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
-
-	var window: UIWindow?
+public struct Product: Codable {
 	
-	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-		
-		window = UIWindow(frame: UIScreen.main.bounds)
-		window?.rootViewController = rootViewController
-		window?.makeKeyAndVisible()
-
-		Appearance.apply()
-		
-		return true
-	}
+	// Primary
+	public let userId: Int
+	public let priceAmount: String
+	public let priceCurrency: String
+	public let picturesData: [Picture]
 	
-	private var rootViewController: UISplitViewController {
-		let listController = ProductListController()
-		let detailController = ProductEmptyController()
-		let productController = ProductController()
-		productController.viewControllers = [UINavigationController(rootViewController: listController),
-											 UINavigationController(rootViewController: detailController)]
-		return productController
-	}
+	// Secondary
+	public let description: String
+	
+	// Not used
+//	let variantSet: Int
+//	let quantity: Int
+//	let createdDate: Date
+//	let brandId: String
+//	let activeStatus: String
+//	let country: String
+//	let slug: String
+//	let pubDate: Date
+//	let nationalShippingCost: Float
+//	let id: Int
+//	let handDelivery: Bool
+//	let internationalShippingCost: Float
+//	let status: String
+//	let purchaseViaPaypal: Bool
+//	let categories: [Int]
+//	let address: String
+//	let videos: String
+//	let userData: UserData
+//	let variants: String
 }

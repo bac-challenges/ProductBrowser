@@ -20,39 +20,17 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: 6A46B76B-AA0D-4095-97F7-BAF0B89D8649
+//	ID: 7E939B85-D24A-4C27-AE76-6FA480DFE088
 //
-//	Pkg: ProductBrowser
+//	Pkg: ProductShared
 //
 //	Swift: 5.0 
 //
 //	MacOS: 10.15
 //
 
-import UIKit
+import Foundation
 
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
-
-	var window: UIWindow?
-	
-	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-		
-		window = UIWindow(frame: UIScreen.main.bounds)
-		window?.rootViewController = rootViewController
-		window?.makeKeyAndVisible()
-
-		Appearance.apply()
-		
-		return true
-	}
-	
-	private var rootViewController: UISplitViewController {
-		let listController = ProductListController()
-		let detailController = ProductEmptyController()
-		let productController = ProductController()
-		productController.viewControllers = [UINavigationController(rootViewController: listController),
-											 UINavigationController(rootViewController: detailController)]
-		return productController
-	}
+public struct UserData: Codable {
+	public let id: Int
 }

@@ -20,9 +20,9 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: 6A46B76B-AA0D-4095-97F7-BAF0B89D8649
+//	ID: C9500418-802A-408F-B24F-B3118F0B0E3F
 //
-//	Pkg: ProductBrowser
+//	Pkg: GenericUtils
 //
 //	Swift: 5.0 
 //
@@ -31,28 +31,36 @@
 
 import UIKit
 
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
-
-	var window: UIWindow?
-	
-	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+public extension UIImageView {
+	func downloadFrom(url: URL, contentMode mode: UIView.ContentMode = .scaleAspectFit, completion: (() -> Void)? = nil) {
 		
-		window = UIWindow(frame: UIScreen.main.bounds)
-		window?.rootViewController = rootViewController
-		window?.makeKeyAndVisible()
-
-		Appearance.apply()
+		contentMode = mode
 		
-		return true
+		URLSession.shared.dataTask(with: url) { (data, response, error) in
+			guard let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+				  let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
+				  let data = data, error == nil,
+				  let image = UIImage(data: data) else { return }
+			
+			DispatchQueue.main.async() { () -> Void in
+				self.image = image
+				self.setNeedsDisplay()
+				if let completion = completion {
+					completion()
+				}
+			}
+		}.resume()
 	}
 	
-	private var rootViewController: UISplitViewController {
-		let listController = ProductListController()
-		let detailController = ProductEmptyController()
-		let productController = ProductController()
-		productController.viewControllers = [UINavigationController(rootViewController: listController),
-											 UINavigationController(rootViewController: detailController)]
-		return productController
+	func downloadFrom(link: String, contentMode mode: UIView.ContentMode = .scaleAspectFit, completion: (() -> Void)? = nil) {
+		guard let url = URL(string: link) else { return }
+		downloadFrom(url: url, contentMode: mode, completion: completion)
+	}
+	
+	convenience init(url: String = "") {
+		self.init()
+		contentMode = .scaleAspectFit
+		anchor(width: 50, height: 50)
+		downloadFrom(link: url)
 	}
 }

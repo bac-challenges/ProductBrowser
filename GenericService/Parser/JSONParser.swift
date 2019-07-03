@@ -20,39 +20,29 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: 6A46B76B-AA0D-4095-97F7-BAF0B89D8649
+//	ID: 5762E7D9-4DBA-4E37-9338-EE330D717DFD
 //
-//	Pkg: ProductBrowser
+//	Pkg: GenericService
 //
 //	Swift: 5.0 
 //
 //	MacOS: 10.15
 //
 
-import UIKit
+import Foundation
 
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
-
-	var window: UIWindow?
-	
-	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+final class JSONParser {
+	static func parse<T: Codable>(data: Data, completion: (Result<T, ErrorResult>) -> Void) {
 		
-		window = UIWindow(frame: UIScreen.main.bounds)
-		window?.rootViewController = rootViewController
-		window?.makeKeyAndVisible()
-
-		Appearance.apply()
-		
-		return true
-	}
-	
-	private var rootViewController: UISplitViewController {
-		let listController = ProductListController()
-		let detailController = ProductEmptyController()
-		let productController = ProductController()
-		productController.viewControllers = [UINavigationController(rootViewController: listController),
-											 UINavigationController(rootViewController: detailController)]
-		return productController
+		do {
+			let decoder = JSONDecoder()
+			decoder.dateDecodingStrategy = .secondsSince1970
+			decoder.keyDecodingStrategy = .convertFromSnakeCase
+			
+			let model = try decoder.decode(T.self, from: data)
+			completion(.success(model))
+		} catch {
+			completion(.failure(.parser(string: "Error while decoding json data - \(error)")))
+		}
 	}
 }

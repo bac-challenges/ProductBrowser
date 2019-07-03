@@ -39,10 +39,9 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="systemPinkColor"/>
                         <constraints>
                             <constraint firstItem="htW-5K-XUM" firstAttribute="top" secondItem="glK-OC-XqZ" secondAttribute="bottom" id="3N9-Kx-QUb"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="htW-5K-XUM" secondAttribute="trailing" constant="127" id="7BN-qQ-3X6"/>
                             <constraint firstItem="glK-OC-XqZ" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-10" id="JsN-lE-zIr"/>
                             <constraint firstItem="glK-OC-XqZ" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="XK5-BR-fjk"/>
-                            <constraint firstItem="htW-5K-XUM" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" symbolic="YES" id="hUi-4a-7h7"/>
+                            <constraint firstItem="htW-5K-XUM" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="gJK-aQ-fOY"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

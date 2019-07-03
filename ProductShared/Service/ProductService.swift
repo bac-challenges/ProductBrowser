@@ -20,39 +20,39 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: 6A46B76B-AA0D-4095-97F7-BAF0B89D8649
+//	ID: 57AEBC4C-1F62-45DC-AA48-7A9E27B60E5A
 //
-//	Pkg: ProductBrowser
+//	Pkg: ProductShared
 //
 //	Swift: 5.0 
 //
 //	MacOS: 10.15
 //
 
-import UIKit
+import Foundation
+import GenericService
 
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+public protocol ProductServiceProtocol: class {
+	func fetchProducts(_ completion: @escaping ((Result<Response, ErrorResult>) -> Void))
+}
 
-	var window: UIWindow?
+public final class ProductService: RequestHandler, ProductServiceProtocol {
+
+	public static let shared = ProductService()
+
+	let endpoint = "https://api.garage.me/api/v1/products/popular/?limit=100&offset_id"
 	
-	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-		
-		window = UIWindow(frame: UIScreen.main.bounds)
-		window?.rootViewController = rootViewController
-		window?.makeKeyAndVisible()
-
-		Appearance.apply()
-		
-		return true
+	var task: URLSessionTask?
+	
+	public func fetchProducts(_ completion: @escaping ((Result<Response, ErrorResult>) -> Void)) {
+		self.cancelFetchProducts()
+		task = RequestService().loadData(urlString: endpoint, completion: self.networkResult(completion: completion))
 	}
 	
-	private var rootViewController: UISplitViewController {
-		let listController = ProductListController()
-		let detailController = ProductEmptyController()
-		let productController = ProductController()
-		productController.viewControllers = [UINavigationController(rootViewController: listController),
-											 UINavigationController(rootViewController: detailController)]
-		return productController
+	func cancelFetchProducts() {
+		if let task = task {
+			task.cancel()
+		}
+		task = nil
 	}
 }

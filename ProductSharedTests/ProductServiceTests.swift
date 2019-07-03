@@ -20,39 +20,27 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: 6A46B76B-AA0D-4095-97F7-BAF0B89D8649
+//	ID: F78D89E0-65B3-4CAA-980E-B8D48838F748
 //
-//	Pkg: ProductBrowser
+//	Pkg: ProductSharedTests
 //
 //	Swift: 5.0 
 //
 //	MacOS: 10.15
 //
 
-import UIKit
+import XCTest
+@testable import ProductShared
 
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class ProductServiceTests: XCTestCase {
 
-	var window: UIWindow?
-	
-	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+	func testCancelRequest() {
+
+		ProductService.shared.fetchProducts() { (_) in
+			// ignore call
+		}
 		
-		window = UIWindow(frame: UIScreen.main.bounds)
-		window?.rootViewController = rootViewController
-		window?.makeKeyAndVisible()
-
-		Appearance.apply()
-		
-		return true
-	}
-	
-	private var rootViewController: UISplitViewController {
-		let listController = ProductListController()
-		let detailController = ProductEmptyController()
-		let productController = ProductController()
-		productController.viewControllers = [UINavigationController(rootViewController: listController),
-											 UINavigationController(rootViewController: detailController)]
-		return productController
+		ProductService.shared.cancelFetchProducts()
+		XCTAssertNil(ProductService.shared.task, "Expected task nil")
 	}
 }

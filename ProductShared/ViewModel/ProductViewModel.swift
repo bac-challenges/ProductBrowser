@@ -20,39 +20,43 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: 6A46B76B-AA0D-4095-97F7-BAF0B89D8649
+//	ID: F4522544-5742-4B4C-BEF1-3D490DCF6BAD
 //
-//	Pkg: ProductBrowser
+//	Pkg: ProductShared
 //
 //	Swift: 5.0 
 //
 //	MacOS: 10.15
 //
 
-import UIKit
+import Foundation
+import GenericUtils
+import GenericService
 
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
-
-	var window: UIWindow?
+public struct ProductViewModel: GenericViewModel {
 	
-	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-		
-		window = UIWindow(frame: UIScreen.main.bounds)
-		window?.rootViewController = rootViewController
-		window?.makeKeyAndVisible()
+	public let model: Product
+	public init(_ model: Product) {
+		self.model = model
+	}
+}
 
-		Appearance.apply()
-		
-		return true
+// MARK: - Presentation
+extension ProductViewModel {
+	
+	public var userIdString: String {
+		return "ID: \(model.userId)"
 	}
 	
-	private var rootViewController: UISplitViewController {
-		let listController = ProductListController()
-		let detailController = ProductEmptyController()
-		let productController = ProductController()
-		productController.viewControllers = [UINavigationController(rootViewController: listController),
-											 UINavigationController(rootViewController: detailController)]
-		return productController
+	public var priceString: String {
+		return "\(model.priceAmount)\(model.priceCurrency)"
+	}
+	
+	public var description: String {
+		return model.description
+	}
+	
+	public var imagevViewModel: ImageViewModel {
+		return ImageViewModel(model: model.picturesData)
 	}
 }

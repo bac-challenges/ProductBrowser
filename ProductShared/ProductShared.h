@@ -20,39 +20,23 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: 6A46B76B-AA0D-4095-97F7-BAF0B89D8649
+//	ID: 19A21378-0A19-44F5-B93F-07F3B9E7FF42
 //
-//	Pkg: ProductBrowser
+//	Pkg: ProductShared
 //
 //	Swift: 5.0 
 //
 //	MacOS: 10.15
 //
 
-import UIKit
+#import <UIKit/UIKit.h>
 
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+//! Project version number for ProductShared.
+FOUNDATION_EXPORT double ProductSharedVersionNumber;
 
-	var window: UIWindow?
-	
-	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-		
-		window = UIWindow(frame: UIScreen.main.bounds)
-		window?.rootViewController = rootViewController
-		window?.makeKeyAndVisible()
+//! Project version string for ProductShared.
+FOUNDATION_EXPORT const unsigned char ProductSharedVersionString[];
 
-		Appearance.apply()
-		
-		return true
-	}
-	
-	private var rootViewController: UISplitViewController {
-		let listController = ProductListController()
-		let detailController = ProductEmptyController()
-		let productController = ProductController()
-		productController.viewControllers = [UINavigationController(rootViewController: listController),
-											 UINavigationController(rootViewController: detailController)]
-		return productController
-	}
-}
+// In this header, you should import all the public headers of your framework using statements like #import <ProductShared/PublicHeader.h>
+
+
