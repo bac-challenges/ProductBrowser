@@ -20,7 +20,7 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: CF12A9A1-D37F-4813-BB59-AB7EAA55A7F0
+//	ID: F180260F-2F11-415C-A94D-ADCE0C33348E
 //
 //	Pkg: GenericService
 //
@@ -31,14 +31,16 @@
 
 import Foundation
 
-public enum ErrorResult: Error {
-	case network(string: String)
-	case parser(string: String)
-	case custom(string: String)
-}
-
-public enum NetworkError : String, Error {
-	case parametersNil = "Parameters were nil."
-	case encodingFailed = "Parameter encoding failed."
-	case missingURL = "URL is nil."
+public struct JSONParameterEncoder: ParameterEncoder {
+	public func encode(urlRequest: inout URLRequest, with parameters: Parameters) throws {
+		do {
+			let jsonAsData = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
+			urlRequest.httpBody = jsonAsData
+			if urlRequest.value(forHTTPHeaderField: "Content-Type") == nil {
+				urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+			}
+		} catch {
+			throw NetworkError.encodingFailed
+		}
+	}
 }
