@@ -38,7 +38,7 @@ public struct Appearance {
 		// Global
 		let window = UIWindow.appearance()
 		window.backgroundColor = .white
-		window.tintColor = .systemPink
+		window.tintColor = .black
 		
 		// Navigation
 		let navigationBarAppearace = UINavigationBar.appearance()
@@ -46,10 +46,10 @@ public struct Appearance {
 		navigationBarAppearace.prefersLargeTitles = false
 		navigationBarAppearace.barTintColor = UIColor.white
 		
-		navigationBarAppearace.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemPink,
+		navigationBarAppearace.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black,
 													  NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17, weight: .medium)]
 		
-		navigationBarAppearace.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemPink,
+		navigationBarAppearace.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black,
 														   NSAttributedString.Key.font: UIFont.systemFont(ofSize: 48, weight: .medium)]
 		
 		// UILabel

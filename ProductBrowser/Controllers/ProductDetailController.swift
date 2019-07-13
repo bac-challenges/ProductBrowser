@@ -103,7 +103,7 @@ private class TableHeaderView: UIView {
 		self.init()
 		let view = UILabel()
 		view.font = .systemFont(ofSize: 20, weight: .regular)
-		view.textColor = .systemPink
+		view.textColor = .black
 		view.text = title
 		addSubview(view)
 		view.anchor(top: layoutMarginsGuide.topAnchor,

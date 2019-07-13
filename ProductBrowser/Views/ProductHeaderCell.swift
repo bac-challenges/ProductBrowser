@@ -62,7 +62,7 @@ extension ProductHeaderCell: Configurable {
 	func configure(_ model: ProductViewModel) {
 		titleLabel.text = model.userIdString
 		detailLabel.text = model.priceString
-		detailLabel.textColor = .systemPink
+		detailLabel.textColor = .black
 		iconView.downloadFrom(link: model.imagevViewModel.image(size: 120))
 		gallery.items = model.imagevViewModel.gallery(size: 50)
 	}
